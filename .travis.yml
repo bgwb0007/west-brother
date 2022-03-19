@@ -26,12 +26,22 @@ deploy:
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
     secret_access_key: $AWS_SECRET_KEY # Travis repo settings에 설정된 값
-    bucket: west-brother-build
+    bucket: west-brother-build # s3 버킷
     region: ap-northeast-2
     skip_cleanup: true
     acl: private # zip 파일 접근을 private으로
     local_dir: deploy # before_deploy에서 생성한 디렉토리
     wait-until-deploy: true
+
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: west-brother-build
+    key: west-brother.zip # 빌드 파일을 압축해서 전달
+    application: west-brother # 웹 콘솔에서 등록한 codedeploy 애플리케이션
+    deployment_group: west-brother-group # 웹 콘솔에서 등록한 codedeploy 배포 그룹
+    region: ap-northeast-2
+    wait-until-deployed: true
 
 # CI 실행 완료 시 메일로 알람
 notifications:
