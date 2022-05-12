@@ -36,12 +36,14 @@ deploy:
   - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
-    bucket: west-brother-build
-    key: west-brother.zip # 빌드 파일을 압축해서 전달
-    application: west-brother # 웹 콘솔에서 등록한 codedeploy 애플리케이션
-    deployment_group: west-brother-group # 웹 콘솔에서 등록한 codedeploy 배포 그룹
+    bucket: west-brother-build # s3 버킷
+    key: west-brother.zip # 빌드 파일을 압축해서 전달(s3 버킷에 저장된 파일을 lightsail로 배포)
+    application: west-brother # 웹 콘솔에서 등록한 Codedeploy 애플리케이션
+    deployment_group: Lightsail-codedeploy-group # 웹 콘솔에서 등록한 Codedeploy 배포 그룹
     region: ap-northeast-2
-    wait-until-deployed: true
+    wait-until-deployed: true # 기본적으로 빌드는 Codedeploy 배포를 트리거 한 직후에 계속된다. 배포가 완료 될 때까지 기다리려면 true
+    on:
+      branch: master
 
 # CI 실행 완료 시 메일로 알람
 notifications:
