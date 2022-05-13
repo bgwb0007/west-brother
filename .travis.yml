@@ -42,8 +42,7 @@ deploy:
     deployment_group: Lightsail-codedeploy-group # 웹 콘솔에서 등록한 Codedeploy 배포 그룹
     region: ap-northeast-2
     wait-until-deployed: true # 기본적으로 빌드는 Codedeploy 배포를 트리거 한 직후에 계속된다. 배포가 완료 될 때까지 기다리려면 true
-    on:
-      branch: master
+
 
 # CI 실행 완료 시 메일로 알람
 notifications:
