@@ -8,6 +8,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.shouldHaveThrown;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 @RunWith(SpringRunner.class)
@@ -19,7 +20,6 @@ public class IndexControllerTest {
     @Test
     public void 메인페이지_로딩(){
         String body = this.restTemplate.getForObject("/",String.class);
-
         assertThat(body).contains("AWS");
     }
 
