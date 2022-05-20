@@ -2,6 +2,7 @@ package com.bgwb0007.intro.springboot.web;
 
 import com.bgwb0007.intro.springboot.domain.profiles.Profiles;
 import com.bgwb0007.intro.springboot.domain.profiles.ProfilesRepository;
+import com.bgwb0007.intro.springboot.web.dto.ProfilesListResponseDto;
 import com.bgwb0007.intro.springboot.web.dto.ProfilesUpdateRequestDto;
 import org.junit.After;
 import org.junit.Test;
@@ -37,7 +38,6 @@ public class ProfilesApiControllerTest {
     public void tearDown() throws Exception{
         profilesRepository.deleteAll();
     }
-
     @Test
     public void Profiles_수정하기() throws Exception {
         //given
@@ -97,6 +97,5 @@ public class ProfilesApiControllerTest {
         assertThat(all.get(0).getEmail()).isEqualTo(email);
         assertThat(all.get(0).getPhone()).isEqualTo(phone);
         assertThat(all.get(0).getContent()).isEqualTo(content);
-
     }
 }
