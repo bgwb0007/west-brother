@@ -24,7 +24,7 @@
 }
 .profileContentBox1{
     text-align: center;
-    height: 195px;
+    height: 170px;
 }
 .profileMyName{
     padding-top: 40px;
@@ -32,9 +32,8 @@
 }
 .profileContentBox2{
     text-align: center;
+    padding: 10px;
 }
-
-
 
 .menuBox1{
     height: 300px;
@@ -42,10 +41,13 @@
     padding-right: 0px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-around;
 }
 .menuBox2{
     text-align: center;
+    padding: 20px;
+    width: 80%;
 }
 
 @media (min-width: 990px){

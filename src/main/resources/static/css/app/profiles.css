@@ -1,0 +1,49 @@
+.row{
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profileContentBox1{
+    text-align: center;
+}
+.profileContentBox2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 50px;
+}
+
+.profileMyName{
+    margin-top: 10px;
+    font-size: x-large;
+
+}
+.profileContentTable{
+    margin-top: 20px;
+}
+.profileContentTable tr td:nth-of-type(1){
+    text-align: right;
+}
+.profileContentTable tr td:nth-of-type(2){
+    text-align: left;
+    padding-left: 15px;
+}
+
+
+@media (min-width: 990px){
+    .profileBox2{
+        height: 330px;
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .profileImgBox{
+        height: 330px;
+        width: 330px;
+    }
+}
