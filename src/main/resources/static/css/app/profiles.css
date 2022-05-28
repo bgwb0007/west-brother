@@ -1,49 +1,53 @@
-.row{
-    margin-left: 3px;
-    margin-right: 3px;
-    margin-top: 30px;
+.wrapper {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    margin: 20px;
+    width: 880px;
+    margin-left: auto;
+    margin-right: auto;
 }
-
-.profileContentBox1{
-    text-align: center;
+.contactAll {
+    width: 270px;
+    display: inline-block;
 }
-.profileContentBox2{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 50px;
+.contactImgDiv {
+    height: 220px;
+    width: 220px;
 }
-
-.profileMyName{
-    margin-top: 10px;
-    font-size: x-large;
-
+.mContactMyName{
+    display: none;
 }
-.profileContentTable{
+.contactInfoTitle {
+    font-size: larger;
     margin-top: 20px;
 }
-.profileContentTable tr td:nth-of-type(1){
-    text-align: right;
-}
-.profileContentTable tr td:nth-of-type(2){
-    text-align: left;
-    padding-left: 15px;
-}
 
+
+.careerBox {
+    width: 600px;
+    display: inline-block;
+}
+.hConteactMyName {
+    margin-top: 45px;
+    margin-bottom: 60px;
+}
+.hConteactMyName span:first-child{
+    font-size: 40px;
+}
+.careerInfoTitle {
+    font-size: larger;
+    margin-top: 20px;
+}
+.careerInfo {
+    display: flex;
+}
+.careerInfo span:nth-child(1) {
+    width: 160px;
+    margin-right: 10px;
+}
 
 @media (min-width: 990px){
-    .profileBox2{
-        height: 330px;
-        margin-top: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .profileImgBox{
-        height: 330px;
-        width: 330px;
-    }
+
 }
