@@ -14,4 +14,8 @@ public class IndexController {
     public String postsSave(){
         return "posts/posts-save";
     }
+    @GetMapping("/profiles")
+    public String profiles(){
+        return "profiles/profiles";
+    }
 }
