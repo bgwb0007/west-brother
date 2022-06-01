@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -16,47 +18,26 @@ public class Profiles extends BaseTimeEntity {
     private Long id;
     @Column(length = 100, nullable = false)
     private String name;
-    @Column(length = 100)
-    private String instagramId;
-    @Column(length = 250)
-    private String instagramUrl;
-    @Column(length = 100)
-    private String linkedInId;
-    @Column(length = 250)
-    private String linkedInUrl;
-    @Column(length = 100)
-    private String gitHubId;
-    @Column(length = 250)
-    private String gitHubUrl;
-    @Column(length = 100)
-    private String email;
-    @Column(length = 100)
-    private String phone;
     @Column(columnDefinition = "TEXT")
     private String content;
+    @Column
+    private String photoFileName;
+    @Column
+    private String photoPath;
+
+    @OneToMany(mappedBy = "profiles")
+    private List<ProfilesDetail> profilesDetailList = new ArrayList<>();
+
     @Builder
-    public Profiles(String name, String instagramId, String instagramUrl, String linkedInId, String linkedInUrl, String gitHubId, String gitHubUrl, String email, String phone, String content) {
+    public Profiles(String name, String content, String photoFileName, String photoPath, List<ProfilesDetail> profilesDetailList) {
         this.name = name;
-        this.instagramId = instagramId;
-        this.instagramUrl = instagramUrl;
-        this.linkedInId = linkedInId;
-        this.linkedInUrl = linkedInUrl;
-        this.gitHubId = gitHubId;
-        this.gitHubUrl = gitHubUrl;
-        this.email = email;
-        this.phone = phone;
         this.content = content;
+        this.photoFileName = photoFileName;
+        this.photoPath = photoPath;
+        this.profilesDetailList = profilesDetailList;
     }
+
     public void update(ProfilesUpdateRequestDto requestDto){
-        this.name = requestDto.getName();
-        this.instagramId = requestDto.getInstagramId();
-        this.instagramUrl = requestDto.getInstagramUrl();
-        this.linkedInId = requestDto.getLinkedInId();
-        this.linkedInUrl = requestDto.getLinkedInUrl();
-        this.gitHubId = requestDto.getGitHubId();
-        this.gitHubUrl = requestDto.getGitHubUrl();
-        this.email = requestDto.getEmail();
-        this.phone = requestDto.getPhone();
-        this.content = requestDto.getContent();
+
     }
 }

@@ -2,7 +2,6 @@ package com.bgwb0007.intro.springboot.web;
 
 import com.bgwb0007.intro.springboot.domain.profiles.Profiles;
 import com.bgwb0007.intro.springboot.domain.profiles.ProfilesRepository;
-import com.bgwb0007.intro.springboot.web.dto.ProfilesListResponseDto;
 import com.bgwb0007.intro.springboot.web.dto.ProfilesUpdateRequestDto;
 import org.junit.After;
 import org.junit.Test;
@@ -43,14 +42,15 @@ public class ProfilesApiControllerTest {
         //given
         Profiles savedProfiles = profilesRepository.save(Profiles.builder()
                 .name("수정전이름")
-                .instagramId("west_bro")
-                .instagramUrl("instagram.com")
-                .linkedInId("linedin@naver.com")
-                .linkedInUrl("linkedIN.com")
-                .gitHubId("깃수정전아이디")
-                .gitHubUrl("github.com")
-                .email("수정전이메일")
-                .phone("010-2222-3333")
+//                .instagramId("west_bro")
+//                .instagramUrl("instagram.com")
+//                .linkedInId("linedin@naver.com")
+//                .linkedInUrl("linkedIN.com")
+//                .gitHubId("깃수정전아이디")
+//                .gitHubUrl("github.com")
+//                .email("수정전이메일")
+//                .phone("010-2222-3333")
+                .content("수정전 content")
                 .build());
 
         Long updateId = savedProfiles.getId();
@@ -67,14 +67,14 @@ public class ProfilesApiControllerTest {
 
         ProfilesUpdateRequestDto requestDto = ProfilesUpdateRequestDto.builder()
                 .name(name)
-                .instagramId(instagramId)
-                .instagramUrl(instagramUrl)
-                .linkedInId(linkedInId)
-                .linkedInUrl(linkedInUrl)
-                .gitHubId(gitHubId)
-                .gitHubUrl(gitHubUrl)
-                .email(email)
-                .phone(phone)
+//                .instagramId(instagramId)
+//                .instagramUrl(instagramUrl)
+//                .linkedInId(linkedInId)
+//                .linkedInUrl(linkedInUrl)
+//                .gitHubId(gitHubId)
+//                .gitHubUrl(gitHubUrl)
+//                .email(email)
+//                .phone(phone)
                 .content(content)
                 .build();
         String url = "http://localhost:"+port+"/api/v1/profiles/" + updateId;
@@ -88,14 +88,14 @@ public class ProfilesApiControllerTest {
         assertThat(responseEntity.getBody()).isGreaterThan(0L);
         List<Profiles> all = profilesRepository.findAll();
         assertThat(all.get(0).getName()).isEqualTo(name);
-        assertThat(all.get(0).getInstagramId()).isEqualTo(instagramId);
-        assertThat(all.get(0).getInstagramUrl()).isEqualTo(instagramUrl);
-        assertThat(all.get(0).getLinkedInId()).isEqualTo(linkedInId);
-        assertThat(all.get(0).getLinkedInUrl()).isEqualTo(linkedInUrl);
-        assertThat(all.get(0).getGitHubId()).isEqualTo(gitHubId);
-        assertThat(all.get(0).getGitHubUrl()).isEqualTo(gitHubUrl);
-        assertThat(all.get(0).getEmail()).isEqualTo(email);
-        assertThat(all.get(0).getPhone()).isEqualTo(phone);
+//        assertThat(all.get(0).getInstagramId()).isEqualTo(instagramId);
+//        assertThat(all.get(0).getInstagramUrl()).isEqualTo(instagramUrl);
+//        assertThat(all.get(0).getLinkedInId()).isEqualTo(linkedInId);
+//        assertThat(all.get(0).getLinkedInUrl()).isEqualTo(linkedInUrl);
+//        assertThat(all.get(0).getGitHubId()).isEqualTo(gitHubId);
+//        assertThat(all.get(0).getGitHubUrl()).isEqualTo(gitHubUrl);
+//        assertThat(all.get(0).getEmail()).isEqualTo(email);
+//        assertThat(all.get(0).getPhone()).isEqualTo(phone);
         assertThat(all.get(0).getContent()).isEqualTo(content);
     }
 }
