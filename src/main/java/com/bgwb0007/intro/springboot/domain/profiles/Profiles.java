@@ -38,6 +38,9 @@ public class Profiles extends BaseTimeEntity {
     }
 
     public void update(ProfilesUpdateRequestDto requestDto){
-
+        this.name = requestDto.getName();
+        this.content = requestDto.getContent();
+        this.photoFileName = requestDto.getPhotoFileName();
+        this.photoPath = requestDto.getPhotoPath();
     }
 }

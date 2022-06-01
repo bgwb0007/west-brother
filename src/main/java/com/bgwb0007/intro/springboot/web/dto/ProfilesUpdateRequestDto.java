@@ -15,14 +15,12 @@ public class ProfilesUpdateRequestDto {
     private String content;
     private String photoFileName;
     private String photoPath;
-    private List<ProfilesDetail> profilesDetailList;
 
     @Builder
-    public ProfilesUpdateRequestDto(String name, String content, String photoFileName, String photoPath, List<ProfilesDetail> profilesDetailList) {
+    public ProfilesUpdateRequestDto(String name, String content, String photoFileName, String photoPath) {
         this.name = name;
         this.content = content;
         this.photoFileName = photoFileName;
         this.photoPath = photoPath;
-        this.profilesDetailList = profilesDetailList;
     }
 }

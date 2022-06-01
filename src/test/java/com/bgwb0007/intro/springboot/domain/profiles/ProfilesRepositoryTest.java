@@ -36,6 +36,7 @@ public class ProfilesRepositoryTest {
 //        String phone = "010-7365-9430";
         String content = "프로필입니다.!@";
         String photoFileName = "메인이미지.png";
+        String photoPath = "이미지 경로";
 
         profilesRepository.save(Profiles.builder()
                 .name(name)
@@ -48,6 +49,8 @@ public class ProfilesRepositoryTest {
 //                .email(email)
 //                .phone(phone)
                 .content(content)
+                .photoFileName(photoFileName)
+                .photoPath(photoPath)
                 .build());
         List<Profiles> profilesList = profilesRepository.findAll();
 

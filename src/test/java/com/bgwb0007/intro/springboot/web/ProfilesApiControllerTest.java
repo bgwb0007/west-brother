@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -51,6 +52,8 @@ public class ProfilesApiControllerTest {
 //                .email("수정전이메일")
 //                .phone("010-2222-3333")
                 .content("수정전 content")
+                .photoFileName("수정전이미지파일.png")
+                .photoPath("수정전 경로")
                 .build());
 
         Long updateId = savedProfiles.getId();
@@ -64,6 +67,8 @@ public class ProfilesApiControllerTest {
         String email = "수정후이메일";
         String phone = "수정후폰";
         String content = "수정후컨텐츠";
+        String photoFileName = "수정후 수정전이미지파일.png";
+        String photoPath = "수정후 경로";
 
         ProfilesUpdateRequestDto requestDto = ProfilesUpdateRequestDto.builder()
                 .name(name)
@@ -76,6 +81,8 @@ public class ProfilesApiControllerTest {
 //                .email(email)
 //                .phone(phone)
                 .content(content)
+                .photoFileName(photoFileName)
+                .photoPath(photoPath)
                 .build();
         String url = "http://localhost:"+port+"/api/v1/profiles/" + updateId;
         HttpEntity<ProfilesUpdateRequestDto> requestEntity = new HttpEntity<>(requestDto);
@@ -86,6 +93,7 @@ public class ProfilesApiControllerTest {
         //then
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(responseEntity.getBody()).isGreaterThan(0L);
+
         List<Profiles> all = profilesRepository.findAll();
         assertThat(all.get(0).getName()).isEqualTo(name);
 //        assertThat(all.get(0).getInstagramId()).isEqualTo(instagramId);
