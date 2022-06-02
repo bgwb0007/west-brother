@@ -1,6 +1,7 @@
 package com.bgwb0007.intro.springboot.domain.profiles;
 
 import com.bgwb0007.intro.springboot.domain.BaseTimeEntity;
+import com.bgwb0007.intro.springboot.domain.contact.Contact;
 import com.bgwb0007.intro.springboot.web.dto.ProfilesUpdateRequestDto;
 import lombok.Builder;
 import lombok.Getter;
@@ -26,15 +27,15 @@ public class Profiles extends BaseTimeEntity {
     private String photoPath;
 
     @OneToMany(mappedBy = "profiles")
-    private List<ProfilesDetail> profilesDetailList = new ArrayList<>();
+    private List<Contact> contactList = new ArrayList<>();
 
     @Builder
-    public Profiles(String name, String content, String photoFileName, String photoPath, List<ProfilesDetail> profilesDetailList) {
+    public Profiles(String name, String content, String photoFileName, String photoPath, List<Contact> contactList) {
         this.name = name;
         this.content = content;
         this.photoFileName = photoFileName;
         this.photoPath = photoPath;
-        this.profilesDetailList = profilesDetailList;
+        this.contactList = contactList;
     }
 
     public void update(ProfilesUpdateRequestDto requestDto){

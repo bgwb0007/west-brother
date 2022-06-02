@@ -1,11 +1,8 @@
 package com.bgwb0007.intro.springboot.web.dto;
 
-import com.bgwb0007.intro.springboot.domain.profiles.ProfilesDetail;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 
 @Getter

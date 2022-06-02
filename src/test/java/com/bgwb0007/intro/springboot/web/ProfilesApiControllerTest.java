@@ -58,14 +58,14 @@ public class ProfilesApiControllerTest {
 
         Long updateId = savedProfiles.getId();
         String name = "수정후이름";
-        String instagramId = "수정후인스타아이디";
-        String instagramUrl = "수정후인스타주소";
-        String linkedInId = "수정후링크드인아이디";
-        String linkedInUrl = "수정후링크드인주소";
-        String gitHubId = "수정후깃허브아이디";
-        String gitHubUrl = "수정후깃허브주소";
-        String email = "수정후이메일";
-        String phone = "수정후폰";
+//        String instagramId = "수정후인스타아이디";
+//        String instagramUrl = "수정후인스타주소";
+//        String linkedInId = "수정후링크드인아이디";
+//        String linkedInUrl = "수정후링크드인주소";
+//        String gitHubId = "수정후깃허브아이디";
+//        String gitHubUrl = "수정후깃허브주소";
+//        String email = "수정후이메일";
+//        String phone = "수정후폰";
         String content = "수정후컨텐츠";
         String photoFileName = "수정후 수정전이미지파일.png";
         String photoPath = "수정후 경로";
