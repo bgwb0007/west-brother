@@ -1,0 +1,16 @@
+com/bgwb0007/intro/springboot/web/PostsApiControllerTest.java
+ com.bgwb0007.intro.springboot.web.PostsApiControllerTest
+com/bgwb0007/intro/springboot/web/TestControllerTest.java
+ com.bgwb0007.intro.springboot.web.TestControllerTest
+com/bgwb0007/intro/springboot/web/ProfilesApiControllerTest.java
+ com.bgwb0007.intro.springboot.web.ProfilesApiControllerTest
+com/bgwb0007/intro/springboot/domain/contact/ContactRepositoryTest.java
+ com.bgwb0007.intro.springboot.domain.contact.ContactRepositoryTest
+com/bgwb0007/intro/springboot/domain/posts/PostRepositoryTest.java
+ com.bgwb0007.intro.springboot.domain.posts.PostRepositoryTest
+com/bgwb0007/intro/springboot/web/dto/IndexResponseDtoTest.java
+ com.bgwb0007.intro.springboot.web.dto.IndexResponseDtoTest
+com/bgwb0007/intro/springboot/domain/profiles/ProfilesRepositoryTest.java
+ com.bgwb0007.intro.springboot.domain.profiles.ProfilesRepositoryTest
+com/bgwb0007/intro/springboot/web/IndexControllerTest.java
+ com.bgwb0007.intro.springboot.web.IndexControllerTest
