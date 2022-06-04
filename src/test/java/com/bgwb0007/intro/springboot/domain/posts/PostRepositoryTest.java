@@ -45,7 +45,7 @@ public class PostRepositoryTest {
     }
 
     @Test
-    public void 게시글저장_불러오기(){
+    public void 게시글저장_불러오기() throws Exception{
         String title = "제목";
         String content = "본문";
 

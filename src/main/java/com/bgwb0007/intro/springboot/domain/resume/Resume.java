@@ -2,6 +2,7 @@ package com.bgwb0007.intro.springboot.domain.resume;
 
 import com.bgwb0007.intro.springboot.domain.BaseTimeEntity;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -23,6 +24,10 @@ public class Resume extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    //private String DTYPE;  저장되는 데이터 타입 Career
+    //private String DTYPE;  자동 저장되는 데이터 타입
 
+    public Resume(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }

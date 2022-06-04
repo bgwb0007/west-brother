@@ -8,6 +8,7 @@ import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor
+@Entity
 public class Certificate extends Resume {
     @Column(nullable = false)
     private String certification;   // 인증기관
