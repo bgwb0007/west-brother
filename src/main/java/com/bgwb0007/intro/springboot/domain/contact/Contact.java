@@ -2,6 +2,7 @@ package com.bgwb0007.intro.springboot.domain.contact;
 
 import com.bgwb0007.intro.springboot.domain.BaseTimeEntity;
 import com.bgwb0007.intro.springboot.domain.profiles.Profiles;
+import com.bgwb0007.intro.springboot.web.dto.ContactSaveRequestDto;
 import com.bgwb0007.intro.springboot.web.dto.ContactUpdateRequestDto;
 import lombok.Builder;
 import lombok.Getter;
@@ -44,6 +45,16 @@ public class Contact extends BaseTimeEntity {
         this.sortOrder = sortOrder;
         this.profiles = profiles;
     }
+    public Contact(ContactSaveRequestDto requestDto, Profiles profiles){
+        this.name = requestDto.getName();
+        this.engName = requestDto.getEngName();
+        this.logoPath = requestDto.getLogoPath();
+        this.logoFileName = requestDto.getLogoFileName();
+        this.siteId = requestDto.getSiteId();
+        this.siteUrl = requestDto.getSiteUrl();
+        this.sortOrder = requestDto.getSortOrder();
+        this.profiles = profiles;
+    }
 
     public void update(ContactUpdateRequestDto requestDto, Profiles profiles){
         this.name = requestDto.getName();
@@ -53,6 +64,7 @@ public class Contact extends BaseTimeEntity {
         this.siteId = requestDto.getSiteId();
         this.siteUrl = requestDto.getSiteUrl();
         this.sortOrder = requestDto.getSortOrder();
+        this.profiles = profiles;
 
         profiles.getContactList().add(this);
     }

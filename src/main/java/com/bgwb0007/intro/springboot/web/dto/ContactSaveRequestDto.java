@@ -1,6 +1,5 @@
 package com.bgwb0007.intro.springboot.web.dto;
 
-import com.bgwb0007.intro.springboot.domain.contact.Contact;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,9 +14,10 @@ public class ContactSaveRequestDto {
     private String siteId;
     private String siteUrl;
     private Integer sortOrder;
+    private Long profilesId;
 
     @Builder
-    public ContactSaveRequestDto(String name, String engName, String logoFileName, String logoPath, String siteId, String siteUrl, Integer sortOrder) {
+    public ContactSaveRequestDto(String name, String engName, String logoFileName, String logoPath, String siteId, String siteUrl, Integer sortOrder, Long profilesId) {
         this.name = name;
         this.engName = engName;
         this.logoFileName = logoFileName;
@@ -25,16 +25,6 @@ public class ContactSaveRequestDto {
         this.siteId = siteId;
         this.siteUrl = siteUrl;
         this.sortOrder = sortOrder;
-    }
-    public Contact toEntity(){
-        return Contact.builder()
-                .name(name)
-                .engName(engName)
-                .logoFileName(logoFileName)
-                .logoPath(logoPath)
-                .siteId(siteId)
-                .siteUrl(siteUrl)
-                .sortOrder(sortOrder)
-                .build();
+        this.profilesId = profilesId;
     }
 }

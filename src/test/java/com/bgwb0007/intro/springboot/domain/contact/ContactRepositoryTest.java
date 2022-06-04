@@ -2,6 +2,7 @@ package com.bgwb0007.intro.springboot.domain.contact;
 
 import com.bgwb0007.intro.springboot.domain.profiles.Profiles;
 import com.bgwb0007.intro.springboot.domain.profiles.ProfilesRepository;
+import com.bgwb0007.intro.springboot.web.dto.ContactUpdateRequestDto;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -63,5 +64,4 @@ public class ContactRepositoryTest {
         assertThat(contact.getName()).isEqualTo(name);
         assertThat(contact.getSiteId()).isEqualTo(siteId);
     }
-
 }

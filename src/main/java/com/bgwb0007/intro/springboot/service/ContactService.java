@@ -2,6 +2,8 @@ package com.bgwb0007.intro.springboot.service;
 
 import com.bgwb0007.intro.springboot.domain.contact.Contact;
 import com.bgwb0007.intro.springboot.domain.contact.ContactRepository;
+import com.bgwb0007.intro.springboot.domain.profiles.Profiles;
+import com.bgwb0007.intro.springboot.domain.profiles.ProfilesRepository;
 import com.bgwb0007.intro.springboot.web.dto.ContactListResponseDto;
 import com.bgwb0007.intro.springboot.web.dto.ContactSaveRequestDto;
 import com.bgwb0007.intro.springboot.web.dto.ContactUpdateRequestDto;
@@ -15,11 +17,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class ContactService {
-
     private final ContactRepository contactRepository;
+    private final ProfilesRepository profilesRepository;
     @Transactional
     public Long save(ContactSaveRequestDto requestDto){
-        return contactRepository.save(requestDto.toEntity()).getId();
+        Profiles profiles = profilesRepository.getOne(requestDto.getProfilesId());
+        return contactRepository.save(new Contact(requestDto,profiles)).getId();
     }
     @Transactional
     public Long update(Long id, ContactUpdateRequestDto requestDto){
@@ -34,5 +37,13 @@ public class ContactService {
         return contactRepository.findAllOrderBySortOrderAsc().stream()
                 .map(ContactListResponseDto::new)
                 .collect(Collectors.toList());
+    }
+    @Transactional
+    public Long delete(Long id){
+        Contact contact = contactRepository.findById(id)
+                .orElseThrow(()->new
+                        IllegalArgumentException("해당 연락처 기록이 없습니다. id= " + id));
+        contactRepository.delete(contact);
+        return id;
     }
 }

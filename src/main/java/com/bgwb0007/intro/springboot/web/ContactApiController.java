@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @RequiredArgsConstructor
-@Controller
+@RestController
 public class ContactApiController {
     private final ContactService contactService;
 
@@ -28,4 +28,6 @@ public class ContactApiController {
     public List<ContactListResponseDto> findAllOrderBySortOrderAsc (){
         return contactService.findAllOrderBySortOrderAsc();
     }
+    @DeleteMapping("/api/v1/profiles/contact/{id}")
+    public Long delete(@PathVariable Long id){ return contactService.delete(id);}
 }
