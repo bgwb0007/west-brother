@@ -34,6 +34,7 @@ public class ContactApiControllerTest {
     @After
     public void tearDown() throws Exception{
         contactRepository.deleteAll();
+        profilesRepository.deleteAll();
     }
     @Test
     public void Contact_등록하기() throws Exception {

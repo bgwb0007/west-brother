@@ -61,7 +61,7 @@ public class ProfilesApiControllerTest {
                 .photoPath(photoPath)
                 .build();
 
-        String url = "http://localhost:"+port+"/api/v1/profiles/" + updateId;
+        String url = "http://localhost:" + port + "/api/v1/profiles/" + updateId;
         HttpEntity<ProfilesUpdateRequestDto> requestEntity = new HttpEntity<>(requestDto);
 
         //when
