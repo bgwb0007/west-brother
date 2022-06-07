@@ -43,14 +43,6 @@ public class ProfilesApiControllerTest {
         //given
         Profiles savedProfiles = profilesRepository.save(Profiles.builder()
                 .name("수정전이름")
-//                .instagramId("west_bro")
-//                .instagramUrl("instagram.com")
-//                .linkedInId("linedin@naver.com")
-//                .linkedInUrl("linkedIN.com")
-//                .gitHubId("깃수정전아이디")
-//                .gitHubUrl("github.com")
-//                .email("수정전이메일")
-//                .phone("010-2222-3333")
                 .content("수정전 content")
                 .photoFileName("수정전이미지파일.png")
                 .photoPath("수정전 경로")
@@ -58,32 +50,17 @@ public class ProfilesApiControllerTest {
 
         Long updateId = savedProfiles.getId();
         String name = "수정후이름";
-//        String instagramId = "수정후인스타아이디";
-//        String instagramUrl = "수정후인스타주소";
-//        String linkedInId = "수정후링크드인아이디";
-//        String linkedInUrl = "수정후링크드인주소";
-//        String gitHubId = "수정후깃허브아이디";
-//        String gitHubUrl = "수정후깃허브주소";
-//        String email = "수정후이메일";
-//        String phone = "수정후폰";
         String content = "수정후컨텐츠";
         String photoFileName = "수정후 수정전이미지파일.png";
         String photoPath = "수정후 경로";
 
         ProfilesUpdateRequestDto requestDto = ProfilesUpdateRequestDto.builder()
                 .name(name)
-//                .instagramId(instagramId)
-//                .instagramUrl(instagramUrl)
-//                .linkedInId(linkedInId)
-//                .linkedInUrl(linkedInUrl)
-//                .gitHubId(gitHubId)
-//                .gitHubUrl(gitHubUrl)
-//                .email(email)
-//                .phone(phone)
                 .content(content)
                 .photoFileName(photoFileName)
                 .photoPath(photoPath)
                 .build();
+
         String url = "http://localhost:"+port+"/api/v1/profiles/" + updateId;
         HttpEntity<ProfilesUpdateRequestDto> requestEntity = new HttpEntity<>(requestDto);
 
@@ -95,15 +72,7 @@ public class ProfilesApiControllerTest {
         assertThat(responseEntity.getBody()).isGreaterThan(0L);
 
         List<Profiles> all = profilesRepository.findAll();
-//        assertThat(all.get(0).getName()).isEqualTo(name);
-//        assertThat(all.get(0).getInstagramId()).isEqualTo(instagramId);
-//        assertThat(all.get(0).getInstagramUrl()).isEqualTo(instagramUrl);
-//        assertThat(all.get(0).getLinkedInId()).isEqualTo(linkedInId);
-//        assertThat(all.get(0).getLinkedInUrl()).isEqualTo(linkedInUrl);
-//        assertThat(all.get(0).getGitHubId()).isEqualTo(gitHubId);
-//        assertThat(all.get(0).getGitHubUrl()).isEqualTo(gitHubUrl);
-//        assertThat(all.get(0).getEmail()).isEqualTo(email);
-//        assertThat(all.get(0).getPhone()).isEqualTo(phone);
-//        assertThat(all.get(0).getContent()).isEqualTo(content);
+        assertThat(all.get(0).getName()).isEqualTo(name);
+        assertThat(all.get(0).getContent()).isEqualTo(content);
     }
 }
