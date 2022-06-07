@@ -1,13 +1,19 @@
 package com.bgwb0007.intro.springboot.web;
 
+import com.bgwb0007.intro.springboot.service.ProfilesService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class IndexController {
+    @Autowired
+    private ProfilesService profilesService;
 
     @GetMapping("/")
-    public String index(){
+    public String index(Model model){
+        model.addAttribute("profiles", profilesService.findAll().toArray());
         return "index";
     }
     @GetMapping("/posts/save")
