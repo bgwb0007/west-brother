@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
 .row{
     margin-left: 3px;
     margin-right: 3px;
@@ -11,25 +16,30 @@
     padding-left: 0px;
     padding-right: 0px;
 }
-.profileBox2{
+.profileImgBox{
     height: 220px;
     margin-top: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.profileImgBox{
-    height: 220px;
-    width: 220px;
+/* 메인사진 */
+.profileImgDiv{
+    height: 240px;
+    width: 240px;
+    background-size: cover;
 }
+/* 소개글 */
 .profileContentBox1{
     text-align: center;
     height: 170px;
 }
 .profileMyName{
-    padding-top: 40px;
-    font-size: x-large;
+    padding-top: 20px;
+    font-weight: 900;
+    font-size: 2.5rem;
 }
+/* contact 아이콘 */
 .profileContentBox2{
     text-align: center;
     padding: 10px;
@@ -50,6 +60,7 @@
     width: 80%;
 }
 
+/* pc 버전 */
 @media (min-width: 990px){
     .menuBox1 {
         height: 400px;
