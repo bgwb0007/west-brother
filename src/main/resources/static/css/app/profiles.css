@@ -4,38 +4,79 @@
     flex-wrap: wrap;
     justify-content: center;
     margin: 20px;
-    width: 880px;
     margin-left: auto;
     margin-right: auto;
 }
-.contactAll {
+.leftAll {
     width: 270px;
     display: inline-block;
+    background-color: rgb(220, 242, 253);
 }
+.contactImgBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 25px;
+    margin-bottom: 40px;
+}
+/* 사진 */
 .contactImgDiv {
     height: 220px;
     width: 220px;
+    background-size: cover;
+    border-radius: 50%;
 }
+/* 모바일버전 이름 */
 .mContactMyName{
     display: none;
 }
+/* 좌측 타이틀 */
 .contactInfoTitle {
-    font-size: larger;
+    background-color: rgb(62, 146, 189);
     margin-top: 20px;
+    margin-bottom: 20px;
+    width: 290px;
+    height: 52px;
+
+    font-size: 25px;
+    padding: 5px 30px;
+    color: aliceblue;
+    display: flex;
+    align-items: center;
+}
+/* 좌측 컨텐츠 */
+.contactInfoDiv{
+    margin-top: 10px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+.logo{
+    width: 65px;
+    text-align: right;
+}
+.siteId{
+    padding-left: 20px;
+    font-size: 16px;
 }
 
-
-.careerBox {
+.rightAll {
     width: 600px;
     display: inline-block;
 }
+/* PC버전 이름 */
 .hConteactMyName {
-    margin-top: 45px;
+    margin-top: 30px;
     margin-bottom: 60px;
+    margin-left: 30px;
+    font-size: x-large;
 }
 .hConteactMyName span:first-child{
-    font-size: 40px;
+    font-size: 45px;
+    font-weight: bolder;
+    letter-spacing: 5px;
 }
+
 .careerInfoTitle {
     font-size: larger;
     margin-top: 20px;
@@ -47,6 +88,7 @@
     width: 160px;
     margin-right: 10px;
 }
+
 
 @media (min-width: 990px){
 
