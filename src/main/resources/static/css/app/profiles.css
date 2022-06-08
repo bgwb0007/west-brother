@@ -1,14 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: rgb(111, 138, 118);
+}
+.contents{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
 .wrapper {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 20px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 840px;
+    margin-top: 30px;
+    background-color: white;
 }
 .leftAll {
-    width: 270px;
+    width: 240px;
     display: inline-block;
     background-color: rgb(220, 242, 253);
 }
@@ -19,10 +31,10 @@
     padding-top: 25px;
     margin-bottom: 40px;
 }
-/* 사진 */
+/* 이력서 사진 */
 .contactImgDiv {
-    height: 220px;
-    width: 220px;
+    height: 190px;
+    width: 190px;
     background-size: cover;
     border-radius: 50%;
 }
@@ -30,15 +42,18 @@
 .mContactMyName{
     display: none;
 }
+
 /* 좌측 타이틀 */
 .contactInfoTitle {
     background-color: rgb(62, 146, 189);
+    border-radius: 0px 10px 10px 0px;
     margin-top: 20px;
     margin-bottom: 20px;
-    width: 290px;
-    height: 52px;
+    width: 255px;
+    height: 50px;
 
-    font-size: 25px;
+    font-size: 23px;
+    font-weight: 600;
     padding: 5px 30px;
     color: aliceblue;
     display: flex;
@@ -47,28 +62,30 @@
 /* 좌측 컨텐츠 */
 .contactInfoDiv{
     margin-top: 10px;
-    height: 50px;
+    height: 40px;
     display: flex;
     align-items: center;
 }
 .logo{
-    width: 65px;
+    width: 50px;
     text-align: right;
 }
 .siteId{
-    padding-left: 20px;
-    font-size: 16px;
+    padding-left: 15px;
+    font-size: 14px;
 }
 
+/* #############우측############ */
 .rightAll {
-    width: 600px;
+    width: 570px;
+    margin-left: 30px;
+    padding-left: 15px;
     display: inline-block;
 }
 /* PC버전 이름 */
 .hConteactMyName {
-    margin-top: 30px;
-    margin-bottom: 60px;
-    margin-left: 30px;
+    margin-top: 50px;
+    margin-bottom: 30px;
     font-size: x-large;
 }
 .hConteactMyName span:first-child{
@@ -77,9 +94,18 @@
     letter-spacing: 5px;
 }
 
+
+/* 우측 타이틀 */
 .careerInfoTitle {
-    font-size: larger;
+    font-size: 30px;
     margin-top: 20px;
+    font-weight: 800;
+}
+.careerInfoTitle .botLine {
+    border-bottom: 6px solid rgb(62, 146, 189);
+    border-radius: 10px;
+    margin-right: 60px;
+    margin-bottom: 10px;
 }
 .careerInfo {
     display: flex;
@@ -89,7 +115,10 @@
     margin-right: 10px;
 }
 
-
+.resumeFooter{
+    height: 100px;
+    width: 100%;
+}
 @media (min-width: 990px){
 
 }
