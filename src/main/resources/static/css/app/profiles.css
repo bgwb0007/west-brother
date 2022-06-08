@@ -43,12 +43,14 @@ body{
     display: none;
 }
 
+.contactInfoWrapper{
+    margin-bottom: 20px;
+}
 /* 좌측 타이틀 */
 .contactInfoTitle {
     background-color: rgb(62, 146, 189);
     border-radius: 0px 10px 10px 0px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     width: 255px;
     height: 50px;
 
@@ -59,9 +61,13 @@ body{
     display: flex;
     align-items: center;
 }
+.contactAboutContent{
+    padding-left: 15px;
+}
 /* 좌측 컨텐츠 */
 .contactInfoDiv{
     margin-top: 10px;
+    margin-bottom: 10px;
     height: 40px;
     display: flex;
     align-items: center;
