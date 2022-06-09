@@ -33,8 +33,8 @@ body{
 }
 /* 메인사진 */
 .profileImgDiv{
-    height: 180px;
-    width: 180px;
+    height: 220px;
+    width: 220px;
     background-size: cover;
     border-radius: 50%;
 }
@@ -49,6 +49,9 @@ body{
     /* pc는 크게 */
     font-size: 2rem;
 }
+.profileMyName span{
+    letter-spacing: 8px;
+}
 /* contact 아이콘 */
 .profileContentBox2{
     text-align: center;
@@ -59,8 +62,10 @@ body{
 }
 
 
-.menuBoxAll{
-    height: 300px;
+.menuBoxAll {
+    height: 400px;
+    margin-left: 40px;
+
     padding-left: 0px;
     padding-right: 0px;
     display: flex;
@@ -84,21 +89,25 @@ body{
     box-shadow: 5px 5px grey;
 }
 
-/* pc 버전 */
-@media (min-width: 990px){
+
+
+/* 모바일 버전 */
+@media (max-width: 990px){
+    .topContent{
+        background: linear-gradient(0deg, #ffffff 36%,#c9bfbf 36% 75%, #ffffff 75%);
+    }
 
     /* 메인사진 */
     .profileImgDiv{
-        height: 220px;
-        width: 220px;
+        height: 180px;
+        width: 180px;
         background-size: cover;
         border-radius: 50%;
     }
 
 
-
-    .menuBoxAll {
-        height: 400px;
-        margin-left: 40px;
+    .menuBoxAll{
+        height: 300px;
+        margin-left: 0px;
     }
 }
