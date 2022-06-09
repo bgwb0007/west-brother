@@ -136,6 +136,8 @@ body{
     width: 100%;
 }
 
+
+/* 모바일 버전 */
 @media (max-width: 990px){
     .wrapper {
         display: flex;
@@ -258,13 +260,18 @@ body{
         width: 100%;
         margin-right: 0px;
         font-weight: 300;
+        color: rgb(94, 94, 95);
     }
     /* 내용 */
     .careerInfo span:nth-child(2) {
-        padding-left: 1rem;
         padding-right: 1.2rem;
         font-size: 20px;
         font-weight: 500;
+    }
+    .careerInfo span:nth-child(2)::before{
+        content: "-";
+        font-size: 20px;
+        font-weight: 800;
     }
 
     .resumeFooter{
