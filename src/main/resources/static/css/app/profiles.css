@@ -18,6 +18,7 @@ body{
     width: 840px;
     margin-top: 30px;
     background-color: white;
+    box-shadow: 10px 10px rgb(51, 50, 50);
 }
 .leftAll {
     width: 240px;
@@ -89,18 +90,20 @@ body{
     display: inline-block;
 }
 /* PC버전 이름 */
-.hConteactMyName {
+.hContactMyName {
     margin-top: 50px;
     margin-bottom: 30px;
     font-size: x-large;
 }
-.hConteactMyName span:first-child{
+.hContactMyName span:first-child{
     font-size: 45px;
     font-weight: bolder;
     letter-spacing: 5px;
 }
 
-
+.careerInfoWapper{
+    margin-bottom: 20px;
+}
 /* 우측 타이틀 */
 .careerInfoTitle {
     font-size: 30px;
@@ -115,16 +118,157 @@ body{
 }
 .careerInfo {
     display: flex;
+    margin-bottom: 10px;
 }
+/* 날짜 */
 .careerInfo span:nth-child(1) {
     width: 160px;
     margin-right: 10px;
+}
+/* 내용 */
+.careerInfo span:nth-child(2) {
+    padding-right: 20px;
+    font-size: 20px;
 }
 
 .resumeFooter{
     height: 100px;
     width: 100%;
 }
-@media (min-width: 990px){
 
+@media (max-width: 990px){
+    .wrapper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 30px;
+        background-color: white;
+        box-shadow: 0 0 ;
+        background-color: rgb(111, 138, 118);
+    }
+    .leftAll {
+        width: 90%;
+        display: inline-block;
+        background-color: rgb(220, 242, 253);
+    }
+    .contactImgBox{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 25px;
+        margin-bottom: 2rem;
+    }
+    /* 이력서 사진 */
+    .contactImgDiv {
+        height: 190px;
+        width: 190px;
+        background-size: cover;
+        border-radius: 50%;
+    }
+    /* 모바일버전 이름 */
+    .mContactMyName{
+        display: block;
+        text-align: center;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    .mContactMyName span:first-child {
+        font-size: 2.2rem;
+        font-weight: bolder;
+        letter-spacing: 5px;
+    }
+
+    .contactInfoWrapper{
+        margin-bottom: 20px;
+    }
+    /* 좌측 타이틀 */
+    .contactInfoTitle {
+        background-color: rgb(62, 146, 189);
+        border-radius: 0px 10px 10px 0px;
+        margin-bottom: 10px;
+        width: 102%;
+        height: 50px;
+
+        font-size: 23px;
+        font-weight: 600;
+        padding: 5px 30px;
+        color: aliceblue;
+        display: flex;
+        align-items: center;
+    }
+    .contactAboutContent{
+        padding-left: 15px;
+    }
+    /* 좌측 컨텐츠 */
+    .contactInfoDiv{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+    }
+    .logo{
+        width: 20%;
+        text-align: right;
+    }
+    .siteId{
+        text-align: left;
+        padding-left: 15px;
+        font-size: 14px;
+    }
+
+    /* #############우측############ */
+    .rightAll {
+        width: 90%;
+        margin-left: 0px;
+        padding-left: 1rem;
+        display: inline-block;
+        background-color: white;
+    }
+    /* PC버전 이름 */
+    .hContactMyName {
+        display: none;
+    }
+
+    .careerInfoWapper{
+        margin-bottom: 20px;
+    }
+    /* 우측 타이틀 */
+    .careerInfoTitle {
+        font-size: 1.5rem;
+        margin-top: 20px;
+        font-weight: 800;
+    }
+    .careerInfoTitle .botLine {
+        border-bottom: 6px solid rgb(62, 146, 189);
+        border-radius: 10px;
+        margin-right: 2rem;
+        margin-bottom: 10px;
+    }
+    .careerInfo {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+    /* 날짜 */
+    .careerInfo span:nth-child(1) {
+        width: 100%;
+        margin-right: 0px;
+        font-weight: 300;
+    }
+    /* 내용 */
+    .careerInfo span:nth-child(2) {
+        padding-left: 1rem;
+        padding-right: 1.2rem;
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    .resumeFooter{
+        height: 100px;
+        width: 100%;
+    }
 }
