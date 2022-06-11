@@ -24,4 +24,11 @@ public class IndexController {
     public String profiles(){
         return "profiles/profiles";
     }
+
+
+
+    @GetMapping("/admin")
+    public String admin(){
+        return "admin/admin";
+    }
 }
