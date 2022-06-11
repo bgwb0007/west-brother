@@ -40,9 +40,11 @@ public class ContactRepositoryTest {
         Integer sortOrder = 20;
         Profiles profiles = Profiles.builder()
                 .name("임서형")
-                .content("웹개발자")
+                .content1("웹개발자1")
+                .content2("웹개발자222")
                 .photoFileName("aaaaa.png")
                 .photoPath("/wesfsd/dfasf.dsf")
+                .pageGubun("메인")
                 .build();
         profilesRepository.save(profiles);
 

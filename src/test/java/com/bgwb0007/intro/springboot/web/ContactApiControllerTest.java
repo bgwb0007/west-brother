@@ -41,9 +41,11 @@ public class ContactApiControllerTest {
         //given
         Profiles profiles =profilesRepository.save(Profiles.builder()
                 .name("임서형")
-                .content("it개발자")
+                .content1("it개발자111")
+                .content2("it개발자22222")
                 .photoPath("/images/dssdf")
                 .photoFileName("tjgudss.png")
+                .pageGubun("메인")
                 .build());
         String name = "인스타";
         String engName = "instagram";

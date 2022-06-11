@@ -50,6 +50,6 @@ public class Profiles extends BaseTimeEntity {
         this.content2 = requestDto.getContent2();
         this.photoFileName = requestDto.getPhotoFileName();
         this.photoPath = requestDto.getPhotoPath();
-        this.pageGubun = requestDto.getPageGubun;
+        this.pageGubun = requestDto.getPageGubun();
     }
 }
