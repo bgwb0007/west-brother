@@ -20,9 +20,9 @@ public class IndexController {
     public String postsSave(){
         return "posts/posts-save";
     }
-    @GetMapping("/profiles")
+    @GetMapping("/resume")
     public String profiles(){
-        return "profiles/profiles";
+        return "resume/resume";
     }
 
 
