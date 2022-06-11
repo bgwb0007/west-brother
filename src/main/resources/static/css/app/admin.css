@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+h2 {
+    text-align: center;
+    width: 100%;
+}
+.content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background-color: beige;
+}
+#accordionWrapper{
+    width: 80%;
+    padding: 1rem;
+}
+button{
+
+}
+
+/* 모바일 버전 */
+@media (max-width: 990px){
+
+}
