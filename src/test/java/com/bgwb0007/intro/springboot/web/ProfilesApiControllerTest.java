@@ -53,7 +53,7 @@ public class ProfilesApiControllerTest {
         Long updateId = savedProfiles.getId();
         String name = "수정후이름";
         String content1 = "수정후컨텐츠1";
-        String content2 = "수정후컨텐츠2";
+        String content2 = "수정후컨텐츠22";
         String photoFileName = "수정후 수정전이미지파일.png";
         String photoPath = "수정후 경로";
         String pageGubun = "이력서";
