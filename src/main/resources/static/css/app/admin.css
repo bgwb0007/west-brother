@@ -12,7 +12,6 @@ h2 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
     background-color: beige;
 }
 #accordionWrapper{
@@ -22,7 +21,13 @@ h2 {
 button{
     margin-bottom: 0.5rem;
 }
-
+.tableDiv {
+    width: 95%;
+    background-color: white;
+}
+.footDiv{
+    height: 2rem;
+}
 /* 모바일 버전 */
 @media (max-width: 990px){
 
