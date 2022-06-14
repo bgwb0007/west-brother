@@ -1,0 +1,65 @@
+{{>layout/header}}
+<link href="/css/app/admin.css" rel="stylesheet">
+
+
+<div class="backDiv">
+    <button type="button" class="btn btn-primary" onclick="moveBack();">뒤로가기</button>
+</div>
+<div class="content">
+    <h2>Profiles 수정하기</h2>
+    <div class="formAll container">
+        <div class="mb-3 row">
+            <label for="id입력" class="col-sm-2 col-form-label">id</label>
+            <div class="col-sm-10">
+                <input type="text" name="id" class="form-control" id="id입력" readonly value="111">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="페이지구분" class="col-sm-2 col-form-label">페이지구분</label>
+            <div class="col-sm-10">
+                <input type="text" name="pageGubun" class="form-control" id="페이지구분" value="">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="content1입력" class="col-sm-2 col-form-label">content1</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="content1입력" value="">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="content2입력" class="col-sm-2 col-form-label">content2</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="content2입력" value="">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="photoFileName입력" class="col-sm-2 col-form-label">photoFileName</label>
+            <div class="col-sm-10">
+                <input type="text" name="photoFileName" class="form-control" id="photoFileName입력" value="">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="photoPath입력" class="col-sm-2 col-form-label">photoPath</label>
+            <div class="col-sm-10">
+                <input type="text" name="photoPath" class="form-control" id="photoPath입력" value="">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-9">
+            </div>
+            <div class="col-3">
+                <button type="button" class="btn btn-primary">수정하기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function moveBack(){
+        location.href = "admin.html";
+    }
+</script>
+
+
+{{>layout/footer}}
