@@ -2,9 +2,12 @@ package com.bgwb0007.intro.springboot.web.dto;
 
 import com.bgwb0007.intro.springboot.domain.contact.Contact;
 import com.bgwb0007.intro.springboot.domain.profiles.Profiles;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@NoArgsConstructor
 public class ProfilesListResponseDto {
     private Long id;
     private String name;

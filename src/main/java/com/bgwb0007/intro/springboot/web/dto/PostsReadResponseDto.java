@@ -2,8 +2,10 @@ package com.bgwb0007.intro.springboot.web.dto;
 
 import com.bgwb0007.intro.springboot.domain.posts.Posts;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 public class PostsReadResponseDto {
     private Long id;
     private String title;
