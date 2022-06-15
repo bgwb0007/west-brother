@@ -17,7 +17,6 @@ public class ProfilesListResponseDto {
     private String photoFileName;
     private String photoPath;
     private String pageGubun;
-    private List<Contact> contactList;
 
     public ProfilesListResponseDto(Profiles profiles) {
         this.id = profiles.getId();
@@ -27,6 +26,5 @@ public class ProfilesListResponseDto {
         this.photoFileName = profiles.getPhotoFileName();
         this.photoPath = profiles.getPhotoPath();
         this.pageGubun = profiles.getPageGubun();
-        this.contactList = profiles.getContactList();
     }
 }
