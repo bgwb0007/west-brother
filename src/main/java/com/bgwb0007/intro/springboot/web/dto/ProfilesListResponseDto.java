@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @NoArgsConstructor
+@AllArgsConstructor
 public class ProfilesListResponseDto {
     private Long id;
     private String name;
