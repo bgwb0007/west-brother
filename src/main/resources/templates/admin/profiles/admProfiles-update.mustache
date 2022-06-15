@@ -8,6 +8,7 @@
         <button type="button" class="btn btn-primary" onclick="moveBack();">메인</button>
     </div>
     <div class="formAll container">
+        {{#profilesFindById}}
         <div class="mb-3 row">
             <label for="id입력" class="col-sm-2 col-form-label">id</label>
             <div class="col-sm-10">
@@ -17,40 +18,40 @@
         <div class="mb-3 row">
             <label for="이름입력" class="col-sm-2 col-form-label">이름</label>
             <div class="col-sm-10">
-                <input type="text" name="이름입력" class="form-control" id="이름입력" value="">
+                <input type="text" name="이름입력" class="form-control" id="이름입력" value="{{name}}" }>
             </div>
         </div>
         <div class="mb-3 row">
             <label for="페이지구분" class="col-sm-2 col-form-label">페이지구분</label>
             <div class="col-sm-10">
-                <input type="text" name="pageGubun" class="form-control" id="페이지구분" value="">
+                <input type="text" name="pageGubun" class="form-control" id="페이지구분" value="{{pageGubun}}">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="content1입력" class="col-sm-2 col-form-label">content1</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="content1입력" value="">
+                <input type="text" class="form-control" id="content1입력" value="{{content1}}">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="content2입력" class="col-sm-2 col-form-label">content2</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="content2입력" value="">
+                <input type="text" class="form-control" id="content2입력" value="{{content2}}">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="photoFileName입력" class="col-sm-2 col-form-label">photoFileName</label>
             <div class="col-sm-10">
-                <input type="text" name="photoFileName" class="form-control" id="photoFileName입력" value="">
+                <input type="text" name="photoFileName" class="form-control" id="photoFileName입력" value="{{photoFileName}}">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="photoPath입력" class="col-sm-2 col-form-label">photoPath</label>
             <div class="col-sm-10">
-                <input type="text" name="photoPath" class="form-control" id="photoPath입력" value="">
+                <input type="text" name="photoPath" class="form-control" id="photoPath입력" value="{{photoPath}}">
             </div>
         </div>
-
+        {{/profilesFindById}}
         <div class="row">
             <div class="col-9">
             </div>
@@ -66,7 +67,7 @@
         location.href = "/admin";
     }
 
-    function go수정하기(){
+    function go수정하기(message){
         let profilesId = $('#id입력').val();
         let url = '/api/v1/profiles/' + profilesId;
         let jsonP = {
@@ -78,7 +79,7 @@
             'pageGubun': $('#페이지구분').val(),
         }
         wbUpdate(function (ret){
-            alert('수정에 성공했습니다.');
+            alert('수정에 성공했습니다.', ret);
         }, {}, url, jsonP);
     }
 

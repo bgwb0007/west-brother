@@ -2,6 +2,7 @@ package com.bgwb0007.intro.springboot.service;
 
 import com.bgwb0007.intro.springboot.domain.profiles.Profiles;
 import com.bgwb0007.intro.springboot.domain.profiles.ProfilesRepository;
+import com.bgwb0007.intro.springboot.web.dto.ProfilesGetOneResponseDto;
 import com.bgwb0007.intro.springboot.web.dto.ProfilesListResponseDto;
 import com.bgwb0007.intro.springboot.web.dto.ProfilesUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,13 @@ public class ProfilesService {
         return profilesRepository.findAll().stream()
                 .map(ProfilesListResponseDto::new)
                 .collect(Collectors.toList());
+    }
+    @Transactional
+    public ProfilesGetOneResponseDto findById(Long id){
+        Profiles profiles= profilesRepository.findById(id)
+                .orElseThrow(()->new IllegalArgumentException("해당 프로필이 없습니다. id="+id));
+        return new ProfilesGetOneResponseDto(profiles);
+
     }
     @Transactional
     public Long update(Long id, ProfilesUpdateRequestDto requestDto){

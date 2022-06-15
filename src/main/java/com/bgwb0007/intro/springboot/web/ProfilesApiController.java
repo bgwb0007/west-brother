@@ -14,9 +14,6 @@ public class ProfilesApiController {
 
     private final ProfilesService profilesService;
 
-    @GetMapping("/api/v1/profiles")
-    public List<ProfilesListResponseDto> findAll(){ return profilesService.findAll();
-    }
     @PutMapping("/api/v1/profiles/{id}")
     public Long update(@PathVariable Long id, @RequestBody ProfilesUpdateRequestDto requestDto){
         return profilesService.update(id,requestDto);

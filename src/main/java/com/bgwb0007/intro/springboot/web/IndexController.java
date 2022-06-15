@@ -39,8 +39,8 @@ public class IndexController {
         return "admin/profiles/admProfiles";
     }
     @GetMapping("/admin/profiles/{id}")
-    public String admProfilesUpdate(@PathVariable String id, Model model){
-        model.addAttribute("profilesId", id);
+    public String admProfilesUpdate(@PathVariable Long id, Model model){
+        model.addAttribute("profilesFindById", profilesService.findById(id));
         return "admin/profiles/admProfiles-update";
     }
 
