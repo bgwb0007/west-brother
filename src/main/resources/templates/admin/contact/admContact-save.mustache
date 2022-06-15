@@ -2,17 +2,11 @@
 <link href="/css/app/admin.css" rel="stylesheet">
 
 <div class="content">
-    <h2>Contact 수정하기</h2>
+    <h2>Contact 생성하기</h2>
     <div class="backDiv">
         <button type="button" class="btn btn-primary" onclick="moveBack();">뒤로가기</button>
     </div>
     <div class="formAll container">
-        <div class="mb-3 row">
-            <label for="id입력" class="col-sm-2 col-form-label">id</label>
-            <div class="col-sm-10">
-                <input type="text" name="id" class="form-control" id="id입력" readonly value="111">
-            </div>
-        </div>
         <div class="mb-3 row">
             <label for="name입력" class="col-sm-2 col-form-label">name</label>
             <div class="col-sm-10">
@@ -29,6 +23,19 @@
             <label for="sortOrder입력" class="col-sm-2 col-form-label">정렬순서</label>
             <div class="col-sm-10">
                 <input type="text" name="sortOrder" class="form-control" id="sortOrder입력" value="">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="노출위치입력" class="col-sm-2 col-form-label">노출위치입력</label>
+            <div class="col-sm-10">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="노출위치입력" id="inlineRadio1" value="메인">
+                    <label class="form-check-label" for="inlineRadio1">메인</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="노출위치입력" id="inlineRadio2" value="이력서">
+                    <label class="form-check-label" for="inlineRadio2">이력서</label>
+                </div>
             </div>
         </div>
         <div class="mb-3 row">
@@ -73,7 +80,6 @@
             </div>
             <div class="col-3">
                 <button type="button" class="btn btn-primary">수정하기</button>
-                <button type="button" class="btn btn-danger">삭제하기</button>
             </div>
         </div>
     </div>

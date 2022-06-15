@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class IndexController {
@@ -13,7 +14,7 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(Model model){
-        model.addAttribute("profiles", profilesService.findAll().toArray());
+        model.addAttribute("profiles", profilesService.findAll());
         return "index";
     }
     @GetMapping("/posts/save")
@@ -31,4 +32,16 @@ public class IndexController {
     public String admin(){
         return "admin/admin";
     }
+    @GetMapping("/admin/profiles")
+    public String admProfilesList(Model model){
+        model.addAttribute("profiles", profilesService.findAll());
+        model.addAttribute("profilesSize", profilesService.findAll().size());
+        return "admin/profiles/admProfiles";
+    }
+    @GetMapping("/admin/profiles/{id}")
+    public String admProfilesUpdate(@PathVariable String id, Model model){
+        model.addAttribute("profilesId", id);
+        return "admin/profiles/admProfiles-update";
+    }
+
 }

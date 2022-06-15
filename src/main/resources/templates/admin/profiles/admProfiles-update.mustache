@@ -2,16 +2,22 @@
 <link href="/css/app/admin.css" rel="stylesheet">
 
 
-<div class="backDiv">
-    <button type="button" class="btn btn-primary" onclick="moveBack();">뒤로가기</button>
-</div>
 <div class="content">
     <h2>Profiles 수정하기</h2>
+    <div class="backDiv">
+        <button type="button" class="btn btn-primary" onclick="moveBack();">뒤로가기</button>
+    </div>
     <div class="formAll container">
         <div class="mb-3 row">
             <label for="id입력" class="col-sm-2 col-form-label">id</label>
             <div class="col-sm-10">
-                <input type="text" name="id" class="form-control" id="id입력" readonly value="111">
+                <input type="text" name="id" class="form-control" id="id입력" readonly value="{{id}}">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="이름입력" class="col-sm-2 col-form-label">이름</label>
+            <div class="col-sm-10">
+                <input type="text" name="이름입력" class="form-control" id="이름입력" value="">
             </div>
         </div>
         <div class="mb-3 row">
@@ -59,6 +65,21 @@
     function moveBack(){
         location.href = "admin.html";
     }
+
+    function go수정하기(){
+        let profilesId = $('#id입력').val();
+        let url = '/api/v1/profiles/' + profilesId;
+        let jsonP = {
+            'name': $('#이름입력').val(),
+            'content1': $('#content1입력').val(),
+            'content2': $('#content2입력').val(),
+            'photoFileName': $('#photoFileName입력').val(),
+            'photoPath': $('#photoPath입력').val(),
+            'pageGubun': $('#페이지구분').val(),
+        }
+        wbUpdate({}, {}, url, jsonP);
+    }
+
 </script>
 
 

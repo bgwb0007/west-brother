@@ -72,4 +72,60 @@ var main = {
 
 };
 
+function wbGetJson(successCallBackFnc, failCallBackFnc, url, param){
+    $.ajax({
+        type: 'GET',
+        url: url,
+        dataType: 'json',
+        contentType:'application/json; charset=utf-8',
+        data: JSON.stringify(param)
+    }).done(function(ret) {
+        successCallBackFnc(ret);
+    }).fail(function (error) {
+        failCallBackFnc(error);
+    });
+}
+
+
+function wbSave(successCallBackFnc, failCallBackFnc, url, param){
+    $.ajax({
+        type: 'POST',
+        url: url,
+        dataType: 'json',
+        contentType:'application/json; charset=utf-8',
+        data: JSON.stringify(param)
+    }).done(function(ret) {
+        successCallBackFnc(ret);
+    }).fail(function (error) {
+        failCallBackFnc(error);
+    });
+}
+
+function wbUpdate(successCallBackFnc, failCallBackFnc, url, param){
+    $.ajax({
+        type: 'PUT',
+        url: url,
+        dataType: 'json',
+        contentType:'application/json; charset=utf-8',
+        data: JSON.stringify(param)
+    }).done(function(ret) {
+        successCallBackFnc(ret);
+    }).fail(function (error) {
+        failCallBackFnc(error);
+    });
+}
+
+function wbDelete(successCallBackFnc, failCallBackFnc, url){
+    $.ajax({
+        type: 'DELETE',
+        url: url,
+        dataType: 'json',
+        contentType:'application/json; charset=utf-8'
+    }).done(function(ret) {
+        successCallBackFnc(ret);
+    }).fail(function (error) {
+        failCallBackFnc(error);
+    });
+}
+
 main.init();
