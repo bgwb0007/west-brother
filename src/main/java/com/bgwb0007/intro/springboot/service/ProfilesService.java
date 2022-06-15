@@ -27,7 +27,11 @@ public class ProfilesService {
         Profiles profiles= profilesRepository.findById(id)
                 .orElseThrow(()->new IllegalArgumentException("해당 프로필이 없습니다. id="+id));
         return new ProfilesGetOneResponseDto(profiles);
-
+    }
+    public ProfilesGetOneResponseDto findByPageGubun(String pageGubun){
+        Profiles profiles= profilesRepository.findByPageGubun(pageGubun)
+                .orElseThrow(()->new IllegalArgumentException("pageGubun에 해당하는 프로필이 없습니다. pageGubun="+pageGubun));
+        return new ProfilesGetOneResponseDto(profiles);
     }
     @Transactional
     public Long update(Long id, ProfilesUpdateRequestDto requestDto){

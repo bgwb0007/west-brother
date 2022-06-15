@@ -31,7 +31,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {{#profiles}}
+                {{#profilesList}}
                 <tr>
                     <th scope="row">{{id}}</th>
                     <td>{{name}}</td>
@@ -39,12 +39,12 @@
                     <td>{{photoPath}}</td>
                     <td><button type="button" class="btn btn-primary" onclick="go수정하기('{{id}}')">수정</button></td>
                 </tr>
-                {{/profiles}}
+                {{/profilesList}}
                 </tbody>
                 <tfoot>
                 <th scope="row" colspan="2"></th>
                 <td colspan="1">총 개수</td>
-                <td colspan="1">{{profilesSize}}</td>
+                <td colspan="1">{{profilesListSize}}</td>
                 <td colspan="1"></td>
                 </tfoot>
             </table>
@@ -60,14 +60,6 @@
     }
     function go수정하기(id){
         location.href = "/admin/profiles/" + id;
-    }
-    function testGet(){
-        let url = '/api/v1/profiles';
-        wbGetJson(function (ret){
-            console.log("###성공###",ret);
-        },function (error){
-            console.log("###실패###",error);
-        },url,{});
     }
 
 </script>

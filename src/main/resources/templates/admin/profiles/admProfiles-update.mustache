@@ -80,6 +80,7 @@
         }
         wbUpdate(function (ret){
             alert('수정에 성공했습니다.', ret);
+            moveBack();
         }, {}, url, jsonP);
     }
 

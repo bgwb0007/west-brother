@@ -1,5 +1,6 @@
 package com.bgwb0007.intro.springboot.web;
 
+import com.bgwb0007.intro.springboot.service.ContactService;
 import com.bgwb0007.intro.springboot.service.ProfilesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,10 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class IndexController {
     @Autowired
     private ProfilesService profilesService;
+    @Autowired
+    private ContactService contactService;
 
     @GetMapping("/")
     public String index(Model model){
-        model.addAttribute("profiles", profilesService.findAll());
+        model.addAttribute("profiles", profilesService.findByPageGubun("메인"));
         return "index";
     }
     @GetMapping("/posts/save")
@@ -34,14 +37,20 @@ public class IndexController {
     }
     @GetMapping("/admin/profiles")
     public String admProfilesList(Model model){
-        model.addAttribute("profiles", profilesService.findAll());
-        model.addAttribute("profilesSize", profilesService.findAll().size());
+        model.addAttribute("profilesList", profilesService.findAll());
+        model.addAttribute("profilesListSize", profilesService.findAll().size());
         return "admin/profiles/admProfiles";
     }
     @GetMapping("/admin/profiles/{id}")
     public String admProfilesUpdate(@PathVariable Long id, Model model){
         model.addAttribute("profilesFindById", profilesService.findById(id));
         return "admin/profiles/admProfiles-update";
+    }
+    @GetMapping("/admin/contact")
+    public String admContactList(Model model){
+        model.addAttribute("contactList",contactService.findAllOrderBySortOrderAsc());
+        model.addAttribute("contactListSize", contactService.findAllOrderBySortOrderAsc().size());
+        return "admin/contact/admContact";
     }
 
 }
