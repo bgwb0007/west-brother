@@ -61,6 +61,14 @@
     function go수정하기(id){
         location.href = "/admin/profiles/" + id;
     }
+    function testGet(){
+        let url = '/api/v1/profiles';
+        wbGetJson(function (ret){
+            console.log("###성공###",ret);
+        },function (error){
+            console.log("###실패###",error);
+        },url,{});
+    }
 
 </script>
 
