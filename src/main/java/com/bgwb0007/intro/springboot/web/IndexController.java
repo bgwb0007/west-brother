@@ -29,8 +29,6 @@ public class IndexController {
         return "resume/resume";
     }
 
-
-
     @GetMapping("/admin")
     public String admin(){
         return "admin/admin";
@@ -41,7 +39,7 @@ public class IndexController {
         model.addAttribute("profilesListSize", profilesService.findAll().size());
         return "admin/profiles/admProfiles";
     }
-    @GetMapping("/admin/profiles/{id}")
+    @GetMapping("/admin/profiles-update/{id}")
     public String admProfilesUpdate(@PathVariable Long id, Model model){
         model.addAttribute("profilesFindById", profilesService.findById(id));
         return "admin/profiles/admProfiles-update";
@@ -51,6 +49,15 @@ public class IndexController {
         model.addAttribute("contactList",contactService.findAllOrderBySortOrderAsc());
         model.addAttribute("contactListSize", contactService.findAllOrderBySortOrderAsc().size());
         return "admin/contact/admContact";
+    }
+    @GetMapping("/admin/contact-save")
+    public String admContactSave(){
+        return "admin/contact/admContact-save";
+    }
+    @GetMapping("/admin/contact-update/{id}")
+    public String admContactUpdate(@PathVariable Long id, Model model){
+        model.addAttribute("profilesFindById", contactService.findById(id));
+        return "admin/contact/admContact-update";
     }
 
 }

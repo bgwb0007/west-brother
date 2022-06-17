@@ -4,6 +4,9 @@ import com.bgwb0007.intro.springboot.domain.profiles.Profiles;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,6 +19,8 @@ public class ProfilesGetOneResponseDto {
     private String photoFileName;
     private String photoPath;
     private String pageGubun;
+    private LocalDateTime createdDate;
+    private LocalDateTime modifiedDate;
 
     public ProfilesGetOneResponseDto(Profiles profiles) {
         this.id = profiles.getId();
@@ -25,6 +30,8 @@ public class ProfilesGetOneResponseDto {
         this.photoFileName = profiles.getPhotoFileName();
         this.photoPath = profiles.getPhotoPath();
         this.pageGubun = profiles.getPageGubun();
+        this.createdDate = profiles.getCreatedDate();
+        this.modifiedDate = profiles.getModifiedDate();
     }
 
 }

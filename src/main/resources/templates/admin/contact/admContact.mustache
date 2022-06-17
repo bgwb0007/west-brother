@@ -41,7 +41,7 @@
                     <td>ㅇㄴㄹㄴㅇ</td>
                     <td>@mdo</td>
                     <td>@mdo</td>
-                    <td><button type="button" class="btn btn-primary">수정</button></td>
+                    <td><button type="button" class="btn btn-primary" onclick="go수정하기('{{id}}')">수정</button></td>
                 </tr>
 
                 </tbody>
@@ -60,7 +60,10 @@
 
 <script>
     function moveBack(){
-        location.href = "admin.html";
+        location.href = "/admin";
+    }
+    function go수정하기(id){
+        location.href = "/admin/contact-update/" + id;
     }
 </script>
 

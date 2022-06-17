@@ -14,10 +14,10 @@ public class ContactSaveRequestDto {
     private String siteId;
     private String siteUrl;
     private Integer sortOrder;
-    private Long profilesId;
+    private String pageGubun;
 
     @Builder
-    public ContactSaveRequestDto(String name, String engName, String logoFileName, String logoPath, String siteId, String siteUrl, Integer sortOrder, Long profilesId) {
+    public ContactSaveRequestDto(String name, String engName, String logoFileName, String logoPath, String siteId, String siteUrl, Integer sortOrder, String pageGubun) {
         this.name = name;
         this.engName = engName;
         this.logoFileName = logoFileName;
@@ -25,6 +25,6 @@ public class ContactSaveRequestDto {
         this.siteId = siteId;
         this.siteUrl = siteUrl;
         this.sortOrder = sortOrder;
-        this.profilesId = profilesId;
+        this.pageGubun = pageGubun;
     }
 }

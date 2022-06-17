@@ -62,7 +62,7 @@ public class ContactApiControllerTest {
                 .siteId(siteId)
                 .siteUrl(siteUrl)
                 .sortOrder(sortOrder)
-                .profilesId(profiles.getId())
+                .pageGubun(profiles.getPageGubun())
                 .build();
 
         //when

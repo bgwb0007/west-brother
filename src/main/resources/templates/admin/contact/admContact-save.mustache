@@ -8,9 +8,9 @@
     </div>
     <div class="formAll container">
         <div class="mb-3 row">
-            <label for="name입력" class="col-sm-2 col-form-label">name</label>
+            <label for="이름입력" class="col-sm-2 col-form-label">name</label>
             <div class="col-sm-10">
-                <input type="text" name="name" class="form-control" id="name입력" value="">
+                <input type="text" name="name" class="form-control" id="이름입력" value="">
             </div>
         </div>
         <div class="mb-3 row">
@@ -62,24 +62,12 @@
                 <input type="text" name="siteUrl" class="form-control" id="siteUrl입력" value="">
             </div>
         </div>
-        <div class="mb-3 row">
-            <label for="photoFileName입력" class="col-sm-2 col-form-label">photoFileName</label>
-            <div class="col-sm-10">
-                <input type="text" name="photoFileName" class="form-control" id="photoFileName입력" value="">
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="photoPath입력" class="col-sm-2 col-form-label">photoPath</label>
-            <div class="col-sm-10">
-                <input type="text" name="photoPath" class="form-control" id="photoPath입력" value="">
-            </div>
-        </div>
 
         <div class="row">
             <div class="col-9">
             </div>
             <div class="col-3">
-                <button type="button" class="btn btn-primary">수정하기</button>
+                <button type="button" class="btn btn-primary" onclick="go저장하기();">저장하기</button>
             </div>
         </div>
     </div>
@@ -88,6 +76,23 @@
 <script>
     function moveBack(){
         location.href = "admin.html";
+    }
+    function go저장하기(){
+        let url = '/api/v1/contact/';
+        let jsonP = {
+            'name': $('#이름입력').val(),
+            'engName': $('#engName입력').val(),
+            'sortOrder': $('#sortOrder입력').val(),
+            'pageGubun': $('input[name=노출위치입력]:checked').val(),
+            'logoFileName': $('#logoFileName입력').val(),
+            'logoPath': $('#logoPath입력').val(),
+            'siteId': $('#siteId입력').val(),
+            'siteUrl': $('#siteUrl입력').val(),
+        }
+        wbSave(function (ret){
+            alert('저장에 성공했습니다.', ret);
+            moveBack();
+        }, {}, url, jsonP);
     }
 </script>
 
