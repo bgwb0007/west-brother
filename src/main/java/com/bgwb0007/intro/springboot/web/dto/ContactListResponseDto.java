@@ -34,5 +34,6 @@ public class ContactListResponseDto {
         this.siteId = contact.getSiteId();
         this.siteUrl = contact.getSiteUrl();
         this.sortOrder = contact.getSortOrder();
+        this.profiles =  contact.getProfiles();
     }
 }
