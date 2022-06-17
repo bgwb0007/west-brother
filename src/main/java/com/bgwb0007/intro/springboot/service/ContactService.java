@@ -36,9 +36,13 @@ public class ContactService {
     }
     @Transactional
     public List<ContactListResponseDto> findAllOrderBySortOrderAsc(){
-        return contactRepository.findAllOrderBySortOrderAsc().stream()
+        List<ContactListResponseDto> responseDtoList = contactRepository.findAllOrderBySortOrderAsc().stream()
                 .map(ContactListResponseDto::new)
                 .collect(Collectors.toList());
+        for(ContactListResponseDto dto : responseDtoList){
+            dto.setPageGUbun(dto.getProfiles().getPageGubun());
+        }
+        return responseDtoList;
     }
     @Transactional
     public ContactGetOneResponseDto findById(Long id){
