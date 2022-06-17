@@ -11,29 +11,24 @@ public class ContactListResponseDto {
     private String name;
     private String engName;
     private String logoFileName;
-    private String logoPath;
+    private String logoHtml;
     private String siteId;
     private String siteUrl;
     private Integer sortOrder;
     private Profiles profiles;
     private String pageGubun;
 
-    public void setPageGubun(String pageGUbun){
-        this.pageGubun = pageGUbun;
-    }
-    public Profiles getProfiles(){
-        return this.profiles;
-    }
 
     public ContactListResponseDto(Contact contact) {
         this.id = contact.getId();
         this.name = contact.getName();
         this.engName = contact.getEngName();
         this.logoFileName = contact.getLogoFileName();
-        this.logoPath = contact.getLogoPath();
+        this.logoHtml = contact.getLogoHtml();
         this.siteId = contact.getSiteId();
         this.siteUrl = contact.getSiteUrl();
         this.sortOrder = contact.getSortOrder();
         this.profiles =  contact.getProfiles();
+        this.pageGubun = this.profiles.getPageGubun();
     }
 }

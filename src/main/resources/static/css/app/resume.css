@@ -10,6 +10,13 @@ body{
     align-items: flex-start;
     flex-wrap: wrap;
 }
+.backBtn{
+    margin-top:2rem;
+    margin-right: 1rem;
+}
+.backBtn:hover{
+    background-color: green;
+}
 .wrapper {
     display: flex;
     flex-direction: row;

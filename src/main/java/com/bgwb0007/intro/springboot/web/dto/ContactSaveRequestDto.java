@@ -10,18 +10,18 @@ public class ContactSaveRequestDto {
     private String name;
     private String engName;
     private String logoFileName;
-    private String logoPath;
+    private String logoHtml;
     private String siteId;
     private String siteUrl;
     private Integer sortOrder;
     private String pageGubun;
 
     @Builder
-    public ContactSaveRequestDto(String name, String engName, String logoFileName, String logoPath, String siteId, String siteUrl, Integer sortOrder, String pageGubun) {
+    public ContactSaveRequestDto(String name, String engName, String logoFileName, String logoHtml, String siteId, String siteUrl, Integer sortOrder, String pageGubun) {
         this.name = name;
         this.engName = engName;
         this.logoFileName = logoFileName;
-        this.logoPath = logoPath;
+        this.logoHtml = logoHtml;
         this.siteId = siteId;
         this.siteUrl = siteUrl;
         this.sortOrder = sortOrder;

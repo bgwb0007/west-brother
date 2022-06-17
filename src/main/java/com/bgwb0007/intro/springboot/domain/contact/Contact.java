@@ -23,7 +23,7 @@ public class Contact extends BaseTimeEntity {
     @Column(length = 100)
     private String logoFileName;
     @Column(length = 100)
-    private String logoPath;
+    private String logoHtml;
     @Column(length = 250)
     private String siteId;
     @Column(length = 250)
@@ -35,10 +35,10 @@ public class Contact extends BaseTimeEntity {
     private Profiles profiles;
 
     @Builder
-    public Contact(String name, String engName, String logoPath, String logoFileName, String siteId, String siteUrl, Integer sortOrder, Profiles profiles) {
+    public Contact(String name, String engName, String logoHtml, String logoFileName, String siteId, String siteUrl, Integer sortOrder, Profiles profiles) {
         this.name = name;
         this.engName = engName;
-        this.logoPath = logoPath;
+        this.logoHtml = logoHtml;
         this.logoFileName = logoFileName;
         this.siteId = siteId;
         this.siteUrl = siteUrl;
@@ -48,7 +48,7 @@ public class Contact extends BaseTimeEntity {
     public Contact(ContactSaveRequestDto requestDto, Profiles profiles){
         this.name = requestDto.getName();
         this.engName = requestDto.getEngName();
-        this.logoPath = requestDto.getLogoPath();
+        this.logoHtml = requestDto.getLogoHtml();
         this.logoFileName = requestDto.getLogoFileName();
         this.siteId = requestDto.getSiteId();
         this.siteUrl = requestDto.getSiteUrl();
@@ -60,7 +60,7 @@ public class Contact extends BaseTimeEntity {
         this.name = requestDto.getName();
         this.engName = requestDto.getEngName();
         this.logoFileName = requestDto.getLogoFileName();
-        this.logoPath = requestDto.getLogoPath();
+        this.logoHtml = requestDto.getLogoHtml();
         this.siteId = requestDto.getSiteId();
         this.siteUrl = requestDto.getSiteUrl();
         this.sortOrder = requestDto.getSortOrder();

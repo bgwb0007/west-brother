@@ -34,7 +34,7 @@ public class ContactRepositoryTest {
         String name = "인스타그램";
         String engName = "instagram";
         String logoFileName = "tjgud.png";
-        String logoPath = "/images/app/tjgud.png";
+        String logoHtml = "/images/app/tjgud.png";
         String siteId = "west_brotherr";
         String siteUrl = "www.insta.com";
         Integer sortOrder = 20;
@@ -52,7 +52,7 @@ public class ContactRepositoryTest {
                 .name(name)
                 .engName(engName)
                 .logoFileName(logoFileName)
-                .logoPath(logoPath)
+                .logoHtml(logoHtml)
                 .siteId(siteId)
                 .siteUrl(siteUrl)
                 .sortOrder(sortOrder)

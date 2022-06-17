@@ -50,7 +50,7 @@ public class ContactApiControllerTest {
         String name = "인스타";
         String engName = "instagram";
         String logoFileName = "aaa.png";
-        String logoPath = "/dfasf/asdf";
+        String logoHtml = "/dfasf/asdf";
         String siteId = "west-brotherr";
         String siteUrl = "https:insta";
         Integer sortOrder = 20;
@@ -58,7 +58,7 @@ public class ContactApiControllerTest {
                 .name(name)
                 .engName(engName)
                 .logoFileName(logoFileName)
-                .logoPath(logoPath)
+                .logoHtml(logoHtml)
                 .siteId(siteId)
                 .siteUrl(siteUrl)
                 .sortOrder(sortOrder)

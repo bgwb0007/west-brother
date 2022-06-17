@@ -14,7 +14,7 @@ public class ContactGetOneResponseDto {
     private String name;
     private String engName;
     private String logoFileName;
-    private String logoPath;
+    private String logoHtml;
     private String siteId;
     private String siteUrl;
     private Integer sortOrder;
@@ -28,7 +28,7 @@ public class ContactGetOneResponseDto {
         this.name = contact.getName();
         this.engName = contact.getEngName();
         this.logoFileName = contact.getLogoFileName();
-        this.logoPath = contact.getLogoPath();
+        this.logoHtml = contact.getLogoHtml();
         this.siteId = contact.getSiteId();
         this.siteUrl = contact.getSiteUrl();
         this.sortOrder = contact.getSortOrder();
