@@ -16,18 +16,18 @@ import java.util.List;
 public class ContactApiController {
     private final ContactService contactService;
 
-    @PostMapping("/api/v1/profiles/contact")
+    @PostMapping("/api/v1/contact")
     public Long save(@RequestBody ContactSaveRequestDto requestDto){
         return contactService.save(requestDto);
     }
-    @PutMapping("/api/v1/profiles/contact/{id}")
+    @PutMapping("/api/v1/contact/{id}")
     public Long update(@PathVariable Long id, @RequestBody ContactUpdateRequestDto requestDto){
         return contactService.update(id,requestDto);
     }
-    @GetMapping("/api/v1/profiles/contact")
+    @GetMapping("/api/v1/contact")
     public List<ContactListResponseDto> findAllOrderBySortOrderAsc (){
         return contactService.findAllOrderBySortOrderAsc();
     }
-    @DeleteMapping("/api/v1/profiles/contact/{id}")
+    @DeleteMapping("/api/v1/contact/{id}")
     public Long delete(@PathVariable Long id){ return contactService.delete(id);}
 }

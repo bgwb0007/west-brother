@@ -78,7 +78,7 @@
         location.href = "admin.html";
     }
     function go저장하기(){
-        let url = '/api/v1/contact/';
+        let url = '/api/v1/contact';
         let jsonP = {
             'name': $('#이름입력').val(),
             'engName': $('#engName입력').val(),
@@ -92,7 +92,9 @@
         wbSave(function (ret){
             alert('저장에 성공했습니다.', ret);
             moveBack();
-        }, {}, url, jsonP);
+        }, function (ret){
+            alert('저장에 실패했습니다.', ret);
+        }, url, jsonP);
     }
 </script>
 
