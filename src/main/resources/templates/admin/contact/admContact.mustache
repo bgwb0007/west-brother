@@ -34,21 +34,22 @@
                 </tr>
                 </thead>
                 <tbody>
-
+                {{#contactList}}
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>ㅇㄴㄹㄴㅇ</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td><button type="button" class="btn btn-primary" onclick="go수정하기('{{id}}')">수정</button></td>
+                    <th scope="row">{{id}}</th>
+                    <td>{{name}}</td>
+                    <td>{{siteId}}</td>
+                    <td>{{sortOrder}}</td>
+                    <td>{{pageGubun}}</td>
+                    <td><button type="button" class="btn btn-primary" onclick="go수정하기()">수정</button></td>
                 </tr>
+                {{/contactList}}
 
                 </tbody>
                 <tfoot>
                 <th scope="row" colspan="3"></th>
                 <td colspan="1">총 개수</td>
-                <td colspan="1">3</td>
+                <td colspan="1">{{contactListSize}}</td>
                 <td colspan="1"></td>
                 </tfoot>
             </table>

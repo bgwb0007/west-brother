@@ -5,9 +5,6 @@ import com.bgwb0007.intro.springboot.domain.profiles.Profiles;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
