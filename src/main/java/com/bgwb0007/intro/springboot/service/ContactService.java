@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -38,6 +39,13 @@ public class ContactService {
     public List<ContactListResponseDto> findAllOrderBySortOrderAsc(){
         return  contactRepository.findAllOrderBySortOrderAsc().stream()
                 .map(ContactListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+    @Transactional
+    public List<Map> findAllOrderBySortOrderAscForHtml(){
+        return  contactRepository.findAllOrderBySortOrderAsc().stream()
+                .map(ContactListResponseDto::new)
+                .map(ContactListResponseDto::toMap)
                 .collect(Collectors.toList());
     }
     @Transactional

@@ -5,6 +5,8 @@ import com.bgwb0007.intro.springboot.domain.profiles.Profiles;
 import lombok.Getter;
 
 import javax.persistence.Column;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ContactListResponseDto {
     private Long id;
@@ -30,5 +32,19 @@ public class ContactListResponseDto {
         this.sortOrder = contact.getSortOrder();
         this.profiles =  contact.getProfiles();
         this.pageGubun = this.profiles.getPageGubun();
+    }
+
+    public Map<String, String> toMap(){
+        HashMap<String, String> retMap = new HashMap<>();
+        retMap.put("id", String.valueOf(this.id));
+        retMap.put("name", this.name);
+        retMap.put("engName", this.engName);
+        retMap.put("logoFileName", this.logoFileName);
+        retMap.put("logoHtml", this.logoHtml);
+        retMap.put("siteId", this.siteId);
+        retMap.put("siteUrl", this.siteUrl);
+        retMap.put("profilesId", String.valueOf(this.profiles.getId()));
+        retMap.put("pageGubun", this.profiles.getPageGubun());
+        return retMap;
     }
 }

@@ -16,7 +16,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -36,6 +39,41 @@ public class ContactApiControllerTest {
         contactRepository.deleteAll();
         profilesRepository.deleteAll();
     }
+
+    @Test
+    public void Contact_전체조회하기() throws Exception{
+        //given
+        Profiles profiles =profilesRepository.save(Profiles.builder()
+                .name("임서형")
+                .content1("it개발자111")
+                .content2("it개발자22222")
+                .photoPath("/images/dssdf")
+                .photoFileName("tjgudss.png")
+                .pageGubun("메인")
+                .build());
+        contactRepository.save(Contact.builder()
+                .name("인스타")
+                .engName("engName")
+                .logoFileName("logoFileName")
+                .logoHtml("logoHtml")
+                .siteId("siteId")
+                .siteUrl("siteUrl")
+                .sortOrder(11)
+                .profiles(profiles)
+                .build());
+        //when
+        String url = "http://localhost:" + port + "/api/v1/contact";
+        ResponseEntity<List> responseEntity = restTemplate.getForEntity(url,List.class);
+
+        //then
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        System.out.println("##responseEntity.getBody():");
+        System.out.println(responseEntity.getBody());
+        System.out.println();
+
+    }
+
+
     @Test
     public void Contact_등록하기() throws Exception {
         //given

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 
 @RequiredArgsConstructor
@@ -25,9 +26,10 @@ public class ContactApiController {
         return contactService.update(id,requestDto);
     }
     @GetMapping("/api/v1/contact")
-    public List<ContactListResponseDto> findAllOrderBySortOrderAsc (){
-        return contactService.findAllOrderBySortOrderAsc();
+    public List<Map> findAllOrderBySortOrderAscForHtml (){
+        return contactService.findAllOrderBySortOrderAscForHtml();
     }
+
     @DeleteMapping("/api/v1/contact/{id}")
     public Long delete(@PathVariable Long id){ return contactService.delete(id);}
 }
