@@ -66,7 +66,7 @@ public class ContactApiControllerTest {
                 .build();
 
         //when
-        String url = "http://localhost:" + port + "/api/v1/profiles/contact";
+        String url = "http://localhost:" + port + "/api/v1/contact";
         ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url,requestDto,Long.class);
 
         //then
