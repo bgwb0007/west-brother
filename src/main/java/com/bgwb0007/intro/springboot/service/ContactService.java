@@ -40,7 +40,7 @@ public class ContactService {
                 .map(ContactListResponseDto::new)
                 .collect(Collectors.toList());
         for(ContactListResponseDto dto : responseDtoList){
-            dto.setPageGUbun(dto.getProfiles().getPageGubun());
+            dto.setPageGubun(dto.getProfiles().getPageGubun());
         }
         return responseDtoList;
     }

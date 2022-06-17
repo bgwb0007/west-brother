@@ -16,10 +16,10 @@ public class ContactListResponseDto {
     private String siteUrl;
     private Integer sortOrder;
     private Profiles profiles;
-    private String pageGUbun;
+    private String pageGubun;
 
-    public void setPageGUbun(String pageGUbun){
-        this.pageGUbun = pageGUbun;
+    public void setPageGubun(String pageGUbun){
+        this.pageGubun = pageGUbun;
     }
     public Profiles getProfiles(){
         return this.profiles;
