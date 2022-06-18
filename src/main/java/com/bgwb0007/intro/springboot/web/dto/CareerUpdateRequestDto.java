@@ -1,23 +1,22 @@
 package com.bgwb0007.intro.springboot.web.dto;
 
-import com.bgwb0007.intro.springboot.domain.resume.Career;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 @NoArgsConstructor
 @Getter
-public class CareerSaveRequestDto {
+public class CareerUpdateRequestDto {
+
     private String title;
     private String content;
-    private String startDate;
-    private String endDate;
+    private String startDate;    // 입사일자
+    private String endDate;      // 퇴사일자
+
     @Builder
-    public CareerSaveRequestDto(String title, String content, String startDate, String endDate){
+    public CareerUpdateRequestDto(String title, String content, String startDate, String endDate) {
         this.title = title;
         this.content = content;
         this.startDate = startDate;

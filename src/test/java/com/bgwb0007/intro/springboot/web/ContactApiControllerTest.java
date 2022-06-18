@@ -5,6 +5,8 @@ import com.bgwb0007.intro.springboot.domain.contact.ContactRepository;
 import com.bgwb0007.intro.springboot.domain.profiles.Profiles;
 import com.bgwb0007.intro.springboot.domain.profiles.ProfilesRepository;
 import com.bgwb0007.intro.springboot.web.dto.ContactSaveRequestDto;
+import com.bgwb0007.intro.springboot.web.dto.ContactUpdateRequestDto;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,26 +54,33 @@ public class ContactApiControllerTest {
                 .photoFileName("tjgudss.png")
                 .pageGubun("메인")
                 .build());
+        String name = "인스타";
+        String logoHtml = "<img src='dsfasdfdsaf'>asd</img>";
+        int sortOrder = 11;
         contactRepository.save(Contact.builder()
-                .name("인스타")
+                .name(name)
                 .engName("engName")
                 .logoFileName("logoFileName")
-                .logoHtml("logoHtml")
+                .logoHtml(logoHtml)
                 .siteId("siteId")
                 .siteUrl("siteUrl")
-                .sortOrder(11)
+                .sortOrder(sortOrder)
                 .profiles(profiles)
                 .build());
+
+        ObjectMapper objectMapper = new ObjectMapper();
         //when
         String url = "http://localhost:" + port + "/api/v1/contact";
         ResponseEntity<List> responseEntity = restTemplate.getForEntity(url,List.class);
-
+        HashMap<String ,String> retMap = objectMapper.convertValue(responseEntity.getBody().get(0),HashMap.class);
         //then
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        System.out.println("##responseEntity.getBody():");
-        System.out.println(responseEntity.getBody());
-        System.out.println();
-
+//        System.out.println("##responseEntity.getBody():");
+//        System.out.println(responseEntity.getBody());
+//        System.out.println(retMap.get("id"));
+        assertThat(retMap.get("name")).isEqualTo(name);
+        assertThat(retMap.get("logoHtml")).isEqualTo(logoHtml);
+        assertThat(retMap.get("sortOrder")).isEqualTo(String.valueOf(sortOrder));
     }
 
 
@@ -113,6 +123,95 @@ public class ContactApiControllerTest {
         List<Contact> all = contactRepository.findAllOrderBySortOrderAsc();
         assertThat(all.get(0).getName()).isEqualTo(name);
         assertThat(all.get(0).getSiteId()).isEqualTo(siteId);
+    }
 
+    @Test
+    public void Contact_수정하기() throws Exception{
+        //given
+        Profiles profiles =profilesRepository.save(Profiles.builder()
+                .name("임서형")
+                .content1("it개발자111")
+                .content2("it개발자22222")
+                .photoPath("/images/dssdf")
+                .photoFileName("tjgudss.png")
+                .pageGubun("메인")
+                .build());
+        String name = "인스타";
+        String engName = "instagram";
+        String logoFileName = "aaa.png";
+        String logoHtml = "<SVG dsfasdf>sadfasdfdasdf<>";
+        String siteId = "west-brotherr";
+        String siteUrl = "https:insta";
+        Integer sortOrder = 20;
+        contactRepository.save(Contact.builder()
+                .name("name")
+                .engName("engName")
+                .logoFileName("logoFileName")
+                .logoHtml("logoHtml")
+                .siteId("siteId")
+                .siteUrl("siteUrl")
+                .sortOrder(11)
+                .profiles(profiles)
+                .build());
+        ContactUpdateRequestDto requestDto = ContactUpdateRequestDto.builder()
+                .name(name)
+                .engName(engName)
+                .logoFileName(logoFileName)
+                .logoHtml(logoHtml)
+                .siteId(siteId)
+                .siteUrl(siteUrl)
+                .sortOrder(sortOrder)
+                .build();
+
+        //when
+        String url = "http://localhost:" + port + "/api/v1/contact/"+profiles.getId();
+        restTemplate.put(url,requestDto);
+
+        //then
+        Contact updatedContact = contactRepository.findAll().get(0);
+        assertThat(updatedContact.getName()).isEqualTo(name);
+        assertThat(updatedContact.getEngName()).isEqualTo(engName);
+        assertThat(updatedContact.getLogoFileName()).isEqualTo(logoFileName);
+        assertThat(updatedContact.getLogoHtml()).isEqualTo(logoHtml);
+        assertThat(updatedContact.getSiteId()).isEqualTo(siteId);
+        assertThat(updatedContact.getSiteUrl()).isEqualTo(siteUrl);
+        assertThat(updatedContact.getSortOrder()).isEqualTo(sortOrder);
+    }
+
+    @Test
+    public void Contact_삭제하기() throws Exception{
+        //given
+        Profiles profiles =profilesRepository.save(Profiles.builder()
+                .name("임서형")
+                .content1("it개발자111")
+                .content2("it개발자22222")
+                .photoPath("/images/dssdf")
+                .photoFileName("tjgudss.png")
+                .pageGubun("메인")
+                .build());
+
+        Contact contact = Contact.builder()
+                .name("name")
+                .engName("engName")
+                .logoFileName("logoFileName")
+                .logoHtml("logoHtml")
+                .siteId("siteId")
+                .siteUrl("siteUrl")
+                .sortOrder(11)
+                .profiles(profiles)
+                .build();
+        contactRepository.save(contact);
+
+        //when
+        String url = "http://localhost:" + port + "/api/v1/contact/"+profiles.getId();
+        restTemplate.delete(url);
+
+        //then
+        String delName = "삭제완료";
+        Contact delContact = contactRepository.findById(contact.getId())
+                .orElse(Contact.builder()
+                        .name(delName)
+                        .build());
+        assertThat(delContact.getName()).isEqualTo(delName);
     }
 }

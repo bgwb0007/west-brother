@@ -32,7 +32,7 @@ public class ContactService {
         Contact contact = contactRepository.findById(id)
                 .orElseThrow(()-> new
                         IllegalArgumentException("해당 연락처 기록이 없습니다. id= " + id));
-        contact.update(requestDto, contact.getProfiles());
+        contact.update(requestDto);
         return id;
     }
     @Transactional

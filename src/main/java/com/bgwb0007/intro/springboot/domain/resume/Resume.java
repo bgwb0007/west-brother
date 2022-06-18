@@ -5,10 +5,12 @@ import com.bgwb0007.intro.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -24,7 +26,10 @@ public class Resume extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    //private String DTYPE;  자동 저장되는 데이터 타입
+//    private String DType;       // 자동 저장되는 데이터 타입
+//    private String ext1;        // 예비 컬럼1
+//    private String ext2;        // 예비 컬럼2
+//    private String ext3;        // 예비 컬럼3
 
     public Resume(String title, String content) {
         this.title = title;

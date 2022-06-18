@@ -41,6 +41,7 @@ public class ContactListResponseDto {
         retMap.put("engName", this.engName);
         retMap.put("logoFileName", this.logoFileName);
         retMap.put("logoHtml", this.logoHtml);
+        retMap.put("sortOrder",String.valueOf(this.sortOrder));
         retMap.put("siteId", this.siteId);
         retMap.put("siteUrl", this.siteUrl);
         retMap.put("profilesId", String.valueOf(this.profiles.getId()));

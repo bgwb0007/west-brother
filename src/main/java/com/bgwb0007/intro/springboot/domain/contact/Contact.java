@@ -22,7 +22,7 @@ public class Contact extends BaseTimeEntity {
     private String engName;
     @Column(length = 100)
     private String logoFileName;
-    @Column(length = 100)
+    @Column(length = 500)
     private String logoHtml;
     @Column(length = 250)
     private String siteId;
@@ -56,7 +56,7 @@ public class Contact extends BaseTimeEntity {
         this.profiles = profiles;
     }
 
-    public void update(ContactUpdateRequestDto requestDto, Profiles profiles){
+    public void update(ContactUpdateRequestDto requestDto){
         this.name = requestDto.getName();
         this.engName = requestDto.getEngName();
         this.logoFileName = requestDto.getLogoFileName();
@@ -64,8 +64,7 @@ public class Contact extends BaseTimeEntity {
         this.siteId = requestDto.getSiteId();
         this.siteUrl = requestDto.getSiteUrl();
         this.sortOrder = requestDto.getSortOrder();
-        this.profiles = profiles;
 
-        profiles.getContactList().add(this);
+//        profiles.getContactList().add(this);
     }
 }
