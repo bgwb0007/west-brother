@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface EducationRepository extends JpaRepository<Education, Long> {
     @Query("select e from Education e order by e.endDate asc")
-    List<Education> findAllOrderByEndDateAsc();
+    List<Education> findAllOrderByStartDateAsc();
 }
