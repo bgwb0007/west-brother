@@ -22,15 +22,15 @@ public class EducationApiController {
     public List<Map> findAllForHtml(){
         return educationService.findAllForHtml();
     }
-    @GetMapping("/api/v1/career/{id}")
+    @GetMapping("/api/v1/education/{id}")
     public Map findById(@PathVariable Long id){
         return educationService.findById(id);
     }
-    @PutMapping("/api/v1/career/{id}")
+    @PutMapping("/api/v1/education/{id}")
     public Long update(@PathVariable Long id, @RequestBody EducationUpdateRequestDto requestDto){
         return educationService.update(id,requestDto);
     }
-    @DeleteMapping("/api/v1/career/{id}")
+    @DeleteMapping("/api/v1/education/{id}")
     public Long delete(@PathVariable Long id){
         return educationService.delete(id);
     }
