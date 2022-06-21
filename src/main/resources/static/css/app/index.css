@@ -75,9 +75,9 @@ body{
 }
 .menuBtn{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     height: 67px;
     width: 80%;
     font-size: 18px;
@@ -88,7 +88,9 @@ body{
     background-color: rgb(179, 213, 233);
     box-shadow: 5px 5px grey;
 }
-
+.menuBtn svg{
+    margin-left: 1rem;
+}
 
 
 /* 모바일 버전 */
