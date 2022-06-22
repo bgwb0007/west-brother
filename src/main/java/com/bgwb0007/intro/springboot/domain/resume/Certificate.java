@@ -2,6 +2,7 @@ package com.bgwb0007.intro.springboot.domain.resume;
 
 import com.bgwb0007.intro.springboot.web.dto.CertificateSaveRequestDto;
 import com.bgwb0007.intro.springboot.web.dto.CertificateUpdateRequestDto;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -24,6 +25,19 @@ public class Certificate extends Resume {
     private String imageFileName;
 
     private String imagePath;
+    private String ext1;            // 예비컬럼1
+    private String ext2;            // 예비컬럼2
+    private String ext3;            // 예비컬럼3
+
+    @Builder
+    public Certificate(String title, String content, String certification, LocalDate licenseDate, LocalDate endDate, String imageFileName, String imagePath) {
+        super(title, content);
+        this.certification = certification;
+        this.licenseDate = licenseDate;
+        this.endDate = endDate;
+        this.imageFileName = imageFileName;
+        this.imagePath = imagePath;
+    }
 
     public Certificate(CertificateSaveRequestDto requestDto) {
         super(requestDto.getTitle(), requestDto.getContent());

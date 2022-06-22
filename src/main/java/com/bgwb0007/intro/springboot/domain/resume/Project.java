@@ -3,6 +3,7 @@ package com.bgwb0007.intro.springboot.domain.resume;
 import com.bgwb0007.intro.springboot.web.dto.EducationUpdateRequestDto;
 import com.bgwb0007.intro.springboot.web.dto.ProjectSaveRequestDto;
 import com.bgwb0007.intro.springboot.web.dto.ProjectUpdateRequestDto;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,8 +21,18 @@ public class Project extends Resume {
     private String contentDetail;
     @Column(nullable = false)
     private LocalDate startDate;
-
     private LocalDate endDate;
+
+    private String ext1;            // 예비컬럼1
+    private String ext2;            // 예비컬럼2
+    private String ext3;            // 예비컬럼3
+    @Builder
+    public Project(String title, String content, String contentDetail, LocalDate startDate, LocalDate endDate) {
+        super(title, content);
+        this.contentDetail = contentDetail;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
 
     public Project(ProjectSaveRequestDto requestDto) {
         super(requestDto.getTitle(), requestDto.getContent());

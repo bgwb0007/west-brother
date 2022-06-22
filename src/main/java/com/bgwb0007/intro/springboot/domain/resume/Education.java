@@ -3,6 +3,7 @@ package com.bgwb0007.intro.springboot.domain.resume;
 import com.bgwb0007.intro.springboot.web.dto.CareerUpdateRequestDto;
 import com.bgwb0007.intro.springboot.web.dto.EducationSaveRequestDto;
 import com.bgwb0007.intro.springboot.web.dto.EducationUpdateRequestDto;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -19,6 +20,15 @@ public class Education extends Resume {
     @Column(nullable = false)
     private LocalDate startDate;
     private LocalDate endDate;
+    private String ext1;            // 예비컬럼1
+    private String ext2;            // 예비컬럼2
+    private String ext3;            // 예비컬럼3
+    @Builder
+    public Education(String title, String content, LocalDate startDate, LocalDate endDate) {
+        super(title, content);
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
 
     public Education(EducationSaveRequestDto requestDto) {
         super(requestDto.getTitle(), requestDto.getContent());
