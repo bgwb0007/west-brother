@@ -88,10 +88,14 @@ body{
     background-color: rgb(179, 213, 233);
     box-shadow: 5px 5px grey;
 }
-.menuBtn svg{
-    margin-left: 1rem;
+.menuBtn:hover {
+    width: 82%;
+    height: 68px;
 }
-
+.menuBtn img{
+    margin-left: 1rem;
+    width: 40px;
+}
 
 /* 모바일 버전 */
 @media (max-width: 990px){

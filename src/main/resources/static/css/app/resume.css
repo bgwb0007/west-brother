@@ -16,6 +16,8 @@ body{
 }
 .backBtn:hover{
     background-color: green;
+    width: 41px;
+    height: 41px;
 }
 .wrapper {
     display: flex;
