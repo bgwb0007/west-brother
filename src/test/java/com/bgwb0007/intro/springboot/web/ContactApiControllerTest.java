@@ -44,7 +44,7 @@ public class ContactApiControllerTest {
     }
 
     @Test
-    public void Contact_전체조회하기() throws Exception{
+    public void Contact_pageGubun으로_조회하기() throws Exception{
         //given
         Profiles profiles =profilesRepository.save(Profiles.builder()
                 .name("임서형")
@@ -70,7 +70,7 @@ public class ContactApiControllerTest {
 
         ObjectMapper objectMapper = new ObjectMapper();
         //when
-        String url = "http://localhost:" + port + "/api/v1/contact";
+        String url = "http://localhost:" + port + "/api/v1/contact/"+profiles.getPageGubun();
         ResponseEntity<List> responseEntity = restTemplate.getForEntity(url,List.class);
         HashMap<String ,String> retMap = objectMapper.convertValue(responseEntity.getBody().get(0),HashMap.class);
         //then
