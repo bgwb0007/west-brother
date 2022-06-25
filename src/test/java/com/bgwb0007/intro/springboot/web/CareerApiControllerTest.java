@@ -179,10 +179,10 @@ public class CareerApiControllerTest {
 
         //then
         String delTitle = "삭제완료";
-        Career updatedCareer = careerRepository.findById(id)
+        Career deletedCareer = careerRepository.findById(id)
                 .orElse(Career.builder()
                         .title(delTitle).build());
-        assertThat(updatedCareer.getTitle()).isEqualTo(delTitle);
+        assertThat(deletedCareer.getTitle()).isEqualTo(delTitle);
     }
 
 }

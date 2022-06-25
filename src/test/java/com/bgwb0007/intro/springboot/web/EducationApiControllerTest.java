@@ -180,10 +180,10 @@ public class EducationApiControllerTest {
 
         //then
         String delTitle = "삭제완료";
-        Education updatedEducation = educationRepository.findById(id)
+        Education deletedEducation = educationRepository.findById(id)
                 .orElse(Education.builder()
                         .title(delTitle).build());
-        assertThat(updatedEducation.getTitle()).isEqualTo(delTitle);
+        assertThat(deletedEducation.getTitle()).isEqualTo(delTitle);
     }
 
 }
