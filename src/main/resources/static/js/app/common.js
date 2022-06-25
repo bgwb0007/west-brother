@@ -72,13 +72,12 @@ var main = {
 
 };
 
-function wbGetJson(successCallBackFnc, failCallBackFnc, url, param){
+function wbGetJson(successCallBackFnc, failCallBackFnc, url){
     $.ajax({
         type: 'GET',
         url: url,
         dataType: 'json',
-        contentType:'application/json; charset=utf-8',
-        data: JSON.stringify(param)
+        contentType:'application/json; charset=utf-8'
     }).done(function(ret) {
         successCallBackFnc(ret);
     }).fail(function (error) {
