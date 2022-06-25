@@ -61,7 +61,13 @@
         location.href = url;
     }
     function getContactInfo(){
-        var url = '/api/v1/contact'
+        var url = '/api/v1/contact/메인';
+        wbGetJson(getContactSuccessFnc,getContactFailFnc,url,{});
+    }
+    function getContactSuccessFnc(res){
+        debugger;
+    }
+    function getContactFailFnc(res){
 
     }
 </script>
