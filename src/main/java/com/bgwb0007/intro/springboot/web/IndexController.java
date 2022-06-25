@@ -46,8 +46,8 @@ public class IndexController {
     }
     @GetMapping("/admin/contact")
     public String admContactList(Model model){
-        model.addAttribute("contactList",contactService.findAllOrderBySortOrderAsc());
-        model.addAttribute("contactListSize", contactService.findAllOrderBySortOrderAsc().size());
+        model.addAttribute("contactList",contactService.findAllOrderBySortOrderAscForAdm());
+        model.addAttribute("contactListSize", contactService.findAllOrderBySortOrderAscForAdm().size());
         return "admin/contact/admContact";
     }
     @GetMapping("/admin/contact-save")

@@ -25,9 +25,9 @@ public class ContactApiController {
     public Long update(@PathVariable Long id, @RequestBody ContactUpdateRequestDto requestDto){
         return contactService.update(id,requestDto);
     }
-    @GetMapping("/api/v1/contact")
-    public List<Map> findAllOrderBySortOrderAscForHtml (){
-        return contactService.findAllOrderBySortOrderAscForHtml();
+    @GetMapping("/api/v1/contact/{pageGubun}")
+    public List<Map> findAllOrderBySortOrderAscForHtml (@PathVariable String pageGubun){
+        return contactService.findByPageGubunOrderBySortOrderAscForHtml(pageGubun);
     }
 
     @DeleteMapping("/api/v1/contact/{id}")

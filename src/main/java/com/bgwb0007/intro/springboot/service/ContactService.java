@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -36,17 +37,21 @@ public class ContactService {
         return id;
     }
     @Transactional
-    public List<ContactListResponseDto> findAllOrderBySortOrderAsc(){
+    public List<ContactListResponseDto> findAllOrderBySortOrderAscForAdm(){
         return  contactRepository.findAllOrderBySortOrderAsc().stream()
                 .map(ContactListResponseDto::new)
                 .collect(Collectors.toList());
     }
     @Transactional
-    public List<Map> findAllOrderBySortOrderAscForHtml(){
-        return  contactRepository.findAllOrderBySortOrderAsc().stream()
-                .map(ContactListResponseDto::new)
-                .map(ContactListResponseDto::toMap)
+    public List<Map> findByPageGubunOrderBySortOrderAscForHtml(String pageGubun){
+        List<Contact> findAll = contactRepository.findAllOrderBySortOrderAsc().stream()
                 .collect(Collectors.toList());
+        List<Map> retList = new ArrayList<>();
+        for(Contact contact : findAll){
+           if(!contact.getProfiles().getPageGubun().equals(pageGubun)) continue;
+            retList.add(contact.toMap());
+        }
+        return retList;
     }
     @Transactional
     public ContactGetOneResponseDto findById(Long id){

@@ -9,6 +9,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Getter
 @NoArgsConstructor
@@ -66,5 +69,18 @@ public class Contact extends BaseTimeEntity {
         this.sortOrder = requestDto.getSortOrder();
 
 //        profiles.getContactList().add(this);
+    }
+    public Map toMap(){
+        Map<String, String> retMap = new HashMap<>();
+        retMap.put("id", String.valueOf(this.id));
+        retMap.put("name", this.name);
+        retMap.put("engName",this.engName);
+        retMap.put("logoFileName",this.logoFileName);
+        retMap.put("logoHtml",this.logoHtml);
+        retMap.put("siteId",this.siteId);
+        retMap.put("siteUrl",this.siteUrl);
+        retMap.put("sortOrder", String.valueOf(this.sortOrder));
+        retMap.put("profilesId", String.valueOf(this.profiles.getId()));
+        return retMap;
     }
 }
