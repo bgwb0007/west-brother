@@ -56,7 +56,7 @@ public class IndexController {
     }
     @GetMapping("/admin/contact-update/{id}")
     public String admContactUpdate(@PathVariable Long id, Model model){
-        model.addAttribute("profilesFindById", contactService.findById(id));
+        model.addAttribute("contacts", contactService.findById(id));
         return "admin/contact/admContact-update";
     }
 

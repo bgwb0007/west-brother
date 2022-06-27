@@ -54,10 +54,10 @@ public class ContactService {
         return retList;
     }
     @Transactional
-    public ContactGetOneResponseDto findById(Long id){
+    public Map findById(Long id){
         Contact contact = contactRepository.findById(id)
                 .orElseThrow(()->new IllegalArgumentException("해당 연락처 기록이 없습니다. id="+id));
-        return new ContactGetOneResponseDto(contact);
+        return new ContactGetOneResponseDto(contact).toMap();
     }
     @Transactional
     public Long delete(Long id){

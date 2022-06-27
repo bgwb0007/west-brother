@@ -7,52 +7,53 @@
         <button type="button" class="btn btn-primary" onclick="moveBack();">뒤로가기</button>
     </div>
     <div class="formAll container">
+        {{#contacts}}
         <div class="mb-3 row">
             <label for="id입력" class="col-sm-2 col-form-label">id</label>
             <div class="col-sm-10">
-                <input type="text" name="id" class="form-control" id="id입력" readonly value="111">
+                <input type="text" name="id" class="form-control" id="id입력" readonly value="{{id}}">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="name입력" class="col-sm-2 col-form-label">name</label>
             <div class="col-sm-10">
-                <input type="text" name="name" class="form-control" id="name입력" value="">
+                <input type="text" name="name" class="form-control" id="name입력" value="{{name}}">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="engName입력" class="col-sm-2 col-form-label">engName</label>
             <div class="col-sm-10">
-                <input type="text" name="engName" class="form-control" id="engName입력" value="">
+                <input type="text" name="engName" class="form-control" id="engName입력" value="{{engName}}">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="sortOrder입력" class="col-sm-2 col-form-label">정렬순서</label>
             <div class="col-sm-10">
-                <input type="text" name="sortOrder" class="form-control" id="sortOrder입력" value="">
+                <input type="text" name="sortOrder" class="form-control" id="sortOrder입력" value="{{sortOrder}}">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="logoFileName입력" class="col-sm-2 col-form-label">logoFileName</label>
             <div class="col-sm-10">
-                <input type="text" name="logoFileName" class="form-control" id="logoFileName입력" value="">
+                <input type="text" name="logoFileName" class="form-control" id="logoFileName입력" value="{{logoFileName}}">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="logoHtml입력" class="col-sm-2 col-form-label">logoHtml</label>
             <div class="col-sm-10">
-                <input type="text" name="logoPath" class="form-control" id="logoHtml입력" value="">
+                <input type="text" name="logoPath" class="form-control" id="logoHtml입력" value="{{logoHtml}}">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="siteId입력" class="col-sm-2 col-form-label">siteId</label>
             <div class="col-sm-10">
-                <input type="text" name="siteId" class="form-control" id="siteId입력" value="">
+                <input type="text" name="siteId" class="form-control" id="siteId입력" value="{{siteId}}">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="siteUrl입력" class="col-sm-2 col-form-label">siteUrl</label>
             <div class="col-sm-10">
-                <input type="text" name="siteUrl" class="form-control" id="siteUrl입력" value="">
+                <input type="text" name="siteUrl" class="form-control" id="siteUrl입력" value="{{siteUrl}}">
             </div>
         </div>
         <div class="row">
@@ -63,6 +64,7 @@
                 <button type="button" class="btn btn-danger">삭제하기</button>
             </div>
         </div>
+        {{/contacts}}
     </div>
 </div>
 
