@@ -28,35 +28,31 @@
                     <div class="contactInfoTitle">
                         <span>Contact</span>
                     </div>
-                    <div id="contactListDiv"></div>
-                    <script id="entry-template" type="text/x-handlebars-template">
-                        <div class="contactInfoDiv">
-                            {{#users}}
-                        {{name}}
-                            {{/users}}
-                        <span class="logo"><img src="/image/app/phone7.png" alt="인스타로고" width="35"></span>
-                        <span class="siteId">010 8836 0007</span>
-                    </div>
-                    </script>
-                    <div class="contactInfoDiv">
-                        <span class="logo"><img src="/image/app/logo_email7.png" alt="인스타로고" width="35"></span>
-                        <span class="siteId">bgwb0007@gmail.com</span>
-                    </div>
-                    <div class="contactInfoDiv">
-                        <span class="logo"><img src="/image/app/logo_instagram.png" alt="인스타로고" width="35"></span>
-                        <span class="siteId">@west_brotherr</span>
-                    </div>
-                    <div class="contactInfoDiv">
-                        <span class="logo"><img src="/image/app/logo_github4.png" alt="인스타로고" width="35"></span>
-                        <span class="siteId">bgwb0007@naver.com</span>
-                    </div>
-                    <div class="contactInfoDiv">
-                        <span class="logo"><img src="/image/app/logo_linkedIn3.png" alt="인스타로고" width="35"></span>
-                        <span class="siteId">bgwb0007@naver.com</span>
-                    </div>
-                    <div class="contactInfoDiv">
-                        <span class="logo"><img src="/image/app/place.png" alt="인스타로고" width="35"></span>
-                        <span class="siteId">서울특별시 중구</span>
+                    <div id="contactInfoAll">
+<!--                        <div class="contactInfoDiv">-->
+<!--                            <span class="logo"><img src="/image/app/phone7.png" alt="인스타로고" width="35"></span>-->
+<!--                            <span class="siteId">010 8836 0007</span>-->
+<!--                        </div>-->
+<!--                        <div class="contactInfoDiv">-->
+<!--                            <span class="logo"><img src="/image/app/logo_email7.png" alt="인스타로고" width="35"></span>-->
+<!--                            <span class="siteId">bgwb0007@gmail.com</span>-->
+<!--                        </div>-->
+<!--                        <div class="contactInfoDiv">-->
+<!--                            <span class="logo"><img src="/image/app/logo_instagram.png" alt="인스타로고" width="35"></span>-->
+<!--                            <span class="siteId">@west_brotherr</span>-->
+<!--                        </div>-->
+<!--                        <div class="contactInfoDiv">-->
+<!--                            <span class="logo"><img src="/image/app/logo_github4.png" alt="인스타로고" width="35"></span>-->
+<!--                            <span class="siteId">bgwb0007@naver.com</span>-->
+<!--                        </div>-->
+<!--                        <div class="contactInfoDiv">-->
+<!--                            <span class="logo"><img src="/image/app/logo_linkedIn3.png" alt="인스타로고" width="35"></span>-->
+<!--                            <span class="siteId">bgwb0007@naver.com</span>-->
+<!--                        </div>-->
+<!--                        <div class="contactInfoDiv">-->
+<!--                            <span class="logo"><img src="/image/app/place.png" alt="인스타로고" width="35"></span>-->
+<!--                            <span class="siteId">서울특별시 중구</span>-->
+<!--                        </div>-->
                     </div>
                 </div>
             </div>
@@ -160,19 +156,14 @@
         var url = '/api/v1/contact/이력서'
         wbGetJson(function (res){
             debugger;
-            var source = $('#entry-template').html();
-            var template = Handlebars.compile(source);
-            var data = {
-                users: [
-                    { name: "홍길동1", id: "aaa1", email: "aaa1@gmail.com" },
-                    { name: "홍길동2", id: "aaa2", email: "aaa2@gmail.com" },
-                    { name: "홍길동3", id: "aaa3", email: "aaa3@gmail.com" },
-                    { name: "홍길동4", id: "aaa4", email: "aaa4@gmail.com" },
-                    { name: "홍길동5", id: "aaa5", email: "aaa5@gmail.com" }
-                ]
-            };
-            var html = template(data);
-            $('#contactListDiv').append(html);
+            var html = '';
+            $.each(res,function (idx,item){
+                html += '<div class="contactInfoDiv">';
+                html += '    <span class="logo"><img src="'+item.logoHtml+'" alt="인스타로고" width="35"></span>';
+                html += '    <span class="siteId">'+item.siteId+'</span>';
+                html += '</div>';
+            })
+            $('#contactInfoAll').append(html);
         },function (res){
             debugger
         },url,{});
