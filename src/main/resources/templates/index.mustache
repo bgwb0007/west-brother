@@ -21,6 +21,9 @@
                     </div>
                     <div class="profileContentBox2" id="contactListDiv">
                         <script id="contactList" type="text/x-handlebars-template">
+                            {{#each contacts}}
+                            <span><img src="{{logoHtml}}" alt="{{name}}"></span>
+                            {{/each}}
                             <span><img src="/image/app/phone5.png" alt="P"></span>
                             <span><img src="/image/app/logo_email2.png" alt="M"></span>
                             <span><img src="/image/app/logo_instagram.png" alt="I"></span>
@@ -68,7 +71,7 @@
     }
     function getContactSuccessFnc(res){
         var template = Handlebars.compile($("#contactList").html());
-        var html = template(res);
+        var html = template({'contacts':res});
         $('#contactListDiv').append(html);
         debugger;
     }
