@@ -19,12 +19,14 @@
                         </div>
                         {{/profiles}}
                     </div>
-                    <div class="profileContentBox2">
-                        <span><img src="/image/app/phone5.png" alt="P"></span>
-                        <span><img src="/image/app/logo_email2.png" alt="M"></span>
-                        <span><img src="/image/app/logo_instagram.png" alt="I"></span>
-                        <span><img src="/image/app/logo_linkedIn2.png" alt="in"></span>
-                        <span><img src="/image/app/logo_github.png" alt="Git"></span>
+                    <div class="profileContentBox2" id="contactListDiv">
+                        <script id="contactList" type="text/x-handlebars-template">
+                            <span><img src="/image/app/phone5.png" alt="P"></span>
+                            <span><img src="/image/app/logo_email2.png" alt="M"></span>
+                            <span><img src="/image/app/logo_instagram.png" alt="I"></span>
+                            <span><img src="/image/app/logo_linkedIn2.png" alt="in"></span>
+                            <span><img src="/image/app/logo_github.png" alt="Git"></span>
+                        </script>
                     </div>
                 </div>
 
@@ -65,6 +67,9 @@
         wbGetJson(getContactSuccessFnc,getContactFailFnc,url,{});
     }
     function getContactSuccessFnc(res){
+        var template = Handlebars.compile($("#contactList").html());
+        var html = template(res);
+        $('#contactListDiv').append(html);
         debugger;
     }
     function getContactFailFnc(res){
