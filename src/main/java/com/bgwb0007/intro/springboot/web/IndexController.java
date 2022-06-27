@@ -18,6 +18,7 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model){
         model.addAttribute("profiles", profilesService.findByPageGubun("메인"));
+        model.addAttribute("contacts", contactService.findByPageGubunOrderBySortOrderAscForHtml("메인"));
         return "index";
     }
     @GetMapping("/posts/save")

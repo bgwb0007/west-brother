@@ -20,14 +20,14 @@
                         {{/profiles}}
                     </div>
                     <div class="profileContentBox2" id="contactListDiv">
-                        <script id="contactList" type="text/x-handlebars-template">
-                            <span><img src="{{logoHtml}}" alt="{{name}}"></span>
-                            <span><img src="/image/app/phone5.png" alt="P"></span>
-                            <span><img src="/image/app/logo_email2.png" alt="M"></span>
-                            <span><img src="/image/app/logo_instagram.png" alt="I"></span>
-                            <span><img src="/image/app/logo_linkedIn2.png" alt="in"></span>
-                            <span><img src="/image/app/logo_github.png" alt="Git"></span>
-                        </script>
+                        {{#contacts}}
+                        <span><img src="{{logoHtml}}" alt="{{name}}"></span>
+                        {{/contacts}}
+                        <span><img src="/image/app/phone5.png" alt="P"></span>
+                        <span><img src="/image/app/logo_email2.png" alt="M"></span>
+                        <span><img src="/image/app/logo_instagram.png" alt="I"></span>
+                        <span><img src="/image/app/logo_linkedIn2.png" alt="in"></span>
+                        <span><img src="/image/app/logo_github.png" alt="Git"></span>
                     </div>
                 </div>
 
@@ -62,25 +62,6 @@
 <script>
     function movePage(url){
         location.href = url;
-    }
-    function getContactInfo(){
-        var url = '/api/v1/contact/메인';
-        wbGetJson(getContactSuccessFnc,getContactFailFnc,url,{});
-    }
-    function getContactSuccessFnc(res){
-        var template = Handlebars.compile($("#contactList").html());
-        // var html = template(res);
-        var resultHTML = res.reduce( function(prev, next) {
-            return prev + template(next);
-        }, "");
-        var show = document.querySelector(".show");
-        show.innerHTML = resultHTML;
-
-        // $('#contactListDiv').append(html);
-        debugger;
-    }
-    function getContactFailFnc(res){
-
     }
 </script>
 
