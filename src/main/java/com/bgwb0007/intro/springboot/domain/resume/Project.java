@@ -59,7 +59,11 @@ public class Project extends Resume {
         retMap.put("content", StringUtil.nvl(this.getContent()));
         retMap.put("contentDetail", StringUtil.nvl(this.contentDetail));
         retMap.put("startDate", StringUtil.nvl(this.startDate));
-        retMap.put("endDate", StringUtil.nvl(this.endDate,"현재"));
+        retMap.put("endDate", StringUtil.nvl(this.endDate,""));
+        String[] st = StringUtil.nvl(this.startDate).split("-");
+        String[] ed = StringUtil.nvl(this.endDate).split("-");
+        retMap.put("startDate2",st[0]+"."+st[1]);
+        retMap.put("endDate2",ed.length > 1 ? ed[0]+"."+ed[1] : "현재");
         return retMap;
     }
     public Map<String ,String> toMapForOne(){

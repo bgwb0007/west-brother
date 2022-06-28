@@ -69,6 +69,10 @@ public class Certificate extends Resume {
         retMap.put("certification", StringUtil.nvl(this.certification));
         retMap.put("licenseDate", StringUtil.nvl(this.licenseDate));
         retMap.put("endDate", StringUtil.nvl(this.endDate));
+        String[] st = StringUtil.nvl(this.licenseDate).split("-");
+        String[] ed = StringUtil.nvl(this.endDate).split("-");
+        retMap.put("licenseDate2",st[0]+"."+st[1]);
+        retMap.put("endDate2",ed.length > 1 ? ed[0]+"."+ed[1] : "현재");
         retMap.put("imageFileName", StringUtil.nvl(this.imageFileName));
         retMap.put("imagePath", StringUtil.nvl(this.imagePath));
         return retMap;
