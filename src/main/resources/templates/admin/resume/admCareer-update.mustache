@@ -56,13 +56,18 @@
         var id = window.location.pathname.split('/')[window.location.pathname.split('/').length-1];
         var url = "/api/v1/career/" + id;
         wbGetJson(function (ret){
-            debugger;
             $('#id입력').val(ret.id);
+            $('#title입력').val(ret.title);
+            $('#content입력').val(ret.content);
+            $('#startDate입력').val(ret.startDate);
+            $('#endDate입력').val(ret.endDate);
         },function (ret){
 
         },url)
     }
-    careerUpdateInit();
+    function onInit(){
+        careerUpdateInit();
+    }
 </script>
 
 

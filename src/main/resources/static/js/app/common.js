@@ -128,3 +128,4 @@ function wbDelete(successCallBackFnc, failCallBackFnc, url){
 }
 
 main.init();
+onInit();
