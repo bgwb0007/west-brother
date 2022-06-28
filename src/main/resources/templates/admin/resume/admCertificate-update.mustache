@@ -2,7 +2,7 @@
 <link href="/css/app/admin.css" rel="stylesheet">
 
 <div class="content">
-    <h2>Career 수정하기</h2>
+    <h2>Certificate 수정하기</h2>
     <div class="backDiv">
         <button type="button" class="btn btn-primary" onclick="moveBack();">뒤로가기</button>
     </div>
@@ -26,17 +26,36 @@
             </div>
         </div>
         <div class="mb-3 row">
-            <label for="startDate입력" class="col-sm-2 col-form-label">시작일자 yyyy-mm-dd</label>
+            <label for="certification입력" class="col-sm-2 col-form-label">인증기관</label>
             <div class="col-sm-10">
-                <input type="text" name="startDate" class="form-control" id="startDate입력" value="">
+                <input type="text" name="certification" class="form-control" id="certification입력" value="">
             </div>
         </div>
         <div class="mb-3 row">
-            <label for="endDate입력" class="col-sm-2 col-form-label">종료일자 yyyy-mm-dd</label>
+            <label for="licenseDate입력" class="col-sm-2 col-form-label">취득일 yyyy-mm-dd</label>
+            <div class="col-sm-10">
+                <input type="text" name="startDate" class="form-control" id="licenseDate입력" value="">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="endDate입력" class="col-sm-2 col-form-label">만료일자 yyyy-mm-dd</label>
             <div class="col-sm-10">
                 <input type="text" name="endDate" class="form-control" id="endDate입력" value="">
             </div>
         </div>
+        <div class="mb-3 row">
+            <label for="imageFileName입력" class="col-sm-2 col-form-label">imageFileName</label>
+            <div class="col-sm-10">
+                <input type="text" name="imageFileName" class="form-control" id="imageFileName입력" value="">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="imagePath입력" class="col-sm-2 col-form-label">imagePath</label>
+            <div class="col-sm-10">
+                <input type="text" name="imagePath" class="form-control" id="imagePath입력" value="">
+            </div>
+        </div>
+
 
         <div class="row">
             <div class="col-9">
@@ -51,47 +70,53 @@
 
 <script>
     function onInit(){
-        careerUpdateInit();
+        educationUpdateInit();
     }
     function moveBack(){
         location.href = "/admin/resume";
     }
-    function careerUpdateInit(){
+    function educationUpdateInit(){
         var id = window.location.pathname.split('/')[window.location.pathname.split('/').length-1];
-        var url = "/api/v1/career/" + id;
+        var url = "/api/v1/certificate/" + id;
         wbGetJson(function (ret){
             $('#id입력').val(ret.id);
             $('#title입력').val(ret.title);
             $('#content입력').val(ret.content);
-            $('#startDate입력').val(ret.startDate);
+            $('#certification입력').val(ret.certification);
+            $('#licenseDate입력').val(ret.licenseDate);
             $('#endDate입력').val(ret.endDate);
+            $('#imageFileName입력').val(ret.imageFileName);
+            $('#imagePath입력').val(ret.imagePath);
         },function (ret){
 
         },url)
     }
     function go수정하기(){
-        var url = "/api/v1/career/" + $('#id입력').val();
+        var url = "/api/v1/certificate/" + $('#id입력').val();
         var param = {
             'title' : $('#title입력').val(),
             'content' : $('#content입력').val(),
-            'startDate' : $('#startDate입력').val(),
+            'certification' : $('#certification입력').val(),
+            'licenseDate' : $('#licenseDate입력').val(),
             'endDate' : $('#endDate입력').val(),
+            'imageFileName' : $('#imageFileName입력').val(),
+            'imagePath' : $('#imagePath입력').val(),
         }
         wbUpdate(function (){
-            alert("Contact 수정에 성공했습니다.");
+            alert("Certificate 수정에 성공했습니다.");
             moveBack();
         },function (){
-            alert("Contact 수정에 실패했습니다.");
+            alert("Certificate 수정에 실패했습니다.");
         },url,param);
     }
     function go삭제하기(){
         var id = $('#id입력').val()
-        var url = "/api/v1/career/" + id;
+        var url = "/api/v1/certificate/" + id;
         wbDelete(function (ret){
-            alert("Contact 삭제완료. id="+id);
+            alert("Certificate 삭제완료. id="+id);
             moveBack();
         },function (ret){
-            alert("Contact 삭제실패. id="+id);
+            alert("Certificate 삭제실패. id="+id);
         },url,{});
     }
 </script>

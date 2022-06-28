@@ -2,7 +2,7 @@
 <link href="/css/app/admin.css" rel="stylesheet">
 
 <div class="content">
-    <h2>Career 수정하기</h2>
+    <h2>Education 수정하기</h2>
     <div class="backDiv">
         <button type="button" class="btn btn-primary" onclick="moveBack();">뒤로가기</button>
     </div>
@@ -51,14 +51,14 @@
 
 <script>
     function onInit(){
-        careerUpdateInit();
+        educationUpdateInit();
     }
     function moveBack(){
         location.href = "/admin/resume";
     }
-    function careerUpdateInit(){
+    function educationUpdateInit(){
         var id = window.location.pathname.split('/')[window.location.pathname.split('/').length-1];
-        var url = "/api/v1/career/" + id;
+        var url = "/api/v1/education/" + id;
         wbGetJson(function (ret){
             $('#id입력').val(ret.id);
             $('#title입력').val(ret.title);
@@ -70,7 +70,7 @@
         },url)
     }
     function go수정하기(){
-        var url = "/api/v1/career/" + $('#id입력').val();
+        var url = "/api/v1/education/" + $('#id입력').val();
         var param = {
             'title' : $('#title입력').val(),
             'content' : $('#content입력').val(),
@@ -78,20 +78,20 @@
             'endDate' : $('#endDate입력').val(),
         }
         wbUpdate(function (){
-            alert("Contact 수정에 성공했습니다.");
+            alert("Education 수정에 성공했습니다.");
             moveBack();
         },function (){
-            alert("Contact 수정에 실패했습니다.");
+            alert("Education 수정에 실패했습니다.");
         },url,param);
     }
     function go삭제하기(){
         var id = $('#id입력').val()
-        var url = "/api/v1/career/" + id;
+        var url = "/api/v1/education/" + id;
         wbDelete(function (ret){
-            alert("Contact 삭제완료. id="+id);
+            alert("Education 삭제완료. id="+id);
             moveBack();
         },function (ret){
-            alert("Contact 삭제실패. id="+id);
+            alert("Education 삭제실패. id="+id);
         },url,{});
     }
 </script>

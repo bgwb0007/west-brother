@@ -82,8 +82,11 @@ public class Certificate extends Resume {
         retMap.put("id", StringUtil.nvl(this.getId()));
         retMap.put("title", StringUtil.nvl(this.getTitle()));
         retMap.put("content", StringUtil.nvl(this.getContent()));
+        retMap.put("certification", StringUtil.nvl(this.certification));
         retMap.put("licenseDate", StringUtil.nvl(this.licenseDate));
         retMap.put("endDate", StringUtil.nvl(this.endDate));
+        retMap.put("imageFileName", StringUtil.nvl(this.imageFileName));
+        retMap.put("imagePath", StringUtil.nvl(this.imagePath));
         retMap.put("createdDate", StringUtil.nvl(this.getCreatedDate()));
         retMap.put("modifiedDate", StringUtil.nvl(this.getModifiedDate()));
         //TODO. dType 처리해서 넘겨주기

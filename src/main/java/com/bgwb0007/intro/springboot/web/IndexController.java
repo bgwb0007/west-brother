@@ -84,13 +84,24 @@ public class IndexController {
     public String admEducationSave(){
         return "admin/resume/admEducation-save";
     }
+    @GetMapping("/admin/education-update/{id}")
+    public String admEducationUpdate(){
+        return "admin/resume/admEducation-update";
+    }
     @GetMapping("/admin/certificate-save")
     public String admCertificateSave(){
         return "admin/resume/admCertificate-save";
+    }
+    @GetMapping("/admin/certificate-update/{id}")
+    public String admCertificateUpdate(){
+        return "admin/resume/admCertificate-update";
     }
     @GetMapping("/admin/project-save")
     public String admProjectSave(){
         return "admin/resume/admProject-save";
     }
-
+    @GetMapping("/admin/project-update/{id}")
+    public String admProjectUpdate(){
+        return "admin/resume/admProject-update";
+    }
 }
