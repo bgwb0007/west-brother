@@ -61,7 +61,7 @@
             </div>
             <div class="col-3">
                 <button type="button" class="btn btn-primary" onclick="go수정하기();">수정하기</button>
-                <button type="button" class="btn btn-danger">삭제하기</button>
+                <button type="button" class="btn btn-danger" onclick="go삭제하기();">삭제하기</button>
             </div>
         </div>
         {{/contacts}}
@@ -70,7 +70,7 @@
 
 <script>
     function moveBack(){
-        location.href = "/admin";
+        location.href = "/admin/contact";
     }
     function go수정하기(){
         var url = "/api/v1/contact/" + $('#id입력').val();
@@ -89,6 +89,16 @@
         },function (){
             alert("Contact 수정에 실패했습니다.");
         },url,param);
+    }
+    function go삭제하기(){
+        var id = $('#id입력').val()
+        var url = "/api/v1/contact/" + id;
+        wbDelete(function (ret){
+            alert("Contact data 삭제완료. id="+id);
+            moveBack();
+        },function (ret){
+            alert("Contact data 삭제실패. id="+id);
+        },url,{});
     }
 
 </script>

@@ -76,6 +76,10 @@ public class IndexController {
     public String admCareerSave(){
         return "admin/resume/admCareer-save";
     }
+    @GetMapping("/admin/career-update/{id}")
+    public String admCareerUpdate(){
+        return "admin/resume/admCareer-update";
+    }
     @GetMapping("/admin/education-save")
     public String admEducationSave(){
         return "admin/resume/admEducation-save";
