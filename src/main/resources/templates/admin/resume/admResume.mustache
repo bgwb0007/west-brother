@@ -1,0 +1,104 @@
+{{>layout/header}}
+<link href="/css/app/admin.css" rel="stylesheet">
+
+
+<div class="content">
+    <h2>Resume 전체보기</h2>
+    <div class="backDiv">
+        <button type="button" class="btn btn-primary" onclick="moveBack();">뒤로가기</button>
+    </div>
+
+    <div class="tableDiv container">
+        <div class="row table-responsive">
+
+            <table class="table table-hover caption-top">
+                <caption>Resume_SelectAll</caption>
+
+                <colgroup>
+                    <col style="width:3%">
+                    <col style="width:20%">
+                    <col style="width:20%">
+                    <col style="width:20%">
+                    <col style="width:8%">
+                </colgroup>
+
+                <thead class="table-light">
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">종류</th>
+                    <th scope="col">title</th>
+                    <th scope="col">시작일</th>
+                    <th scope="col">수정</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#resume.careers}}
+                <tr>
+                    <th scope="row">{{id}}</th>
+                    <td>Career</td>
+                    <td>{{title}}</td>
+                    <td>{{startDate}}</td>
+                    <td><button type="button" class="btn btn-primary" onclick="goCareer수정하기('{{id}}')">수정</button></td>
+                </tr>
+                {{/resume.careers}}
+                {{#resume.educations}}
+                    <tr>
+                        <th scope="row">{{id}}</th>
+                        <td>Education</td>
+                        <td>{{title}}</td>
+                        <td>{{startDate}}</td>
+                        <td><button type="button" class="btn btn-primary" onclick="goEducation수정하기('{{id}}')">수정</button></td>
+                    </tr>
+                {{/resume.educations}}
+                {{#resume.certificates}}
+                    <tr>
+                        <th scope="row">{{id}}</th>
+                        <td>Certificate</td>
+                        <td>{{title}}</td>
+                        <td>{{licenseDate}}</td>
+                        <td><button type="button" class="btn btn-primary" onclick="goCertificate수정하기('{{id}}')">수정</button></td>
+                    </tr>
+                {{/resume.certificates}}
+                {{#resume.projects}}
+                    <tr>
+                        <th scope="row">{{id}}</th>
+                        <td>Project</td>
+                        <td>{{title}}</td>
+                        <td>{{startDate}}</td>
+                        <td><button type="button" class="btn btn-primary" onclick="goProject수정하기('{{id}}')">수정</button></td>
+                    </tr>
+                {{/resume.projects}}
+                </tbody>
+                <tfoot>
+                <th scope="row" colspan="2"></th>
+                <td colspan="1">총 개수</td>
+                <td colspan="1">{{resume.size}}</td>
+                <td colspan="1"></td>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <div class="footDiv"></div>
+</div>
+
+<script>
+    function moveBack(){
+        location.href = "/admin";
+    }
+    function goCareer수정하기(id){
+        location.href = "/admin/career-update/" + id;
+    }
+    function goEducation수정하기(id){
+        location.href = "/admin/education-update/" + id;
+    }
+    function goCertificate수정하기(id){
+        location.href = "/admin/certificate-update/" + id;
+    }
+    function goProject수정하기(id){
+        location.href = "/admin/project-update/" + id;
+    }
+</script>
+
+
+{{>layout/footer}}

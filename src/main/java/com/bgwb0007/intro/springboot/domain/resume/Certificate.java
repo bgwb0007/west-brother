@@ -1,5 +1,6 @@
 package com.bgwb0007.intro.springboot.domain.resume;
 
+import com.bgwb0007.intro.springboot.util.StringUtil;
 import com.bgwb0007.intro.springboot.web.dto.CertificateSaveRequestDto;
 import com.bgwb0007.intro.springboot.web.dto.CertificateUpdateRequestDto;
 import lombok.Builder;
@@ -62,25 +63,25 @@ public class Certificate extends Resume {
     }
     public Map<String ,String> toMapForList(){
         HashMap<String, String> retMap = new HashMap<>();
-        retMap.put("id", String.valueOf(this.getId()));
-        retMap.put("title", this.getTitle());
-        retMap.put("content", this.getContent());
-        retMap.put("certification", this.certification);
-        retMap.put("licenseDate", String.valueOf(this.licenseDate));
-        retMap.put("endDate", String.valueOf(this.endDate));
-        retMap.put("imageFileName", this.imageFileName);
-        retMap.put("imagePath", this.imagePath);
+        retMap.put("id", StringUtil.nvl(this.getId()));
+        retMap.put("title", StringUtil.nvl(this.getTitle()));
+        retMap.put("content", StringUtil.nvl(this.getContent()));
+        retMap.put("certification", StringUtil.nvl(this.certification));
+        retMap.put("licenseDate", StringUtil.nvl(this.licenseDate));
+        retMap.put("endDate", StringUtil.nvl(this.endDate));
+        retMap.put("imageFileName", StringUtil.nvl(this.imageFileName));
+        retMap.put("imagePath", StringUtil.nvl(this.imagePath));
         return retMap;
     }
     public Map<String ,String> toMapForOne(){
         HashMap<String, String> retMap = new HashMap<>();
-        retMap.put("id", String.valueOf(this.getId()));
-        retMap.put("title", this.getTitle());
-        retMap.put("content", this.getContent());
-        retMap.put("licenseDate", String.valueOf(this.licenseDate));
-        retMap.put("endDate", String.valueOf(this.endDate));
-        retMap.put("createdDate", String.valueOf(this.getCreatedDate()));
-        retMap.put("modifiedDate", String.valueOf(this.getModifiedDate()));
+        retMap.put("id", StringUtil.nvl(this.getId()));
+        retMap.put("title", StringUtil.nvl(this.getTitle()));
+        retMap.put("content", StringUtil.nvl(this.getContent()));
+        retMap.put("licenseDate", StringUtil.nvl(this.licenseDate));
+        retMap.put("endDate", StringUtil.nvl(this.endDate));
+        retMap.put("createdDate", StringUtil.nvl(this.getCreatedDate()));
+        retMap.put("modifiedDate", StringUtil.nvl(this.getModifiedDate()));
         //TODO. dType 처리해서 넘겨주기
 //        retMap.put("dType", this.getDType());
         return retMap;

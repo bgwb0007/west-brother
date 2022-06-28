@@ -1,5 +1,6 @@
 package com.bgwb0007.intro.springboot.domain.resume;
 
+import com.bgwb0007.intro.springboot.util.StringUtil;
 import com.bgwb0007.intro.springboot.web.dto.EducationUpdateRequestDto;
 import com.bgwb0007.intro.springboot.web.dto.ProjectSaveRequestDto;
 import com.bgwb0007.intro.springboot.web.dto.ProjectUpdateRequestDto;
@@ -53,24 +54,24 @@ public class Project extends Resume {
     }
     public Map<String ,String> toMapForList(){
         HashMap<String, String> retMap = new HashMap<>();
-        retMap.put("id", String.valueOf(this.getId()));
-        retMap.put("title", this.getTitle());
-        retMap.put("content", this.getContent());
-        retMap.put("contentDetail", this.contentDetail);
-        retMap.put("startDate", String.valueOf(this.startDate));
-        retMap.put("endDate", String.valueOf(this.endDate));
+        retMap.put("id", StringUtil.nvl(this.getId()));
+        retMap.put("title", StringUtil.nvl(this.getTitle()));
+        retMap.put("content", StringUtil.nvl(this.getContent()));
+        retMap.put("contentDetail", StringUtil.nvl(this.contentDetail));
+        retMap.put("startDate", StringUtil.nvl(this.startDate));
+        retMap.put("endDate", StringUtil.nvl(this.endDate,"현재"));
         return retMap;
     }
     public Map<String ,String> toMapForOne(){
         HashMap<String, String> retMap = new HashMap<>();
-        retMap.put("id", String.valueOf(this.getId()));
-        retMap.put("title", this.getTitle());
-        retMap.put("content", this.getContent());
-        retMap.put("content", this.contentDetail);
-        retMap.put("startDate", String.valueOf(this.startDate));
-        retMap.put("endDate", String.valueOf(this.endDate));
-        retMap.put("createdDate", String.valueOf(this.getCreatedDate()));
-        retMap.put("modifiedDate", String.valueOf(this.getModifiedDate()));
+        retMap.put("id", StringUtil.nvl(this.getId()));
+        retMap.put("title", StringUtil.nvl(this.getTitle()));
+        retMap.put("content", StringUtil.nvl(this.getContent()));
+        retMap.put("contentDetail", StringUtil.nvl(this.contentDetail));
+        retMap.put("startDate", StringUtil.nvl(this.startDate));
+        retMap.put("endDate", StringUtil.nvl(this.endDate));
+        retMap.put("createdDate", StringUtil.nvl(this.getCreatedDate()));
+        retMap.put("modifiedDate", StringUtil.nvl(this.getModifiedDate()));
         //TODO. dType 처리해서 넘겨주기
 //        retMap.put("dType", this.getDType());
         return retMap;

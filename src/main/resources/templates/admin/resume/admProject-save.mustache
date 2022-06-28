@@ -1,0 +1,74 @@
+{{>layout/header}}
+<link href="/css/app/admin.css" rel="stylesheet">
+
+<div class="content">
+    <h2>Projcet 생성하기</h2>
+    <div class="backDiv">
+        <button type="button" class="btn btn-primary" onclick="moveBack();">뒤로가기</button>
+    </div>
+    <div class="formAll container">
+        <div class="mb-3 row">
+            <label for="title입력" class="col-sm-2 col-form-label">name</label>
+            <div class="col-sm-10">
+                <input type="text" name="title" class="form-control" id="title입력" value="">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="content입력" class="col-sm-2 col-form-label">content</label>
+            <div class="col-sm-10">
+                <input type="text" name="content" class="form-control" id="content입력" value="">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="contentDetail입력" class="col-sm-2 col-form-label">contentDetail</label>
+            <div class="col-sm-10">
+                <input type="text" name="contentDetail" class="form-control" id="contentDetail입력" value="">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="startDate입력" class="col-sm-2 col-form-label">시작일자 yyyy-mm-dd</label>
+            <div class="col-sm-10">
+                <input type="text" name="startDate" class="form-control" id="startDate입력" value="">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="endDate입력" class="col-sm-2 col-form-label">종료일자 yyyy-mm-dd</label>
+            <div class="col-sm-10">
+                <input type="text" name="enbDate" class="form-control" id="endDate입력" value="">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-9">
+            </div>
+            <div class="col-3">
+                <button type="button" class="btn btn-primary" onclick="go저장하기();">저장하기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function moveBack(){
+        location.href = "/admin/resume";
+    }
+    function go저장하기(){
+        let url = '/api/v1/project';
+        let jsonP = {
+            'title': $('#title입력').val(),
+            'content': $('#content입력').val(),
+            'contentDetail': $('#contentDetail입력').val(),
+            'startDate': $('#startDate입력').val(),
+            'endDate': $('#endDate입력').val(),
+        }
+        wbSave(function (ret){
+            alert('Project 저장에 성공했습니다.', ret);
+            moveBack();
+        }, function (ret){
+            alert('Project 저장에 실패했습니다.', ret);
+        }, url, jsonP);
+    }
+</script>
+
+
+{{>layout/footer}}

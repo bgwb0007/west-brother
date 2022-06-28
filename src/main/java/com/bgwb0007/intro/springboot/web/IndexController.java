@@ -1,7 +1,6 @@
 package com.bgwb0007.intro.springboot.web;
 
-import com.bgwb0007.intro.springboot.service.ContactService;
-import com.bgwb0007.intro.springboot.service.ProfilesService;
+import com.bgwb0007.intro.springboot.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +13,11 @@ public class IndexController {
     private ProfilesService profilesService;
     @Autowired
     private ContactService contactService;
+    @Autowired
+    private CareerService careerService;
+    @Autowired
+    private ResumeService resumeService;
+
 
     @GetMapping("/")
     public String index(Model model){
@@ -26,10 +30,13 @@ public class IndexController {
         return "posts/posts-save";
     }
     @GetMapping("/resume")
-    public String profiles(){
-        return "resume/resume";
+    public String resume(Model model){
+        model.addAttribute("resume", resumeService.findAll());
+              return "resume/resume";
     }
-
+//
+//    ######   어드민페이지    ######
+//
     @GetMapping("/admin")
     public String admin(){
         return "admin/admin";
@@ -59,6 +66,27 @@ public class IndexController {
     public String admContactUpdate(@PathVariable Long id, Model model){
         model.addAttribute("contacts", contactService.findById(id));
         return "admin/contact/admContact-update";
+    }
+    @GetMapping("/admin/resume")
+    public String admResumeList(Model model){
+        model.addAttribute("resume",resumeService.findAll());
+        return "admin/resume/admResume";
+    }
+    @GetMapping("/admin/career-save")
+    public String admCareerSave(){
+        return "admin/resume/admCareer-save";
+    }
+    @GetMapping("/admin/education-save")
+    public String admEducationSave(){
+        return "admin/resume/admEducation-save";
+    }
+    @GetMapping("/admin/certificate-save")
+    public String admCertificateSave(){
+        return "admin/resume/admCertificate-save";
+    }
+    @GetMapping("/admin/project-save")
+    public String admProjectSave(){
+        return "admin/resume/admProject-save";
     }
 
 }

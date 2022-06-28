@@ -20,6 +20,8 @@ public class ResumeService {
         retMap.put("educations", educationService.findAllForHtml());
         retMap.put("certificates", certificateService.findAllForHtml());
         retMap.put("projects", projectService.findAllForHtml());
+        retMap.put("size", careerService.findAllForHtml().size() + educationService.findAllForHtml().size() +
+                certificateService.findAllForHtml().size() + projectService.findAllForHtml().size());
         return retMap;
     }
 
