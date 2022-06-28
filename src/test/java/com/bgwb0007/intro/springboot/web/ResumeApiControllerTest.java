@@ -76,7 +76,7 @@ public class ResumeApiControllerTest {
         String CERlicenseDate = "2014-03-01";
         String CERimageFileName = "cer1.jgp";
         String CERimagePath = "/image/app/cer1.jgp";
-        String CERRetEndDate = "null";
+        String CERRetEndDate = "";
         Long CERid = certificateRepository.save(Certificate.builder()
                 .title(CERtitle)
                 .content(CERcontent)
