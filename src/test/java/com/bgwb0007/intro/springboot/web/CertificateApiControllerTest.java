@@ -147,7 +147,7 @@ public class CertificateApiControllerTest {
         assertThat(retMap.get("content")).isEqualTo(content);
         assertThat(retMap.get("certification")).isEqualTo(certification);
         assertThat(retMap.get("licenseDate")).isEqualTo(licenseDate);
-        assertThat(retMap.get("endDate")).isEqualTo("null");
+        assertThat(retMap.get("endDate")).isEqualTo(endDate);
         assertThat(retMap.get("imageFileName")).isEqualTo(imageFileName);
         assertThat(retMap.get("imagePath")).isEqualTo(imagePath);
     }
