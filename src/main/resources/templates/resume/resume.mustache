@@ -130,6 +130,9 @@
 </div>
 
 <script>
+    function onInit(){
+        getContactList();
+    }
     function moveBack(){
         location.href = '/';
     }
@@ -149,7 +152,7 @@
 
         },url,{});
     }
-    getContactList();
+
 </script>
 
 {{>layout/footer}}

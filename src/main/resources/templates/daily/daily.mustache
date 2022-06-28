@@ -1,0 +1,91 @@
+{{>layout/header}}
+<link href="/css/app/daily.css" rel="stylesheet">
+
+
+<p>캐릭터를 마우스로 이동해 주세요</p>
+<div>
+    <div style="display: inline-block;" id="shoes" class="droppableArea rounded-circle">
+        <img src="/image/app/shoesAll-bg.png" width="300px">
+    </div>
+    <div style="display: inline-block;" id="tennis" class="droppableArea rounded-circle">
+        <img src="/image/app/tennisAll-bg2.png" width="300px">
+    </div>
+</div>
+<img src="/image/app/character3.png" id="ball">
+<p id="contents"></p>
+<script>
+    let currentDroppable = null;
+
+    ball.onmousedown = function(event) {
+
+        let shiftX = event.clientX - ball.getBoundingClientRect().left;
+        let shiftY = event.clientY - ball.getBoundingClientRect().top;
+
+        ball.style.position = 'absolute';
+        ball.style.zIndex = 1000;
+        document.body.append(ball);
+
+        moveAt(event.pageX, event.pageY);
+
+        function moveAt(pageX, pageY) {
+            ball.style.left = pageX - shiftX + 'px';
+            ball.style.top = pageY - shiftY + 'px';
+        }
+
+        function onMouseMove(event) {
+            moveAt(event.pageX, event.pageY);
+
+            ball.hidden = true;
+            let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+            ball.hidden = false;
+
+            // 마우스 이벤트는 윈도우 밖으로 트리거 될 수 없습니다.(공을 윈도우 밖으로 드래그 했을 때)
+            // clientX∙clientY가 윈도우 밖에 있으면, elementFromPoint는 null을 반환합니다.
+            if (!elemBelow) return;
+
+            // 잠재적으로 드롭 할 수 있는 요소를 'droppable' 클래스로 지정합니다.(다른 로직 가능)
+            let droppableBelow = elemBelow.closest('.droppableArea');
+            if (currentDroppable != droppableBelow) {
+                // 들어오거나 날리거나...
+                // 참고: 두 값 모두 null일 수 있습니다.
+                //   currentDroppable=null 이벤트 전에 놓을 수 있는 요소 위에 있지 않다면(예: 빈 공간)
+                //   droppableBelow=null 이벤트 동안 놓을 수 있는 요소 위에 있지 않다면
+                if (currentDroppable) { // null when we were not over a droppable before this event
+                    // '날아가는 것'을 처리하는 로직(강조 제거)
+                    leaveDroppable(currentDroppable);
+
+                }
+                currentDroppable = droppableBelow;
+                if (currentDroppable) { // null if we're not coming over a droppable now
+                    // (maybe just left the droppable)
+                    // '들어오는 것'을 처리하는 로직
+                    enterDroppable(currentDroppable);
+                }
+            }
+        }
+
+        document.addEventListener('mousemove', onMouseMove);
+
+        ball.onmouseup = function() {
+            document.removeEventListener('mousemove', onMouseMove);
+            ball.onmouseup = null;
+        };
+
+    };
+
+    function enterDroppable(elem) {
+        elem.style.background = 'pink';
+        $('#contents').text('##### '+elem.id+' contents #####');
+    }
+
+    function leaveDroppable(elem) {
+        elem.style.background = '';
+        // $('#contents').text('');
+    }
+
+    ball.ondragstart = function() {
+        return false;
+    };
+</script>
+
+{{>layout/footer}}

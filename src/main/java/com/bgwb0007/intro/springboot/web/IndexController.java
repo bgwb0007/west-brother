@@ -34,6 +34,12 @@ public class IndexController {
         model.addAttribute("resume", resumeService.findAll());
               return "resume/resume";
     }
+    @GetMapping("/daily")
+    public String daily(){
+        return "daily/daily";
+    }
+
+
 //
 //    ######   어드민페이지    ######
 //
