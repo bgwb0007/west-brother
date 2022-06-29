@@ -3,15 +3,19 @@
 
 
 <p>캐릭터를 마우스로 이동해 주세요</p>
-<div>
-    <div style="display: inline-block;" id="shoes" class="droppableArea rounded-circle">
-        <img src="/image/app/shoesAll-bg.png" width="300px">
+<div id="room">
+    <div id="shoesImage" class="droppableArea rounded-circle">
+        <img src="image/app/shoesAll-bg.png" width="250px">
     </div>
-    <div style="display: inline-block;" id="tennis" class="droppableArea rounded-circle">
-        <img src="/image/app/tennisAll-bg2.png" width="300px">
+    <div id="tennisImage" class="droppableArea rounded-circle">
+        <img src="image/app/tennisAll-bg2.png" width="230px">
     </div>
+    <div id="deskImage" class="droppableArea rounded-circle">
+        <img src="image/app/desk.png" width="170px">
+    </div>
+    <img src="image/app/nomal.png" id="ball">
 </div>
-<img src="/image/app/character3.png" id="ball">
+
 <p id="contents"></p>
 <script>
     let currentDroppable = null;
@@ -72,10 +76,15 @@
         };
 
     };
-
     function enterDroppable(elem) {
         elem.style.background = 'pink';
-        $('#contents').text('##### '+elem.id+' contents #####');
+        if (elem.id == 'shoesImage'){
+            onShoes();
+        }else if(elem.id == 'tennisImage'){
+            onTennis();
+        }else if(elem.id == 'deskImage'){
+            onDesk();
+        }
     }
 
     function leaveDroppable(elem) {
@@ -86,6 +95,24 @@
     ball.ondragstart = function() {
         return false;
     };
+
+    function onShoes(){
+        $('#contents').text('##### shoes contents #####');
+        ball.src = '/image/app/onShoes.png';
+        ball.width = 100;
+    }
+    function onTennis(){
+        $('#contents').text('##### tennis contents #####');
+        ball.src = '/image/app/onTennis.png';
+        ball.width = 130;
+    }
+    function onDesk(){
+        $('#contents').text('##### desk contents #####');
+        ball.src = '/image/app/man2.png';
+        ball.width = 130;
+    }
+
 </script>
+
 
 {{>layout/footer}}
