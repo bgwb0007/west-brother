@@ -24,8 +24,12 @@
     left: -60px;
     top: 85px;
 }
-#ball{
-    position: relative;
-    left: -220px;
-    top: 300px;
+.infoMsgDiv{
+    width: 200px;
+    height: 200px;
+    margin: 1rem auto 0 auto;
+    text-align: center;
+    padding-top: 1.3rem;
+
+    border: 2px solid;
 }
