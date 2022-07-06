@@ -2,9 +2,17 @@
 
 <div class="content">
     {{#shoesList}}
-        {{itemName}}
-        <img src="/images/{{storeFileName1}}">
-        <img src="/images/{{storeFileName2}}">
+        {{name}}
+        {{productCode}}
+        {{buy}}
+        {{releasePrice}}
+        {{sellPrice}}
+        {{content}}
+        {{purchaseDate}}
+        <img src="/images/{{mainImage}}">
+        {{#imageList}}
+            <img src="/images/{{.}}">
+        {{/imageList}}
     {{/shoesList}}
 </div>
 

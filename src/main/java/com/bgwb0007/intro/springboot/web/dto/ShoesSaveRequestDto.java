@@ -2,6 +2,7 @@ package com.bgwb0007.intro.springboot.web.dto;
 
 import com.bgwb0007.intro.springboot.domain.shoes.Shoes;
 import com.bgwb0007.intro.springboot.util.FileStore;
+import com.bgwb0007.intro.springboot.util.StringUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -31,7 +32,7 @@ public class ShoesSaveRequestDto {
     private List<MultipartFile> imageFiles;
 
 
-    public Shoes toEntityAndSaveFiles() throws IOException {
+    public Shoes saveFilesAndToEntity() throws IOException {
         FileStore fileStore = new FileStore();
         String storeMainImage = fileStore.storeFile(mainImage);
 
@@ -47,17 +48,18 @@ public class ShoesSaveRequestDto {
             key = "image" + i;
             storeFileMap.put(key,storeImageFiles.get(i-1));
         }
+        LocalDate pDate = purchaseDate.equals("") ? null : LocalDate.parse(purchaseDate);
 
         Shoes shoes = Shoes.builder()
                 .name(name)
                 .productCode(productCode)
                 .content(content)
                 .status(status)
-                .purchaseDate(LocalDate.parse(purchaseDate))
+                .purchaseDate(pDate)
                 .buy(buy)
                 .releasePrice(releasePrice)
                 .sellPrice(sellPrice)
-                .mainImage(storeMainImage)
+                .mainImage(StringUtil.nvl(storeMainImage))
                 .image1(storeFileMap.get("image1"))
                 .image2(storeFileMap.get("image2"))
                 .image3(storeFileMap.get("image3"))

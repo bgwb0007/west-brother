@@ -18,7 +18,7 @@ public class ShoesService {
     private final ShoesRepository shoesRepository;
 
     public Long save(ShoesSaveRequestDto requestDto) throws IOException {
-        return shoesRepository.save(requestDto.toEntityAndSaveFiles()).getId();
+        return shoesRepository.save(requestDto.saveFilesAndToEntity()).getId();
     }
     public List<ShoesListResponseDto> findAll(){
         return shoesRepository.findAll().stream()

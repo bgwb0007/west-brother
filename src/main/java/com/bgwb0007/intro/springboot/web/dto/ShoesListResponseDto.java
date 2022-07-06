@@ -4,6 +4,7 @@ import com.bgwb0007.intro.springboot.domain.shoes.Shoes;
 import com.bgwb0007.intro.springboot.util.StringUtil;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShoesListResponseDto {
@@ -12,15 +13,12 @@ public class ShoesListResponseDto {
     private String productCode;
     private String content;
     private String status;
+    private String purchaseDate; // yyyy-mm-dd
     private String buy;
     private String releasePrice;
     private String sellPrice;
     private String mainImage;
-    private String image1;
-    private String image2;
-    private String image3;
-    private String image4;
-    private String image5;
+    private List<String> imageList;
 
     public ShoesListResponseDto(Shoes shoes) {
         this.id = shoes.getId();
@@ -28,14 +26,16 @@ public class ShoesListResponseDto {
         this.productCode = StringUtil.nvl(shoes.getProductCode());
         this.content = StringUtil.nvl(shoes.getContent());
         this.status = StringUtil.nvl(shoes.getStatus());
+        this.purchaseDate = StringUtil.nvl(shoes.getPurchaseDate());
         this.buy = StringUtil.nvl(shoes.getBuy());
         this.releasePrice = StringUtil.nvl(shoes.getReleasePrice());
         this.sellPrice = StringUtil.nvl(shoes.getSellPrice());
         this.mainImage = StringUtil.nvl(shoes.getMainImage());
-        this.image1 = StringUtil.nvl(shoes.getImage1());
-        this.image2 = StringUtil.nvl(shoes.getImage2());
-        this.image3 = StringUtil.nvl(shoes.getImage3());
-        this.image4 = StringUtil.nvl(shoes.getImage4());
-        this.image5 = StringUtil.nvl(shoes.getImage5());
+        this.imageList = new ArrayList<>();
+        if(!shoes.getImage1().equals("")) this.imageList.add(shoes.getImage1());
+        if(!shoes.getImage2().equals("")) this.imageList.add(shoes.getImage2());
+        if(!shoes.getImage3().equals("")) this.imageList.add(shoes.getImage3());
+        if(!shoes.getImage4().equals("")) this.imageList.add(shoes.getImage4());
+        if(!shoes.getImage5().equals("")) this.imageList.add(shoes.getImage5());
     }
 }
