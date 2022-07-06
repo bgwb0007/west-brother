@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,27 +19,51 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class ShoesSaveRequestDto {
-    private Long shoesId;
-    private String itemName;
+    private String name;
+    private String productCode;
+    private String content;
+    private String status;
+    private String purchaseDate; // yyyy-mm-dd
+    private String buy;
+    private String releasePrice;
+    private String sellPrice;
+    private MultipartFile mainImage;
     private List<MultipartFile> imageFiles;
 
 
     public Shoes toEntityAndSaveFiles() throws IOException {
         FileStore fileStore = new FileStore();
-        List<String> storeImageFiles = fileStore.storeFiles(imageFiles);
+        String storeMainImage = fileStore.storeFile(mainImage);
 
+        List<String> storeImageFiles = fileStore.storeFiles(imageFiles);
         HashMap<String, String> storeFileMap = new HashMap<>();
-        storeFileMap.put("storeFileName1","");
-        storeFileMap.put("storeFileName2","");
+        storeFileMap.put("image1","");
+        storeFileMap.put("image2","");
+        storeFileMap.put("image3","");
+        storeFileMap.put("image4","");
+        storeFileMap.put("image5","");
         String key = "";
         for(int i=1; i<storeImageFiles.size() + 1 ; i++){
-            key = "storeFileName" + i;
+            key = "image" + i;
             storeFileMap.put(key,storeImageFiles.get(i-1));
         }
-        Shoes shoes = new Shoes();
-        shoes.setItemName(itemName);
-        shoes.setStoreFileName1(storeFileMap.get("storeFileName1"));
-        shoes.setStoreFileName2(storeFileMap.get("storeFileName2"));
+
+        Shoes shoes = Shoes.builder()
+                .name(name)
+                .productCode(productCode)
+                .content(content)
+                .status(status)
+                .purchaseDate(LocalDate.parse(purchaseDate))
+                .buy(buy)
+                .releasePrice(releasePrice)
+                .sellPrice(sellPrice)
+                .mainImage(storeMainImage)
+                .image1(storeFileMap.get("image1"))
+                .image2(storeFileMap.get("image2"))
+                .image3(storeFileMap.get("image3"))
+                .image4(storeFileMap.get("image4"))
+                .image5(storeFileMap.get("image5"))
+                .build();
         return shoes;
     }
 }
