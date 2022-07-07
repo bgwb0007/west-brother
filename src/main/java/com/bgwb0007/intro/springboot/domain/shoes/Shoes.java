@@ -1,8 +1,5 @@
 package com.bgwb0007.intro.springboot.domain.shoes;
 
-
-import com.bgwb0007.intro.springboot.web.dto.ShoesSaveRequestDto;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
