@@ -15,6 +15,7 @@ public class Shoes {
     private Long id;
     private String name;
     private String productCode;
+    private String brand;
     private String content;
     private String status;
     private LocalDate purchaseDate;
@@ -30,9 +31,10 @@ public class Shoes {
 
 
     @Builder
-    public Shoes(String name, String productCode, String content, String status, LocalDate purchaseDate, String buy, String releasePrice, String sellPrice, String mainImage, String image1, String image2, String image3, String image4, String image5) {
+    public Shoes(String name, String productCode, String brand, String content, String status, LocalDate purchaseDate, String buy, String releasePrice, String sellPrice, String mainImage, String image1, String image2, String image3, String image4, String image5) {
         this.name = name;
         this.productCode = productCode;
+        this.brand = brand;
         this.content = content;
         this.status = status;
         this.purchaseDate = purchaseDate;

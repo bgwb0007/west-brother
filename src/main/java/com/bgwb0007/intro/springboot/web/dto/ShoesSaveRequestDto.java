@@ -22,6 +22,7 @@ import java.util.List;
 public class ShoesSaveRequestDto {
     private String name;
     private String productCode;
+    private String brand;
     private String content;
     private String status;
     private String purchaseDate; // yyyy-mm-dd
@@ -53,6 +54,7 @@ public class ShoesSaveRequestDto {
         Shoes shoes = Shoes.builder()
                 .name(name)
                 .productCode(productCode)
+                .brand(brand)
                 .content(content)
                 .status(status)
                 .purchaseDate(pDate)

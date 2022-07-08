@@ -11,6 +11,7 @@ public class ShoesListResponseDto {
     private Long id;
     private String name;
     private String productCode;
+    private String brand;
     private String content;
     private String status;
     private String purchaseDate; // yyyy-mm-dd
@@ -24,6 +25,7 @@ public class ShoesListResponseDto {
         this.id = shoes.getId();
         this.name = StringUtil.nvl(shoes.getName());
         this.productCode = StringUtil.nvl(shoes.getProductCode());
+        this.brand = StringUtil.nvl(shoes.getBrand());
         this.content = StringUtil.nvl(shoes.getContent());
         this.status = StringUtil.nvl(shoes.getStatus());
         this.purchaseDate = StringUtil.nvl(shoes.getPurchaseDate());
