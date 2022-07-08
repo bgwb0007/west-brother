@@ -16,6 +16,8 @@ public class Shoes {
     private String name;
     private String productCode;
     private String brand;
+    @Column(length = 3)
+    private String size;
     private String content;
     private String status;
     private LocalDate purchaseDate;
@@ -31,10 +33,11 @@ public class Shoes {
 
 
     @Builder
-    public Shoes(String name, String productCode, String brand, String content, String status, LocalDate purchaseDate, String buy, String releasePrice, String sellPrice, String mainImage, String image1, String image2, String image3, String image4, String image5) {
+    public Shoes(String name, String productCode, String brand, String size,String content, String status, LocalDate purchaseDate, String buy, String releasePrice, String sellPrice, String mainImage, String image1, String image2, String image3, String image4, String image5) {
         this.name = name;
         this.productCode = productCode;
         this.brand = brand;
+        this.size = size;
         this.content = content;
         this.status = status;
         this.purchaseDate = purchaseDate;

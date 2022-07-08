@@ -11,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,6 +22,7 @@ public class ShoesSaveRequestDto {
     private String name;
     private String productCode;
     private String brand;
+    private String size;
     private String content;
     private String status;
     private String purchaseDate; // yyyy-mm-dd
@@ -55,6 +55,7 @@ public class ShoesSaveRequestDto {
                 .name(name)
                 .productCode(productCode)
                 .brand(brand)
+                .size(size)
                 .content(content)
                 .status(status)
                 .purchaseDate(pDate)

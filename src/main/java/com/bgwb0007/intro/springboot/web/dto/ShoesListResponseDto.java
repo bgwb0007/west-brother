@@ -12,6 +12,7 @@ public class ShoesListResponseDto {
     private String name;
     private String productCode;
     private String brand;
+    private String size;
     private String content;
     private String status;
     private String purchaseDate; // yyyy-mm-dd
@@ -26,6 +27,7 @@ public class ShoesListResponseDto {
         this.name = StringUtil.nvl(shoes.getName());
         this.productCode = StringUtil.nvl(shoes.getProductCode());
         this.brand = StringUtil.nvl(shoes.getBrand());
+        this.size = StringUtil.nvl(shoes.getSize());
         this.content = StringUtil.nvl(shoes.getContent());
         this.status = StringUtil.nvl(shoes.getStatus());
         this.purchaseDate = StringUtil.nvl(shoes.getPurchaseDate());
