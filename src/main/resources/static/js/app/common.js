@@ -127,5 +127,9 @@ function wbDelete(successCallBackFnc, failCallBackFnc, url){
     });
 }
 
+var moveLinkUrl = function (url){
+    window.open(url);
+}
+
 main.init();
 onInit();
