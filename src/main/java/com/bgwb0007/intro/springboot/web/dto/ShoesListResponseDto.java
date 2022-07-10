@@ -2,7 +2,6 @@ package com.bgwb0007.intro.springboot.web.dto;
 
 import com.bgwb0007.intro.springboot.domain.shoes.Shoes;
 import com.bgwb0007.intro.springboot.util.StringUtil;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,7 @@ public class ShoesListResponseDto {
     private String content;
     private String status;
     private String purchaseDate; // yyyy-mm-dd
-    private String buy;
+    private String buy; // 구입방법
     private String releasePrice;
     private String sellPrice;
     private String mainImage;

@@ -1,25 +1,54 @@
 {{>layout/header}}
-
+<script src="/test.hbs"></script>
 <div class="content">
-    {{#shoesList}}
-        {{name}}
-        {{productCode}}
-        {{brand}}
-        {{buy}}
-        {{releasePrice}}
-        {{sellPrice}}
-        {{content}}
-        {{purchaseDate}}
-        <img src="/images/{{mainImage}}">
-        {{#imageList}}
-            <img src="/images/{{.}}">
-        {{/imageList}}
-    {{/shoesList}}
+    <div class="shoesAll">
+        <div class="">
+            <div id="test">
+                {% raw %}
+                ggg{{ test }}ggg
+                {% endraw %}
+
+            </div>
+            {{#shoesList}}
+            <div class="shoes-content">
+                <table>
+                    <th></th>
+                    <th></th>
+                    <tr>
+                        <td><img src="/images/{{mainImage}}"></td>
+                        <td>
+                            <p>사용중/리셀/보유(아이콘){{status}}</p>
+                            <p>ㅁ {{brand}}</p>
+                            <p>ㅁ {{name}}</p>
+                            <p>ㅁ {{productCode}}</p>
+                            <p>ㅁ size : {{size}}</p>
+                            <p>ㅁ 발매가 : {{releasePrice}}원</p>
+                            <p>ㅁ 판매가 : {{sellPrice}}원</p>
+                            <p>ㅁ 설명 : {{content}}</p>
+                            <p>ㅁ 구매일 : {{purchaseDate}}</p>
+                            <p>ㅁ 구매처 : {{buy}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan=2>
+                            {{#imageList}}
+                                    <img src="/images/{{.}}">
+                            {{/imageList}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            {{/shoesList}}
+
+        </div>
+    </div>
 </div>
 
 <script>
     function movePage(url){
         location.href = url;
+    }
+    function onInit(){
     }
 </script>
 

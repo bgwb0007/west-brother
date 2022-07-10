@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,6 +24,16 @@ public class ShoesService {
     public List<ShoesListResponseDto> findAll(){
         return shoesRepository.findAll().stream()
                 .map(ShoesListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+    public List<Map> findAllToMap(){
+        return shoesRepository.findAll().stream()
+                .map(Shoes::toMap)
+                .collect(Collectors.toList());
+    }
+    public List<Map> findAllByStatusToMap(String status){
+        return shoesRepository.findAllByStatus(status).stream()
+                .map(Shoes::toMap)
                 .collect(Collectors.toList());
     }
 }

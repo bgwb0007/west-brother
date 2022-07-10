@@ -14,36 +14,23 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.List;
+import java.util.Map;
 
 
-@Slf4j
+
 @RequiredArgsConstructor
-@Controller
+@RestController
 public class ShoesApiController {
     private final ShoesService shoesService;
-    private final FileStore fileStore;
 
-    @GetMapping("/shoes")
-    public String shoes(Model model){
-        model.addAttribute("shoesList",shoesService.findAll());
-        return "shoes/shoes";
+    @GetMapping("/api/v1/shoes")
+    public List<Map> findAllToMap(){
+        return shoesService.findAllToMap();
     }
-    @GetMapping("/shoes/new")
-    public String saveShoesForm(){
-        return "shoes/shoes-save";
-    }
-
-    @PostMapping("/shoes/new")
-    public String saveItem(@ModelAttribute ShoesSaveRequestDto requestDto, RedirectAttributes redirectAttributes) throws IOException {
-//        redirectAttributes.addAttribute("fileName", shoesService.save(requestDto)); 쿼리스트링
-        shoesService.save(requestDto);
-        return "redirect:/shoes";
-    }
-    @ResponseBody
-    @GetMapping("/images/{filename}")
-    public Resource downloadImage(@PathVariable String filename) throws
-            MalformedURLException {
-        return new UrlResource("file:" + fileStore.getFullPath(filename));
+    @GetMapping("/api/v1/shoes/{status}")
+    public List<Map> findAllByStatusToMap(@PathVariable String status){
+        return shoesService.findAllByStatusToMap(status);
     }
 
 }
