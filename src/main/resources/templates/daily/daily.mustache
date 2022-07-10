@@ -19,6 +19,11 @@
     <div class="infoMsgDiv">
         <img src="image/app/character3.png" id="ball">
     </div>
+
+    
+
+
+
 </div>
 <script>
     let currentDroppable = null;
@@ -89,20 +94,19 @@
             onDesk();
         }
     }
-
     function leaveDroppable(elem) {
         elem.style.background = '';
         // $('#contents').text('');
     }
-
     ball.ondragstart = function() {
         return false;
     };
-
+    
     function onShoes(){
         $('#contents').text('##### shoes contents #####');
         ball.src = '/image/app/character3.png';
         ball.width = 100;
+        getShoesList();
     }
     function onTennis(){
         $('#contents').text('##### tennis contents #####');
@@ -113,6 +117,67 @@
         $('#contents').text('##### desk contents #####');
         ball.src = '/image/app/man2.png';
         ball.width = 130;
+
+    }
+
+    function getShoesList(status){
+
+        var successCallBack = function (ret){
+            debugger;
+            appendShoes(ret);
+        }
+
+        wbGetJson(successCallBack,function (ret){
+            console.log("실패함수실행##",ret);
+            debugger;
+        },'/api/v1/shoes');
+    }
+    
+    function appendShoes(list){
+        let html = '';
+
+        html += '<div class="shoesAll">';
+        html += '    <div class="">';
+        html += '        <div class="shoes-sortOrder">';
+        html += '            <span class="badge rounded-pill bg-primary">전체</span>';
+        html += '            <span class="badge rounded-pill bg-secondary">사용중</span>';
+        html += '            <span class="badge rounded-pill bg-secondary">리셀</span>';
+        html += '        </div>';
+        html += '        <div class="shoes-content">';
+        html += '            <table class="table table-hover">';
+        html += '                <th></th>';
+        html += '                <th></th>';
+        html += '                <th></th>';
+        $.each(list,function (idx,item){
+            html += '                <tr class="shoes">';
+            html += '                    <td class="shoesMain"><div><img src="/images/'+item.mainImage+'"></div></td>';
+            html += '                    <td>';
+            html += '                        <p>';
+            html += '                            <span>'+item.purchaseDate+'</span>';
+            html += '                            <span class="badge rounded-pill bg-success">사용중</span>';
+            html += '                            <span class="badge rounded-pill bg-info text-dark">리셀</span>';
+            html += '                            <span class="badge rounded-pill bg-warning text-dark">보유중</span>';
+            html += '                        </p>';
+            html += '                        <p><span>'+item.brand+'</span><br/><span>'+item.name+'</span><br/><span>'+item.productCode+'</span></p>';
+            html += '                        <p> size : '+item.size+'</p>';
+            html += '                        <p> 구입처 : '+item.buy+'</p>';
+            html += '                        <p> 발매가 : 130,000원 / 리셀가 : 130,000원 (+3.8%)</p>';
+            html += '                        <p>'+item.content+'</p>';
+            html += '                    </td>';
+            html += '                    <td>';
+            $.each(item.imageList, function (idx, item){
+                html += '                        <img src="/images/'+item+'" class="img-thumbnail" alt="...">';
+            })
+            html += '                    </td>';
+            html += '                </tr>';
+        })
+        html += '            </table>';
+        html += '        </div>';
+        html += '    </div>';
+        html += '</div>';
+        $('#contents').append(html);
+        
+        
     }
 
 </script>

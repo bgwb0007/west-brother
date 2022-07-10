@@ -33,3 +33,40 @@
 
     border: 2px solid;
 }
+
+/* ######################## shoes ######################## */
+.shoesAll{
+    width: 90%;
+    margin: 0 auto;
+}
+.shoesMain {
+    width: 330px;
+}
+.shoesMain img{
+    width: 300px;
+}
+.img-thumbnail {
+    height: 150px;
+}
+/* 브랜드 */
+.shoes p:nth-child(2) span:nth-child(1){
+    font-size: 24px;
+    text-decoration : underline;
+}
+/* 이름 */
+.shoes p:nth-child(2) span:nth-child(3){
+    font-size: 24px;
+}
+/* 모델명 */
+.shoes p:nth-child(2) span:nth-child(5){
+    font-size: 18px;
+    color: gray;
+}
+.shoes p:nth-child(n+3)::before{
+    content:"";
+    background-image: url("image/app/shoesIcon.png") ;
+    background-size:30px 30px;
+    width:30px;
+    height:25px;
+    display:inline-block;
+}
