@@ -15,15 +15,15 @@
     </div>
 </div>
 
+<div>
+    <button type="button" onclick="getShoesList('RESELL');">shoes</button>
+    <button type="button" onclick="">tennis</button>
+    <button type="button" onclick="">dev</button>
+</div>
 <div id="contents">
     <div class="infoMsgDiv">
         <img src="image/app/character3.png" id="ball">
     </div>
-
-    
-
-
-
 </div>
 <script>
     let currentDroppable = null;
@@ -106,7 +106,7 @@
         $('#contents').text('##### shoes contents #####');
         ball.src = '/image/app/character3.png';
         ball.width = 100;
-        getShoesList();
+        getShoesList('ALL');
     }
     function onTennis(){
         $('#contents').text('##### tennis contents #####');
@@ -120,28 +120,47 @@
 
     }
 
-    function getShoesList(status){
+    function getShoesList(category){
 
         var successCallBack = function (ret){
             debugger;
-            appendShoes(ret);
+            appendShoes(ret, category);
+        }
+        let url = '/api/v1/shoes';
+        if(category == 'RESELL'){
+            url += '/리셀';
+        }else {
+            url += '/보유중';
         }
 
         wbGetJson(successCallBack,function (ret){
             console.log("실패함수실행##",ret);
             debugger;
-        },'/api/v1/shoes');
+        },url);
     }
-    
-    function appendShoes(list){
+
+    var shoesStatus = {
+        '사용중' : '                            <span class="badge rounded-pill bg-success">사용중</span>',
+        '리셀'   : '                            <span class="badge rounded-pill bg-info text-dark">리셀</span>',
+        '보유중' : '                            <span class="badge rounded-pill bg-warning text-dark">보유중</span>',
+    }
+    function appendShoes(list, category){
+
+        let getYield = function (item){
+            return Math.round(((item.sellPrice/item.releasePrice)-1 ) * 10000) / 100;
+        }
+
         let html = '';
+        let categoryAll = category == 'ALL' ? 'bg-primary' : 'bg-secondary';
+        let categoryStock = category == 'STOCK' ? 'bg-primary' : 'bg-secondary';
+        let categoryResell = category == 'RESELL' ? 'bg-primary' : 'bg-secondary';
 
         html += '<div class="shoesAll">';
         html += '    <div class="">';
         html += '        <div class="shoes-sortOrder">';
-        html += '            <span class="badge rounded-pill bg-primary">전체</span>';
-        html += '            <span class="badge rounded-pill bg-secondary">사용중</span>';
-        html += '            <span class="badge rounded-pill bg-secondary">리셀</span>';
+        html += '            <span class="badge rounded-pill '+categoryAll+'">전체</span>';
+        html += '            <span class="badge rounded-pill '+categoryStock+'">보유</span>';
+        html += '            <span class="badge rounded-pill '+categoryResell+'">리셀</span>';
         html += '        </div>';
         html += '        <div class="shoes-content">';
         html += '            <table class="table table-hover">';
@@ -154,14 +173,12 @@
             html += '                    <td>';
             html += '                        <p>';
             html += '                            <span>'+item.purchaseDate+'</span>';
-            html += '                            <span class="badge rounded-pill bg-success">사용중</span>';
-            html += '                            <span class="badge rounded-pill bg-info text-dark">리셀</span>';
-            html += '                            <span class="badge rounded-pill bg-warning text-dark">보유중</span>';
+            html += shoesStatus[item.status];
             html += '                        </p>';
             html += '                        <p><span>'+item.brand+'</span><br/><span>'+item.name+'</span><br/><span>'+item.productCode+'</span></p>';
             html += '                        <p> size : '+item.size+'</p>';
             html += '                        <p> 구입처 : '+item.buy+'</p>';
-            html += '                        <p> 발매가 : 130,000원 / 리셀가 : 130,000원 (+3.8%)</p>';
+            html += '                        <p> 발매가 : '+item.releasePrice+'원 / 리셀가 : '+item.sellPrice+'원 (' + getYield(item) + '%)</p>';
             html += '                        <p>'+item.content+'</p>';
             html += '                    </td>';
             html += '                    <td>';
@@ -175,11 +192,17 @@
         html += '        </div>';
         html += '    </div>';
         html += '</div>';
+
         $('#contents').append(html);
-        
-        
     }
 
+
+
+    function addCategoryEvent(){
+        $('#shoes-sortOrder').off().on('click',function (ret){
+            //TODO. 클릭이벤트 추가
+        });
+    }
 </script>
 
 
