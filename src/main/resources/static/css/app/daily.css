@@ -64,7 +64,7 @@
 }
 .shoes p:nth-child(n+3)::before{
     content:"";
-    background-image: url("image/app/shoesIcon.png") ;
+    background-image: url("/image/app/shoesIcon.png") ;
     background-size:30px 30px;
     width:30px;
     height:25px;
