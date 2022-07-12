@@ -124,14 +124,14 @@
 
         var successCallBack = function (ret){
             debugger;
+            $('#contents').text('##### shoes contents #####');
             appendShoes(ret, category);
+            addCategoryEvent();
         }
         let url = '/api/v1/shoes';
-        if(category == 'RESELL'){
-            url += '/리셀';
-        }else {
-            url += '/보유중';
-        }
+        if(category == 'ALL'){}
+        else if(category == 'RESELL'){ url += '/리셀';}
+        else if(category == 'STOCK'){ url += '/보유중';}
 
         wbGetJson(successCallBack,function (ret){
             console.log("실패함수실행##",ret);
@@ -158,9 +158,9 @@
         html += '<div class="shoesAll">';
         html += '    <div class="">';
         html += '        <div class="shoes-sortOrder">';
-        html += '            <span class="badge rounded-pill '+categoryAll+'">전체</span>';
-        html += '            <span class="badge rounded-pill '+categoryStock+'">보유</span>';
-        html += '            <span class="badge rounded-pill '+categoryResell+'">리셀</span>';
+        html += '            <span class="shoesCategory badge rounded-pill '+categoryAll+'">전체</span>';
+        html += '            <span class="shoesCategory badge rounded-pill '+categoryStock+'">보유</span>';
+        html += '            <span class="shoesCategory badge rounded-pill '+categoryResell+'">리셀</span>';
         html += '        </div>';
         html += '        <div class="shoes-content">';
         html += '            <table class="table table-hover">';
@@ -195,12 +195,41 @@
 
         $('#contents').append(html);
     }
+    // 카테고리별 정리(전체/보유/리셀)
+    // -> 최신순 정렬
+    function sortShoesList(list, status){
+        let retList = [];
+        let sCategory;
+        if(category == 'ALL'){
+            sCategory = '전체';
+        }else if(category == 'RESELL'){
+            sCategory = '리셀';
+        }else if(category == 'STOCK'){
+            sCategory = '사용중,보유중';
+        }
+        $.each(list, function (idx,item){
+            if(sCategory.indexOf(item.status) > -1){
+                //TODO. item에다가 날짜 yyyymmdd 포맷 추가 -> 정렬에 사용
+                retList.push(item);
+            }
+        })
+        //TODO. 최신순정렬
+        retList.sort(function (a,b){
+            return a-b;
+        })
 
+        return retList;
+    }
 
 
     function addCategoryEvent(){
-        $('#shoes-sortOrder').off().on('click',function (ret){
+        $('.shoesCategory').off().on('click',function (ret){
             //TODO. 클릭이벤트 추가
+            debugger
+            let selCategory = this.textContent;
+            if(selCategory == '전체'){ getShoesList('ALL')}
+            else if(selCategory =='보유'){ getShoesList('STOCK')}
+            else if(selCategory == '리셀'){ getShoesList('RESELL')}
         });
     }
 </script>
