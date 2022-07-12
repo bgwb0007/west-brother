@@ -123,7 +123,7 @@
     }
 
     function getShoesList(category){
-        if(shoesList.length > 0){
+        if(shoesList != undefined){
             loadShoesList(sortShoesList(shoesList, category), category);
             return;
         }
