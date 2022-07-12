@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -63,6 +64,8 @@ public class Shoes {
         retMap.put("content",StringUtil.nvl(shoes.getContent()));
         retMap.put("status",StringUtil.nvl(shoes.getStatus()));
         retMap.put("purchaseDate",StringUtil.nvl(shoes.getPurchaseDate()));
+        String pDateS8 = StringUtil.nvl(shoes.getPurchaseDate().format(DateTimeFormatter.ofPattern("yyyyMMdd")));
+        retMap.put("purchaseDateS8",pDateS8);
         retMap.put("buy",StringUtil.nvl(shoes.getBuy()));
         retMap.put("releasePrice",StringUtil.nvl(shoes.getReleasePrice()));
         retMap.put("sellPrice",StringUtil.nvl(shoes.getSellPrice()));

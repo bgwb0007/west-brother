@@ -26,6 +26,8 @@
     </div>
 </div>
 <script>
+    var shoesList;
+
     let currentDroppable = null;
 
     ball.onmousedown = function(event) {
@@ -121,33 +123,37 @@
     }
 
     function getShoesList(category){
-
+        if(shoesList.length > 0){
+            loadShoesList(sortShoesList(shoesList, category), category);
+            return;
+        }
         var successCallBack = function (ret){
             debugger;
-            $('#contents').text('##### shoes contents #####');
-            appendShoes(ret, category);
-            addCategoryEvent();
+            shoesList = ret;
+            loadShoesList(sortShoesList(shoesList, category), category);
         }
-        let url = '/api/v1/shoes';
-        if(category == 'ALL'){}
-        else if(category == 'RESELL'){ url += '/리셀';}
-        else if(category == 'STOCK'){ url += '/보유중';}
 
+        let url = '/api/v1/shoes'
         wbGetJson(successCallBack,function (ret){
             console.log("실패함수실행##",ret);
             debugger;
         },url);
     }
-
-    var shoesStatus = {
-        '사용중' : '                            <span class="badge rounded-pill bg-success">사용중</span>',
-        '리셀'   : '                            <span class="badge rounded-pill bg-info text-dark">리셀</span>',
-        '보유중' : '                            <span class="badge rounded-pill bg-warning text-dark">보유중</span>',
+    function loadShoesList(list,category){
+        $('#contents').text('##### shoes contents #####');
+        appendShoes(list, category);
+        addCategoryEvent();
     }
+
     function appendShoes(list, category){
 
         let getYield = function (item){
             return Math.round(((item.sellPrice/item.releasePrice)-1 ) * 10000) / 100;
+        }
+        let shoesStatus = {
+            '사용중' : '                            <span class="badge rounded-pill bg-success">사용중</span>',
+            '리셀'   : '                            <span class="badge rounded-pill bg-info text-dark">리셀</span>',
+            '보유중' : '                            <span class="badge rounded-pill bg-warning text-dark">보유중</span>',
         }
 
         let html = '';
@@ -197,7 +203,7 @@
     }
     // 카테고리별 정리(전체/보유/리셀)
     // -> 최신순 정렬
-    function sortShoesList(list, status){
+    function sortShoesList(list, category){
         let retList = [];
         let sCategory;
         if(category == 'ALL'){
@@ -208,14 +214,16 @@
             sCategory = '사용중,보유중';
         }
         $.each(list, function (idx,item){
+            if(sCategory == '전체'){
+                retList = list;
+                return;
+            }
             if(sCategory.indexOf(item.status) > -1){
-                //TODO. item에다가 날짜 yyyymmdd 포맷 추가 -> 정렬에 사용
                 retList.push(item);
             }
         })
-        //TODO. 최신순정렬
         retList.sort(function (a,b){
-            return a-b;
+            return b.purchaseDateS8 -a.purchaseDateS8;
         })
 
         return retList;
@@ -224,12 +232,10 @@
 
     function addCategoryEvent(){
         $('.shoesCategory').off().on('click',function (ret){
-            //TODO. 클릭이벤트 추가
-            debugger
             let selCategory = this.textContent;
-            if(selCategory == '전체'){ getShoesList('ALL')}
-            else if(selCategory =='보유'){ getShoesList('STOCK')}
-            else if(selCategory == '리셀'){ getShoesList('RESELL')}
+            if(selCategory == '전체'){loadShoesList(sortShoesList(shoesList, 'ALL'), 'ALL');}
+            else if(selCategory =='보유'){ loadShoesList(sortShoesList(shoesList, 'STOCK'), 'STOCK');}
+            else if(selCategory == '리셀'){ loadShoesList(sortShoesList(shoesList, 'RESELL'), 'RESELL')}
         });
     }
 </script>
