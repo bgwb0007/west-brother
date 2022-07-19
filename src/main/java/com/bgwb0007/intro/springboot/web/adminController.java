@@ -85,4 +85,9 @@ public class adminController {
     public String admProjectUpdate(){
         return "admin/resume/admProject-update";
     }
+    @GetMapping("/admin/insta-token")
+    public String admInstagramToken(){
+        return "admin/instagram/admInstagramToken";
+    }
+
 }

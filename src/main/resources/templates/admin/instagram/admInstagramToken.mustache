@@ -1,0 +1,58 @@
+{{>layout/header}}
+<link href="/css/app/admin.css" rel="stylesheet">
+
+<div class="content">
+    <h2>Instagram Token 생성</h2>
+    <div class="backDiv">
+        <button type="button" class="btn btn-primary" onclick="moveBack();">메인</button>
+    </div>
+    <form method="post" action="https://api.instagram.com/oauth/access_token">
+    <div class="mb-3 row">
+        <label for="client_id입력" class="col-sm-2 col-form-label">client_id</label>
+        <div class="col-sm-10">
+            <input type="text" name="client_id" class="form-control" id="client_id입력" value="991214778206887">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="client_secret입력" class="col-sm-2 col-form-label">client_secret</label>
+        <div class="col-sm-10">
+            <input type="text" name="client_secret" class="form-control" id="client_secret입력" value="">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="code입력" class="col-sm-2 col-form-label">code</label>
+        <div class="col-sm-10">
+            <input type="text" name="code" class="form-control" id="code입력" value="">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="grant_type입력" class="col-sm-2 col-form-label">grant_type</label>
+        <div class="col-sm-10">
+            <input type="text" name="grant_type" class="form-control" id="grant_type입력" value="authorization_code">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="redirect_uri입력" class="col-sm-2 col-form-label">redirect_uri</label>
+        <div class="col-sm-10">
+            <input type="text" name="redirect_uri" class="form-control" id="redirect_uri입력" value="https://west-brother.com/">
+        </div>
+    </div>
+    <div class="col-3">
+        <button type="submit" class="btn btn-primary">제출</button>
+    </div>
+    </form>
+    <div id="retDiv">
+
+    </div>
+    <div class="footDiv"></div>
+</div>
+
+<script>
+    function moveBack(){
+        location.href = "/admin";
+    }
+</script>
+
+
+
+{{>layout/footer}}
