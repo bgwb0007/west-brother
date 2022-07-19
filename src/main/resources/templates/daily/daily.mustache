@@ -227,8 +227,6 @@
         })
         return retList;
     }
-
-
     function addCategoryEvent(){
         $('.shoesCategory').off().on('click',function (ret){
             let selCategory = this.textContent;
@@ -236,6 +234,18 @@
             else if(selCategory =='보유'){ loadShoesList(sortShoesList(shoesList, 'STOCK'), 'STOCK');}
             else if(selCategory == '리셀'){ loadShoesList(sortShoesList(shoesList, 'RESELL'), 'RESELL')}
         });
+    }
+
+    function getInstagramList(){
+        var successCallBack = function (ret){
+            console.log("##인스타불러오기 성공##",ret);
+            debugger;
+        }
+        let url = 'https://graph.instagram.com/{user_id (Instagram 앱 ID 아닙니다) }/media?fields=id,media_type,media_url,permalink,thumbnail_url,username,caption&access_token={액세스 토큰}';
+        wbGetJson(successCallBack,function (ret){
+            console.log("##인스타불러오기 실패##",ret);
+            debugger;
+        },url);
     }
 </script>
 
