@@ -70,3 +70,43 @@
     height:25px;
     display:inline-block;
 }
+
+/* ###### instagram ###### */
+#instaWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.instagram-All{
+    display: inline;
+    width: 501px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    border: 0.1px lightgray solid;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 5px 5px grey;
+}
+.instagram-title{
+    margin: 0.5rem 0.8rem;
+}
+.instagram-title img{
+    width: 2rem;
+}
+.instagram-title span{
+    font-size: 1rem;
+}
+
+.instagram-media img{
+    width: 500px;
+}
+.instagram-media video{
+    width: 500px;
+}
+
+.instagram-content{
+    margin-top: 0.4rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.8rem;
+}

@@ -24,7 +24,6 @@
     <div class="infoMsgDiv">
         <img src="image/app/character3.png" id="ball">
     </div>
-    <video src="https://video-ssn1-1.cdninstagram.com/v/t50.33967-16/293205482_1096698761190162_2666200637644604004_n.mp4?_nc_cat=101&vs=1692795737742472_1503222319&_nc_vs=HBksFQAYJEdPcjFlUkVTR3hZVWNlVURBR1FDdXBKYVB3QWxicV9FQUFBRhUAAsgBABUAGCRHSDg4YWhFeVlzS1FxYjRDQU5aY0ZPN1FObGR2YnFfRUFBQUYVAgLIAQAoABgAGwGIB3VzZV9vaWwBMRUAACaIlNaGh9bMQBUCKAJDMywXQD5TdLxqfvoYEmRhc2hfYmFzZWxpbmVfMV92MREAdQAA&ccb=1-7&_nc_sid=59939d&efg=eyJ2ZW5jb2RlX3RhZyI6InZ0c192b2RfdXJsZ2VuLjcyMC5jbGlwcyJ9&_nc_ohc=h4XHot9sLTwAX_sPW0N&_nc_ht=video-ssn1-1.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AT_mGDg7AZ3c9uT_zwIjs1rwY9TlgEB0sjmpM5Sdcg3khg&oe=62D7445E&_nc_rid=c2f97f2398" controls id="testVideo"></video>
 </div>
 <script>
     var shoesList;
@@ -115,6 +114,7 @@
         $('#contents').text('##### tennis contents #####');
         ball.src = '/image/app/onTennis.png';
         ball.width = 130;
+        getInstagramList();
     }
     function onDesk(){
         $('#contents').text('##### desk contents #####');
@@ -240,9 +240,10 @@
     function getInstagramList(){
         var successCallBack = function (ret){
             console.log("##인스타불러오기 성공##",ret);
-            debugger;
+            let realsList = sortVideoList(ret.data);
+            appendInstagram(realsList);
         }
-        let url = 'https://graph.instagram.com/17841406368962723/media?fields=id,media_type,media_url,permalink,thumbnail_url,username,caption&access_token=IGQVJVUnFFS0RBVHNGeEloQWRPQzhzc3daNm5mOG5MVHl5MF9VS1FmYm1rdndBZAWo5UnZAIT3kwRnoyRm1xSWhpX2R0UHdKUW9KRzZAIb0hXejRuSGV2bzdWcXBkbEwtWGNxOVhvcWRaSkJhSmpoNmJJbzgwNHBNUHdSUk5j';
+        let url = 'https://graph.instagram.com/17841406368962723/media?fields=id,media_type,media_url,permalink,thumbnail_url,username,caption&access_token=IGQVJVcnlEa25CY1owM05fcjNkN1dzenc4MUx1NVRYeWNRRHlXejV5d2g1MTViWjRSWE9nSm5NOTFTdUR6QTJPZAFpYYmN5VGs5bURPenIxMHp5UWE1MElxdUVobnNSSWcwQm9oMUtB';
         wbGetJson(successCallBack,function (ret){
             console.log("##인스타불러오기 실패##",ret);
             debugger;
@@ -257,6 +258,28 @@
             }
         });
         return retList;
+    }
+    
+    function appendInstagram(list){
+        let html = "";
+        html += '<div id="instaWrapper">';
+        $.each(list,function (idx,item) {
+            html += '    <div class="instagram-All">';
+            html += '        <div class="instagram-title">';
+            html += '            <img src="/image/app/logo_instagram.png">';
+            html += '                <span class="instagram-username">'+item.username+'</span>';
+            html += '        </div>';
+            html += '        <div class="instagram-media">';
+            html += '            <video src="'+item.media_url+'" controls id="realsVideo"></video>';
+            html += '        </div>';
+            html += '        <div class="instagram-content">';
+            html += '            <span class="instagram-username">'+item.username+'</span>';
+            html += '            <span class="instagram-caption">'+item.caption+'</span>';
+            html += '        </div>';
+            html += '    </div>';
+        });
+        html += '</div>';
+        $('#contents').append(html);
     }
 </script>
 
