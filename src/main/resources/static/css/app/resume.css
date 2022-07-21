@@ -136,12 +136,16 @@ body{
     font-size: 0.9rem;
 
 }
-/* 내용 */
+/* 내용_타이틀 */
 .careerInfo span:nth-child(2) {
     padding-right: 20px;
     font-size: 1.1rem;
 }
-
+/* 내용_컨텐츠 */
+.careerInfo span:nth-child(3) {
+    padding-right: 20px;
+    font-size: 0.9rem;
+}
 .resumeFooter{
     height: 100px;
     width: 100%;
