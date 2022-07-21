@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface CareerRepository extends JpaRepository<Career, Long> {
-    @Query("select c from Career c order by c.endDate asc")
-    List<Career> findAllOrderByEndDateAsc();
+    @Query("select c from Career c order by c.startDate asc")
+    List<Career> findAllOrderByStartDateAsc();
 }

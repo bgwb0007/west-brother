@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Long> {
-    @Query("select p from Project p order by p.endDate asc")
+    @Query("select p from Project p order by p.startDate asc")
     List<Project> findAllOrderByStartDateAsc();
 }
