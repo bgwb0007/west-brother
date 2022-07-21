@@ -17,7 +17,7 @@
 
 <div>
     <button type="button" onclick="getShoesList('ALL');">shoes</button>
-    <button type="button" onclick="">tennis</button>
+    <button type="button" onclick="getInstagramList()">tennis</button>
     <button type="button" onclick="">dev</button>
 </div>
 <div id="contents">
@@ -264,6 +264,7 @@
         let html = "";
         html += '<div id="instaWrapper">';
         $.each(list,function (idx,item) {
+            let caption = item.caption.replaceAll('\n','<br>');
             html += '    <div class="instagram-All">';
             html += '        <div class="instagram-title">';
             html += '            <img src="/image/app/logo_instagram.png">';
@@ -274,7 +275,7 @@
             html += '        </div>';
             html += '        <div class="instagram-content">';
             html += '            <span class="instagram-username">'+item.username+'</span>';
-            html += '            <span class="instagram-caption">'+item.caption+'</span>';
+            html += '            <span class="instagram-caption">'+caption+'</span>';
             html += '        </div>';
             html += '    </div>';
         });
