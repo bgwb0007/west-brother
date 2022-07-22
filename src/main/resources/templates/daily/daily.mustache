@@ -27,6 +27,7 @@
 </div>
 <script>
     var shoesList;
+    var instagramList;
 
     let currentDroppable = null;
 
@@ -238,10 +239,15 @@
     }
 
     function getInstagramList(){
+        if(instagramList!=undefined){
+            appendInstagram(instagramList);
+            return;
+        }
+
         var successCallBack = function (ret){
             console.log("##인스타불러오기 성공##",ret);
-            let realsList = sortVideoList(ret.data);
-            appendInstagram(realsList);
+            instagramList = sortVideoList(ret.data);
+            appendInstagram(instagramList);
         }
         let url = 'https://graph.instagram.com/17841406368962723/media?fields=id,media_type,media_url,permalink,thumbnail_url,username,caption&access_token=IGQVJVcnlEa25CY1owM05fcjNkN1dzenc4MUx1NVRYeWNRRHlXejV5d2g1MTViWjRSWE9nSm5NOTFTdUR6QTJPZAFpYYmN5VGs5bURPenIxMHp5UWE1MElxdUVobnNSSWcwQm9oMUtB';
         wbGetJson(successCallBack,function (ret){
