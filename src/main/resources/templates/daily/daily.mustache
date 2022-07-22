@@ -119,18 +119,19 @@
     }
     function onDesk(){
         $('#contents').text('##### desk contents #####');
-        ball.src = '/image/app/man2.png';
+        ball.src = '/image/app/character3.png';
         ball.width = 130;
 
     }
 
     function getShoesList(category){
         if(shoesList != undefined){
+            $('#contents').text('##### shoes contents #####');
             loadShoesList(sortShoesList(shoesList, category), category);
             return;
         }
         var successCallBack = function (ret){
-            debugger;
+            $('#contents').text('##### shoes contents #####');
             shoesList = ret;
             loadShoesList(sortShoesList(shoesList, category), category);
         }
@@ -240,12 +241,14 @@
 
     function getInstagramList(){
         if(instagramList!=undefined){
+            $('#contents').text('##### tennis contents #####');
             appendInstagram(instagramList);
             return;
         }
 
         var successCallBack = function (ret){
             console.log("##인스타불러오기 성공##",ret);
+            $('#contents').text('##### tennis contents #####');
             instagramList = sortVideoList(ret.data);
             appendInstagram(instagramList);
         }

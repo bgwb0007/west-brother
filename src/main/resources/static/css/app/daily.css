@@ -1,7 +1,7 @@
 #room{
     background-image: url('/image/app/room.png');
-    width: 920px;
-    height: 420px;
+    width: 800px;
+    height: 400px;
     background-size: cover;
     margin: 0 auto;
     position: relative;
@@ -15,18 +15,18 @@
 #tennisImage{
     display: inline-block;
     position: relative;
-    left: 420px;
+    left: 460px;
     top: 250px;
 }
 #deskImage{
     display: inline-block;
     position: relative;
-    left: -60px;
+    left: 80px;
     top: 85px;
 }
 .infoMsgDiv{
-    width: 200px;
-    height: 200px;
+    width: 120px;
+    height: 120px;
     margin: 1rem auto 0 auto;
     text-align: center;
     padding-top: 1.3rem;
