@@ -173,9 +173,11 @@
         html += '        </div>';
         html += '        <div class="shoes-content">';
         html += '            <table class="table table-hover">';
+        html += '              <tr hidden>';
         html += '                <th></th>';
         html += '                <th></th>';
         html += '                <th></th>';
+        html += '              </tr>';
         $.each(list,function (idx,item){
             html += '                <tr class="shoes">';
             html += '                    <td class="shoesMain"><div><img src="/images/'+item.mainImage+'"></div></td>';
