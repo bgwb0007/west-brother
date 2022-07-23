@@ -84,7 +84,7 @@
 }
 .instagram-All{
     display: inline;
-    width: 501px;
+    width: 451px;
     margin-top: 1rem;
     margin-bottom: 1rem;
 
@@ -93,25 +93,32 @@
     box-shadow: 5px 5px grey;
 }
 .instagram-title{
-    margin: 0.5rem 0.8rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 10px 10px 0 0;
+    background-color: white;
 }
 .instagram-title img{
     width: 2rem;
 }
-.instagram-title span{
-    font-size: 1rem;
+.instagram-username{
+    font-size: 0.9rem;
+    font-weight: 600;
 }
-
+.instagram-media{
+    background-color: white;
+}
 .instagram-media img{
-    width: 500px;
+    width: 450px;
 }
 .instagram-media video{
-    width: 500px;
+    width: 450px;
 }
 
 .instagram-content{
-    margin-top: 0.4rem;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-    margin-bottom: 0.8rem;
+    background-color: white;
+    padding-top: 0.4rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-bottom: 0.8rem;
+    border-radius: 0 0 10px 10px;
 }
