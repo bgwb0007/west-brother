@@ -22,7 +22,7 @@ public class ProjectService {
         return projectRepository.save(new Project(requestDto)).getId();
     }
     public List<Map> findAllForHtml(){
-        return projectRepository.findAllOrderByStartDateAsc().stream()
+        return projectRepository.findAllOrderByStartDateDesc().stream()
                 .map(Project::toMapForList)
                 .collect(Collectors.toList());
     }

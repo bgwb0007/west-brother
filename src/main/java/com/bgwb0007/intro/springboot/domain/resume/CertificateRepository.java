@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface CertificateRepository extends JpaRepository<Certificate, Long> {
-    @Query("select c from Certificate c order by c.licenseDate asc")
-    List<Certificate> findAllOrderByLicenseDateAsc();
+    @Query("select c from Certificate c order by c.licenseDate desc")
+    List<Certificate> findAllOrderByLicenseDateDesc();
 }

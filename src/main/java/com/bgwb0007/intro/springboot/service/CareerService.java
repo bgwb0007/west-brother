@@ -23,7 +23,7 @@ public class CareerService {
         return careerRepository.save(new Career(requestDto)).getId();
     }
     public List<Map> findAllForHtml(){
-        return careerRepository.findAllOrderByStartDateAsc().stream()
+        return careerRepository.findAllOrderByStartDateDesc().stream()
                 .map(Career::toMapForList)
                 .collect(Collectors.toList());
     }

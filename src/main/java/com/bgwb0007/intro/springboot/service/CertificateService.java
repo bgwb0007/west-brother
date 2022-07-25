@@ -22,7 +22,7 @@ public class CertificateService {
         return certificateRepository.save(new Certificate(requestDto)).getId();
     }
     public List<Map> findAllForHtml(){
-        return certificateRepository.findAllOrderByLicenseDateAsc().stream()
+        return certificateRepository.findAllOrderByLicenseDateDesc().stream()
                 .map(Certificate::toMapForList)
                 .collect(Collectors.toList());
     }

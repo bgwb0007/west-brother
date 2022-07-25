@@ -21,7 +21,7 @@ public class EducationService {
         return educationRepository.save(new Education(requestDto)).getId();
     }
     public List<Map> findAllForHtml(){
-        return educationRepository.findAllOrderByStartDateAsc().stream()
+        return educationRepository.findAllOrderByStartDateDesc().stream()
                 .map(Education::toMapForList)
                 .collect(Collectors.toList());
     }
