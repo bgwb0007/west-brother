@@ -6,12 +6,23 @@
 </div>
 <script>
 
-    function getTistory(){
+    function getTistoryList(){
         var successCallBack = function (ret){
             console.log("##티스토리 성공##",ret);
             debugger;
         }
-        let url = 'https://www.tistory.com/apis/post/read?access_token=81cfa6c4af86d12cf5f9522f7a90002d_1d2d6d661e27aaa4514913d0d207a396&blogName=west-brother&postId=2&output=json';
+        let url = '/api/v1/tistory';
+        wbGetJson(successCallBack,function (ret){
+            console.log("##티스토리 실패##",ret);
+            debugger;
+        },url);
+    }
+    function getTistoryDetail(){
+        var successCallBack = function (ret){
+            console.log("##티스토리 성공##",ret);
+            debugger;
+        }
+        let url = '/api/v1/tistory/2';
         wbGetJson(successCallBack,function (ret){
             console.log("##티스토리 실패##",ret);
             debugger;
