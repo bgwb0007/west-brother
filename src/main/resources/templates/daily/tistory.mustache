@@ -1,0 +1,46 @@
+{{>layout/header}}
+<link href="/css/app/daily.css" rel="stylesheet">
+
+<div id="contents">
+
+</div>
+<script>
+
+    function getTistory(){
+        var successCallBack = function (ret){
+            console.log("##티스토리 성공##",ret);
+            debugger;
+        }
+        let url = 'https://www.tistory.com/apis/post/read?access_token=81cfa6c4af86d12cf5f9522f7a90002d_1d2d6d661e27aaa4514913d0d207a396&blogName=west-brother&postId=2&output=json';
+        wbGetJson(successCallBack,function (ret){
+            console.log("##티스토리 실패##",ret);
+            debugger;
+        },url);
+    }
+
+    function appendInstagram(list){
+        let html = "";
+        html += '<div id="instaWrapper">';
+        $.each(list,function (idx,item) {
+            let caption = item.caption.replaceAll('\n','<br>');
+            html += '    <div class="instagram-All">';
+            html += '        <div class="instagram-title">';
+            html += '            <img src="/image/app/logo_instagram.png">';
+            html += '                <span class="instagram-username">'+item.username+'</span>';
+            html += '        </div>';
+            html += '        <div class="instagram-media">';
+            html += '            <video src="'+item.media_url+'" controls id="realsVideo"></video>';
+            html += '        </div>';
+            html += '        <div class="instagram-content">';
+            html += '            <span class="instagram-username">'+item.username+'</span>';
+            html += '            <span class="instagram-caption">'+caption+'</span>';
+            html += '        </div>';
+            html += '    </div>';
+        });
+        html += '</div>';
+        $('#contents').append(html);
+    }
+</script>
+
+
+{{>layout/footer}}

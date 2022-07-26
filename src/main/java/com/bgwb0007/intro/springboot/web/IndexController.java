@@ -36,7 +36,8 @@ public class IndexController {
     public String daily(){
         return "daily/daily";
     }
-
-
-
+    @GetMapping("/tistory")
+    public String tistory(){
+        return "daily/tistory";
+    }
 }
