@@ -67,12 +67,21 @@
     }
 
     function appendTistoryDetail(num){
-        if($('#div1 button').hasClass('active')) return;
+        let selId = '#tstPost' + num;
+        let selButton = selId + ' button';
 
-        $('#div1 button').addClass('active');
-        var html = '<div>글쓰기~~~~~~~~@#@#@##!!@@@@@@@@@@@@~~~~~글쓰기~~~~~~~~@#@#@##!!@@@@@@@@@@@@~~~~~글쓰기~~~~~~~~@#@#@##!!@@@@@@@@@@@@~~~~~글쓰기~~~~~~~~@#@#@##!!@@@@@@@@@@@@~~~~~글쓰기~~~~~~~~@#@#@##!!@@@@@@@@@@@@~~~~~글쓰기~~~~~~~~@#@#@##!!@@@@@@@@@@@@~~~~~</div>';
-        $('#div'+num).append(html);
-        debugger
+        if($(selButton).hasClass('active')) return;
+
+        $(selButton).addClass('active');
+
+        getTistoryDetail(function (ret){
+            console.log("##티스토리 성공##",ret);
+            let html = '<div>';
+            html += ret.tistory.item.content;
+            html += '</div>'
+            $(selId).append(html);
+            debugger;
+        })
     }
 
     function getTistoryList(successCallBack){
@@ -82,11 +91,7 @@
             debugger;
         },url);
     }
-    function getTistoryDetail(){
-        var successCallBack = function (ret){
-            console.log("##티스토리 성공##",ret);
-            debugger;
-        }
+    function getTistoryDetail(successCallBack){
         let url = '/api/v1/tistory/2';
         wbGetJson(successCallBack,function (ret){
             console.log("##티스토리 실패##",ret);
