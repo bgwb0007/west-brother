@@ -2,9 +2,55 @@
 <link href="/css/app/daily.css" rel="stylesheet">
 
 <div id="contents">
+    <button type="button" class="btn btn-primary" onclick="appendTistoryModal('tstModal');">리스트보기</button>
 
+    <div class="modal fade" id="tstModal" tabindex="-1" aria-labelledby="tstModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tstModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="list-group modal-body">
+                    <!-- <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+                        The current button
+                    </button> -->
+                    <div id="div1"><button type="button" onclick="getTistoryDetail('1');" class="list-group-item list-group-item-action">A second item</button></div>
+                    <button type="button" class="list-group-item list-group-item-action">A third button item</button>
+                    <button type="button" class="list-group-item list-group-item-action">A fourth button item</button>
+                    <!-- <button type="button" class="list-group-item list-group-item-action" disabled>A disabled button item</button> -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 <script>
+    var tstTitleMap = {
+        'tstModal' : '[이력서]'
+    }
+
+    function appendTistoryModal(modalId){
+        // TODO. 해당 리스트 가져오기 -> 모달 만들어서 append(id = modalId)
+        // ret.tistory.item.posts.filter(function(content){
+        //     return content.title.indexOf(tstTitleMap.modalId) >=0 ;
+        // });
+
+        var myModal = new bootstrap.Modal($('#' + modalId));
+        myModal.show();
+    }
+
+    function appendTistoryDetail(num){
+        if($('#div1 button').hasClass('active')) return;
+
+        $('#div1 button').addClass('active');
+        var html = '<div>글쓰기~~~~~~~~@#@#@##!!@@@@@@@@@@@@~~~~~글쓰기~~~~~~~~@#@#@##!!@@@@@@@@@@@@~~~~~글쓰기~~~~~~~~@#@#@##!!@@@@@@@@@@@@~~~~~글쓰기~~~~~~~~@#@#@##!!@@@@@@@@@@@@~~~~~글쓰기~~~~~~~~@#@#@##!!@@@@@@@@@@@@~~~~~글쓰기~~~~~~~~@#@#@##!!@@@@@@@@@@@@~~~~~</div>';
+        $('#div'+num).append(html);
+        debugger
+    }
 
     function getTistoryList(){
         var successCallBack = function (ret){
