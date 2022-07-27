@@ -49,12 +49,12 @@
 
         var appendSelectedList = function (){
             let selectedList = tistoryList.filter(function(content){
-                return content.title.indexOf(tstTitleMap.modalId) >=0 ;
+                return content.title.indexOf(tstTitleMap[modalId]) >=0 ;
             });
             let html = '';
             $.each(selectedList, function (idx,item){
                 html += '<div id="tstPost'+item.id+'">';
-                let title = ret.tistory.item.posts[0].title.split(tstTitleMap.modalId)[1].trim();
+                let title = ret.tistory.item.posts[0].title.split(tstTitleMap[modalId])[1].trim();
                 html += '    <button type="button" onclick="appendTistoryDetail(\''+item.id+'\');" class="list-group-item list-group-item-action">'+title+'</button>';
                 html += '</div>';
             })
