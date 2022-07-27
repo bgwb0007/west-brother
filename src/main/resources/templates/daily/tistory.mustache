@@ -15,9 +15,9 @@
                     <!-- <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
                         The current button
                     </button> -->
-                    <div id="div1"><button type="button" onclick="getTistoryDetail('1');" class="list-group-item list-group-item-action">A second item</button></div>
-                    <button type="button" class="list-group-item list-group-item-action">A third button item</button>
-                    <button type="button" class="list-group-item list-group-item-action">A fourth button item</button>
+                    <div id="tstPost2">
+                        <button type="button" onclick="appendTistoryDetail('2');" class="list-group-item list-group-item-action">A second item</button>
+                    </div>
                     <!-- <button type="button" class="list-group-item list-group-item-action" disabled>A disabled button item</button> -->
                 </div>
                 <div class="modal-footer">
@@ -32,12 +32,35 @@
     var tstTitleMap = {
         'tstModal' : '[이력서]'
     }
+    var tistoryList = []
 
     function appendTistoryModal(modalId){
         // TODO. 해당 리스트 가져오기 -> 모달 만들어서 append(id = modalId)
-        // ret.tistory.item.posts.filter(function(content){
-        //     return content.title.indexOf(tstTitleMap.modalId) >=0 ;
-        // });
+        if (tistoryList.length > 0){
+            appendSelectedList();
+        }else{
+            getTistoryList(function (ret){
+                console.log("##티스토리 성공##",ret);
+                debugger;
+                tistoryList = ret.tistory.item.posts;
+                appendSelectedList();
+            });
+        }
+
+        var appendSelectedList = function (){
+            let selectedList = tistoryList.filter(function(content){
+                return content.title.indexOf(tstTitleMap.modalId) >=0 ;
+            });
+            let html = '';
+            $.each(selectedList, function (idx,item){
+                html += '<div id="tstPost'+item.id+'">';
+                let title = ret.tistory.item.posts[0].title.split(tstTitleMap.modalId)[1].trim();
+                html += '    <button type="button" onclick="appendTistoryDetail(\''+item.id+'\');" class="list-group-item list-group-item-action">'+title+'</button>';
+                html += '</div>';
+            })
+
+            $('#'+modalId +' modal-body').append(html);
+        }
 
         var myModal = new bootstrap.Modal($('#' + modalId));
         myModal.show();
@@ -52,11 +75,7 @@
         debugger
     }
 
-    function getTistoryList(){
-        var successCallBack = function (ret){
-            console.log("##티스토리 성공##",ret);
-            debugger;
-        }
+    function getTistoryList(successCallBack){
         let url = '/api/v1/tistory';
         wbGetJson(successCallBack,function (ret){
             console.log("##티스토리 실패##",ret);
