@@ -1,23 +1,23 @@
 {{>layout/header}}
-<link href="/css/app/daily.css" rel="stylesheet">
+<link href="/css/app/resume.css" rel="stylesheet">
 
 <div id="contents">
-    <button type="button" class="btn btn-primary" onclick="appendTistoryModal('tstModal');">리스트보기</button>
+    <button type="button" class="btn btn-primary" onclick="appendTistoryModal('tstModal11');">리스트보기</button>
 
-    <div class="modal fade" id="tstModal" tabindex="-1" aria-labelledby="tstModalLabel" aria-hidden="true">
+    <div class="modal fade" id="tstModal11" tabindex="-1" aria-labelledby="tstModal11Label" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="tstModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="tstModal11Label">신한 SOL newApp</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="list-group modal-body">
                     <!-- <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
                         The current button
                     </button> -->
-                    <div id="tstPost2">
-                        <button type="button" onclick="appendTistoryDetail('2');" class="list-group-item list-group-item-action">A second item</button>
-                    </div>
+<!--                    <div id="tstPost2">-->
+<!--                        <button type="button" onclick="appendTistoryDetail('2');" class="list-group-item list-group-item-action">A second item</button>-->
+<!--                    </div>-->
                     <!-- <button type="button" class="list-group-item list-group-item-action" disabled>A disabled button item</button> -->
                 </div>
                 <div class="modal-footer">
@@ -30,9 +30,16 @@
 
 <script>
     var tstTitleMap = {
-        'tstModal' : '[이력서]'
+        'tstModal11' : '[이력서]'
     }
     var tistoryList = []
+
+    function onInit(){
+
+    }
+    function tistoryInit(title){
+
+    }
 
     function appendTistoryModal(modalId){
 
@@ -42,7 +49,7 @@
             });
             let html = '';
             $.each(selectedList, function (idx,item){
-                html += '<div id="tstPost'+item.id+'">';
+                html += '<div id="tstPost'+item.id+'" class="tstPost">';
                 let title = item.title.split(tstTitleMap[modalId])[1].trim();
                 html += '    <button type="button" onclick="appendTistoryDetail(\''+item.id+'\');" class="list-group-item list-group-item-action">'+title+'</button>';
                 html += '</div>';
@@ -74,9 +81,9 @@
 
         $(selButton).addClass('active');
 
-        getTistoryDetail(function (ret){
+        getTistoryDetail(num, function (ret){
             console.log("##티스토리 성공##",ret);
-            let html = '<div>';
+            let html = '<div class="tstDetail">';
             html += ret.tistory.item.content;
             html += '</div>'
             $(selId).append(html);
@@ -91,8 +98,8 @@
             debugger;
         },url);
     }
-    function getTistoryDetail(successCallBack){
-        let url = '/api/v1/tistory/2';
+    function getTistoryDetail(num,successCallBack){
+        let url = '/api/v1/tistory/' + num;
         wbGetJson(successCallBack,function (ret){
             console.log("##티스토리 실패##",ret);
             debugger;

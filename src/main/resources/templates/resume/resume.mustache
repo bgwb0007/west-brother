@@ -113,14 +113,18 @@
             <div class="careerInfoWapper">
                 <div class="careerInfoTitle">
                     <span>Project</span>
+                    <span id="projectClickInfo">(<span></span>프로젝트를 클릭해주세요)</span>
                     <div class="botLine"></div>
                 </div>
                 {{#resume.projects}}
                 <div class="careerInfo">
                     <span>{{startDate2}} ~ {{endDate2}}</span>
-                    <span>{{title}}
-                    <br>{{content}}</span>
+                    <a href="javascript:void(0);" class="projectContent">{{title}}
+                    <br>{{content}}</a>
                 </div>
+                <script>
+                    tstTitleMap.push({'{{id}}' : '{{title}}'});
+                </script>
                 {{/resume.projects}}
             </div>
             <!-- /Project 종료 -->
@@ -136,7 +140,7 @@
     function moveBack(){
         location.href = '/';
     }
-
+    var tstTitleMap = [];
     function getContactList(){
         var url = '/api/v1/contact/이력서';
         wbGetJson(function (res){
