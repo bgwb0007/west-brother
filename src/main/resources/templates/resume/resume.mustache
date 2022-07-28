@@ -116,6 +116,7 @@
                     <span id="projectClickInfo">(<span></span>프로젝트를 클릭해주세요)</span>
                     <div class="botLine"></div>
                 </div>
+                <script>var tstTitleMap = [];</script>
                 {{#resume.projects}}
                 <div class="careerInfo">
                     <span>{{startDate2}} ~ {{endDate2}}</span>
@@ -140,7 +141,7 @@
     function moveBack(){
         location.href = '/';
     }
-    var tstTitleMap = [];
+
     function getContactList(){
         var url = '/api/v1/contact/이력서';
         wbGetJson(function (res){
