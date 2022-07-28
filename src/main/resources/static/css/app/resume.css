@@ -127,9 +127,9 @@ body{
 #projectClickInfo span{
     content: "";
     background-image: url("/image/app/click2.png");
-    width: 20px;
-    height: 20px;
-    background-size: 20px 20px;
+    width: 17px;
+    height: 17px;
+    background-size: 17px 17px;
     background-repeat: no-repeat;
     display: inline-block;
 
