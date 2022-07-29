@@ -65,6 +65,8 @@
     function appendPostList(postId){
         var modalId = 'tstModal-' + postId
         var appendSelectedList = function (){
+            if($('#'+modalId +' .modal-body div')[0] != undefined) return;
+
             let selectedList = tistoryList.filter(function(content){
                 return content.title.indexOf(tstTitleMap[postId][1]) >=0 ;
             });
@@ -74,12 +76,12 @@
                 let title = item.title.split(tstTitleMap[postId][1])[1].trim();
                 html += '    <button type="button" onclick="appendPostDetail(\''+item.id+'\');" class="list-group-item list-group-item-action">'+title+'</button>';
                 html += '</div>';
-            })
+            });
             if(selectedList.length < 1){
                 html += '<div class="tstPost">';
                 html += '    <button type="button" class="list-group-item list-group-item-action">준비중입니다.</button>';
                 html += '</div>';
-            }
+            };
             $('#'+modalId +' .modal-body').append(html);
         }
 
