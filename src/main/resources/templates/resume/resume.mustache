@@ -117,17 +117,18 @@
                     <div class="botLine"></div>
                 </div>
                 <script>
-                    var tstTitleMap = [];
-                    var tstTitleJson = '{{resume.projectsJson}}';
+                    var tstTitleMap = {};
+                    var tstTitleJson = JSON.parse('{{resume.projectsJson}}'.replaceAll('&quot;','\'').replaceAll('\'','\"'));
+
                 </script>
                 {{#resume.projects}}
                 <div class="careerInfo">
                     <span>{{startDate2}} ~ {{endDate2}}</span>
-                    <a href="javascript:void(0);" class="projectContent">{{title}}
+                    <a href="javascript:void(0);" onclick="appendPostList('{{id}}')" class="projectContent">{{title}}
                     <br>{{content}}</a>
                 </div>
                 <script>
-                    tstTitleMap.push({'{{id}}' : '{{title}}'});
+                    tstTitleMap['{{id}}'] = ['{{title}}','{{contentDetail}}'];
                 </script>
                 {{/resume.projects}}
             </div>
@@ -138,8 +139,11 @@
 </div>
 
 <script>
+    var tistoryList = []
+
     function onInit(){
         getContactList();
+        // appendTistoryModal(tstTitleMap);
     }
     function moveBack(){
         location.href = '/';
@@ -160,6 +164,98 @@
 
         },url,{});
     }
+
+    function appendTistoryModal(tstTitleMap){
+        $.each(tstTitleMap, function (id, value){
+            let title = value[0]
+            let modalId = 'tstModal-' + id;
+            let modalLabel = modalId + '-Label'
+            let html = '';
+            html += '<div class="modal fade" id="' + modalId + '" tabindex="-1" aria-labelledby="' + modalLabel + '" aria-hidden="true">';
+            html += '    <div class="modal-dialog modal-xl modal-dialog-scrollable">';
+            html += '        <div class="modal-content">';
+            html += '            <div class="modal-header">';
+            html += '                <h5 class="modal-title" id="' + modalLabel + '">' + title + '</h5>';
+            html += '                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+            html += '            </div>';
+            html += '            <div class="list-group modal-body">';
+            html += '            </div>';
+            html += '            <div class="modal-footer">';
+            html += '                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>';
+            html += '            </div>';
+            html += '        </div>';
+            html += '    </div>';
+            html += '</div>';
+            $('body').append(html);
+        });
+    }
+
+    function appendPostList(postId){
+        var modalId = 'tstModal-' + postId
+        var appendSelectedList = function (){
+            let selectedList = tistoryList.filter(function(content){
+                return content.title.indexOf(tstTitleMap[postId][1]) >=0 ;
+            });
+            debugger;
+            let html = '';
+            $.each(selectedList, function (idx,item){
+                html += '<div id="tstPost-'+item.id+'" class="tstPost">';
+                let title = item.title.split(tstTitleMap[postId][1])[1].trim();
+                html += '    <button type="button" onclick="appendPostDetail(\''+item.id+'\');" class="list-group-item list-group-item-action">'+title+'</button>';
+                html += '</div>';
+            })
+
+            $('#'+modalId +' .modal-body').append(html);
+        }
+
+        // TODO. 해당 리스트 가져오기 -> 모달 만들어서 append(id = modalId)
+        if (tistoryList.length > 0){
+            appendSelectedList();
+        }else{
+            getTistoryList(function (ret){
+                console.log("##티스토리 성공##",ret);
+                debugger;
+                tistoryList = ret.tistory.item.posts;
+                appendSelectedList();
+            });
+        }
+        var myModal = new bootstrap.Modal($('#' + modalId));
+        myModal.show();
+    }
+
+    function appendPostDetail(num){
+        let selId = '#tstPost-' + num;
+        let selButton = selId + ' button';
+
+        if($(selButton).hasClass('active')) return;
+
+        $(selButton).addClass('active');
+
+        getTistoryDetail(num, function (ret){
+            console.log("##티스토리 성공##",ret);
+            let html = '<div class="tstDetail">';
+            html += ret.tistory.item.content;
+            html += '</div>'
+            $(selId).append(html);
+            debugger;
+        })
+    }
+
+    function getTistoryList(successCallBack){
+        let url = '/api/v1/tistory';
+        wbGetJson(successCallBack,function (ret){
+            console.log("##티스토리 실패##",ret);
+            debugger;
+        },url);
+    }
+    function getTistoryDetail(num,successCallBack){
+        let url = '/api/v1/tistory/' + num;
+        wbGetJson(successCallBack,function (ret){
+            console.log("##티스토리 실패##",ret);
+            debugger;
+        },url);
+    }
+
 
 </script>
 

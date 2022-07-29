@@ -2,59 +2,86 @@
 <link href="/css/app/resume.css" rel="stylesheet">
 
 <div id="contents">
-    <button type="button" class="btn btn-primary" onclick="appendTistoryModal('tstModal11');">리스트보기</button>
+    <button type="button" class="btn btn-primary" onclick="appendPostList('11');">리스트보기</button>
 
-    <div class="modal fade" id="tstModal11" tabindex="-1" aria-labelledby="tstModal11Label" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="tstModal11Label">신한 SOL newApp</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="list-group modal-body">
-                    <!-- <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
-                        The current button
-                    </button> -->
-<!--                    <div id="tstPost2">-->
-<!--                        <button type="button" onclick="appendTistoryDetail('2');" class="list-group-item list-group-item-action">A second item</button>-->
-<!--                    </div>-->
-                    <!-- <button type="button" class="list-group-item list-group-item-action" disabled>A disabled button item</button> -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--    <div class="modal fade" id="tstModal11" tabindex="-1" aria-labelledby="tstModal11Label" aria-hidden="true">-->
+<!--        <div class="modal-dialog modal-xl modal-dialog-scrollable">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <h5 class="modal-title" id="tstModal11Label">신한 SOL newApp</h5>-->
+<!--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--                </div>-->
+<!--                <div class="list-group modal-body">-->
+<!--                    &lt;!&ndash; <button type="button" class="list-group-item list-group-item-action active" aria-current="true">-->
+<!--                        The current button-->
+<!--                    </button> &ndash;&gt;-->
+<!--&lt;!&ndash;                    <div id="tstPost2">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <button type="button" onclick="appendPostDetail('2');" class="list-group-item list-group-item-action">A second item</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash; <button type="button" class="list-group-item list-group-item-action" disabled>A disabled button item</button> &ndash;&gt;-->
+<!--                </div>-->
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 </div>
 
 <script>
     var tstTitleMap = {
-        'tstModal11' : '[이력서]'
+        '11' : ['개인블로그 개발 프로젝트', '[이력서]']
     }
     var tistoryList = []
 
     function onInit(){
-
+        appendTistoryModal(tstTitleMap);
     }
-    function tistoryInit(title){
-
+    function appendTistoryModal(tstTitleMap){
+        $.each(tstTitleMap, function (id, value){
+            let title = value[0]
+            let modalId = 'tstModal-' + id;
+            let modalLabel = modalId + '-Label'
+            let html = '';
+            html += '<div class="modal fade" id="' + modalId + '" tabindex="-1" aria-labelledby="' + modalLabel + '" aria-hidden="true">';
+            html += '    <div class="modal-dialog modal-xl modal-dialog-scrollable">';
+            html += '        <div class="modal-content">';
+            html += '            <div class="modal-header">';
+            html += '                <h5 class="modal-title" id="' + modalLabel + '">' + title + '</h5>';
+            html += '                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+            html += '            </div>';
+            html += '            <div class="list-group modal-body">';
+            html += '            </div>';
+            html += '            <div class="modal-footer">';
+            html += '                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>';
+            html += '            </div>';
+            html += '        </div>';
+            html += '    </div>';
+            html += '</div>';
+            $('body').append(html);
+        });
     }
 
-    function appendTistoryModal(modalId){
-
+    function appendPostList(postId){
+        var modalId = 'tstModal-' + postId
         var appendSelectedList = function (){
             let selectedList = tistoryList.filter(function(content){
-                return content.title.indexOf(tstTitleMap[modalId]) >=0 ;
+                return content.title.indexOf(tstTitleMap[postId][1]) >=0 ;
             });
+            debugger;
             let html = '';
             $.each(selectedList, function (idx,item){
-                html += '<div id="tstPost'+item.id+'" class="tstPost">';
-                let title = item.title.split(tstTitleMap[modalId])[1].trim();
-                html += '    <button type="button" onclick="appendTistoryDetail(\''+item.id+'\');" class="list-group-item list-group-item-action">'+title+'</button>';
+                html += '<div id="tstPost-'+item.id+'" class="tstPost">';
+                let title = item.title.split(tstTitleMap[postId][1])[1].trim();
+                html += '    <button type="button" onclick="appendPostDetail(\''+item.id+'\');" class="list-group-item list-group-item-action">'+title+'</button>';
                 html += '</div>';
             })
 
+            if(selectedList.length < 1){
+                html += '<div id="tstPost-'+item.id+'" class="tstPost">';
+                html += '    <button type="button" class="list-group-item list-group-item-action">준비중입니다.</button>';
+                html += '</div>';
+            }
             $('#'+modalId +' .modal-body').append(html);
         }
 
@@ -73,8 +100,8 @@
         myModal.show();
     }
 
-    function appendTistoryDetail(num){
-        let selId = '#tstPost' + num;
+    function appendPostDetail(num){
+        let selId = '#tstPost-' + num;
         let selButton = selId + ' button';
 
         if($(selButton).hasClass('active')) return;
