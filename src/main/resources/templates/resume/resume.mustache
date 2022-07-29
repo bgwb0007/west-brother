@@ -116,8 +116,9 @@
                     <span id="projectClickInfo">(<span></span>프로젝트를 클릭해주세요)</span>
                     <div class="botLine"></div>
                 </div>
-                <script>var tstTitleMap = [];
-                var test = [{{resume.projects}}]
+                <script>
+                    var tstTitleMap = [];
+                    var tstTitleJson = {{projectsJson}};
                 </script>
                 {{#resume.projects}}
                 <div class="careerInfo">
