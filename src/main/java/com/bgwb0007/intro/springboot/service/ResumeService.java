@@ -17,13 +17,12 @@ public class ResumeService {
     private final ProjectService projectService;
 
     public Map findAll() throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
         Map retMap = new HashMap<>();
-
         retMap.put("careers", careerService.findAllForHtml());
         retMap.put("educations", educationService.findAllForHtml());
         retMap.put("certificates", certificateService.findAllForHtml());
         retMap.put("projects", projectService.findAllForHtml());
+        ObjectMapper mapper = new ObjectMapper();
         retMap.put("projectsJson", mapper.writeValueAsString(projectService.findAllForHtml()));
         retMap.put("size", careerService.findAllForHtml().size() + educationService.findAllForHtml().size() +
                 certificateService.findAllForHtml().size() + projectService.findAllForHtml().size());

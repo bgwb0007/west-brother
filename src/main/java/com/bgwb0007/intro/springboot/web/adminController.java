@@ -3,6 +3,7 @@ package com.bgwb0007.intro.springboot.web;
 import com.bgwb0007.intro.springboot.service.ContactService;
 import com.bgwb0007.intro.springboot.service.ProfilesService;
 import com.bgwb0007.intro.springboot.service.ResumeService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,7 +50,7 @@ public class adminController {
         return "admin/contact/admContact-update";
     }
     @GetMapping("/admin/resume")
-    public String admResumeList(Model model){
+    public String admResumeList(Model model) throws JsonProcessingException {
         model.addAttribute("resume",resumeService.findAll());
         return "admin/resume/admResume";
     }

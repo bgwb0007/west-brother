@@ -1,6 +1,7 @@
 package com.bgwb0007.intro.springboot.web;
 
 import com.bgwb0007.intro.springboot.service.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +29,7 @@ public class IndexController {
         return "posts/posts-save";
     }
     @GetMapping("/resume")
-    public String resume(Model model){
+    public String resume(Model model) throws JsonProcessingException {
         model.addAttribute("resume", resumeService.findAll());
               return "resume/resume";
     }
