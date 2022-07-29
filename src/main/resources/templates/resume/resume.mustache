@@ -118,7 +118,6 @@
                 </div>
                 <script>
                     var tstTitleMap = {};
-                    var tstTitleJson = JSON.parse('{{resume.projectsJson}}'.replaceAll('&quot;','\'').replaceAll('\'','\"'));
 
                 </script>
                 {{#resume.projects}}
@@ -143,7 +142,7 @@
 
     function onInit(){
         getContactList();
-        // appendTistoryModal(tstTitleMap);
+        appendTistoryModal(tstTitleMap);
     }
     function moveBack(){
         location.href = '/';
@@ -196,15 +195,18 @@
             let selectedList = tistoryList.filter(function(content){
                 return content.title.indexOf(tstTitleMap[postId][1]) >=0 ;
             });
-            debugger;
             let html = '';
             $.each(selectedList, function (idx,item){
                 html += '<div id="tstPost-'+item.id+'" class="tstPost">';
                 let title = item.title.split(tstTitleMap[postId][1])[1].trim();
                 html += '    <button type="button" onclick="appendPostDetail(\''+item.id+'\');" class="list-group-item list-group-item-action">'+title+'</button>';
                 html += '</div>';
-            })
-
+            });
+            if(selectedList.length < 1){
+                html += '<div id="tstPost-'+item.id+'" class="tstPost">';
+                html += '    <button type="button" class="list-group-item list-group-item-action">준비중입니다.</button>';
+                html += '</div>';
+            };
             $('#'+modalId +' .modal-body').append(html);
         }
 
@@ -214,7 +216,6 @@
         }else{
             getTistoryList(function (ret){
                 console.log("##티스토리 성공##",ret);
-                debugger;
                 tistoryList = ret.tistory.item.posts;
                 appendSelectedList();
             });
@@ -237,7 +238,6 @@
             html += ret.tistory.item.content;
             html += '</div>'
             $(selId).append(html);
-            debugger;
         })
     }
 

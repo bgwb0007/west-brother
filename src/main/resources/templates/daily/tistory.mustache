@@ -68,7 +68,6 @@
             let selectedList = tistoryList.filter(function(content){
                 return content.title.indexOf(tstTitleMap[postId][1]) >=0 ;
             });
-            debugger;
             let html = '';
             $.each(selectedList, function (idx,item){
                 html += '<div id="tstPost-'+item.id+'" class="tstPost">';
@@ -76,7 +75,6 @@
                 html += '    <button type="button" onclick="appendPostDetail(\''+item.id+'\');" class="list-group-item list-group-item-action">'+title+'</button>';
                 html += '</div>';
             })
-
             if(selectedList.length < 1){
                 html += '<div id="tstPost-'+item.id+'" class="tstPost">';
                 html += '    <button type="button" class="list-group-item list-group-item-action">준비중입니다.</button>';
