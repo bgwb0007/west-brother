@@ -345,4 +345,8 @@ body{
         height: 100px;
         width: 100%;
     }
+
+    .tstDetail img{
+        width: 100%;
+    }
 }
