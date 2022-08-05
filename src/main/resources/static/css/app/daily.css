@@ -1,27 +1,30 @@
 #room{
-    background-image: url('/image/app/room.png');
-    width: 800px;
-    height: 400px;
+    background-image: url('/image/app/room1.png');
+    width: 690px;
+    height: 600px;
     background-size: cover;
-    margin: 0 auto;
+    background-repeat : no-repeat;
+    background-position: center center;
+    /* 위  ? ? 왼쪽*/
+    margin: 50px 0px 0px 100px;
     position: relative;
 }
 #shoesImage{
     display: inline-block;
     position: relative;
-    left: 20px;
-    top: 240px;
+    left: 70px;
+    top: 350px;
 }
 #tennisImage{
     display: inline-block;
     position: relative;
-    left: 460px;
-    top: 250px;
+    left: 700px;
+    top: 300px;
 }
 #deskImage{
     display: inline-block;
     position: relative;
-    left: 80px;
+    left: -60px;
     top: 85px;
 }
 .infoMsgDiv{
