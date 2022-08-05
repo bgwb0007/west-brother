@@ -24,8 +24,8 @@
 #deskImage{
     display: inline-block;
     position: relative;
-    left: -60px;
-    top: 85px;
+    left: -20px;
+    top: 255px;
 }
 .infoMsgDiv{
     width: 120px;
