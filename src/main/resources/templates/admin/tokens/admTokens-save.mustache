@@ -1,0 +1,67 @@
+{{>layout/header}}
+<link href="/css/app/admin.css" rel="stylesheet">
+
+<div class="content">
+    <h2>Tokens 생성하기</h2>
+    <div class="backDiv">
+        <button type="button" class="btn btn-primary" onclick="moveBack();">뒤로가기</button>
+    </div>
+    <div class="formAll container">
+        <div class="mb-3 row">
+            <label for="이름입력" class="col-sm-2 col-form-label">이름</label>
+            <div class="col-sm-10">
+                <input type="text" name="name" class="form-control" id="이름입력" value="">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="url입력" class="col-sm-2 col-form-label">url(사이트이름)</label>
+            <div class="col-sm-10">
+                <input type="text" name="url" class="form-control" id="url입력" value="">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="accessToken입력" class="col-sm-2 col-form-label">accessToken</label>
+            <div class="col-sm-10">
+                <input type="text" name="accessToken" class="form-control" id="accessToken입력" value="">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="expirationPeriod입력" class="col-sm-2 col-form-label">expirationPeriod</label>
+            <div class="col-sm-10">
+                <input type="text" name="expirationPeriod" class="form-control" id="expirationPeriod입력" value="">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-9">
+            </div>
+            <div class="col-3">
+                <button type="button" class="btn btn-primary" onclick="go저장하기();">저장하기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function moveBack(){
+        location.href = "/admin/tokens";
+    }
+    function go저장하기(){
+        let url = '/api/v1/tokens';
+        let jsonP = {
+            'name': $('#이름입력').val(),
+            'url': $('#url입력').val(),
+            'accessToken': $('#accessToken입력').val(),
+            'expirationPeriod': $('#expirationPeriod입력').val(),
+        }
+        wbSave(function (ret){
+            alert('Tokens 저장에 성공했습니다.', ret);
+            moveBack();
+        }, function (ret){
+            alert('Tokens 저장에 실패했습니다.', ret);
+        }, url, jsonP);
+    }
+</script>
+
+
+{{>layout/footer}}

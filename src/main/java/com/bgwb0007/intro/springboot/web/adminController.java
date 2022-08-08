@@ -3,6 +3,7 @@ package com.bgwb0007.intro.springboot.web;
 import com.bgwb0007.intro.springboot.service.ContactService;
 import com.bgwb0007.intro.springboot.service.ProfilesService;
 import com.bgwb0007.intro.springboot.service.ResumeService;
+import com.bgwb0007.intro.springboot.service.TokensService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,8 @@ public class adminController {
     private ContactService contactService;
     @Autowired
     private ResumeService resumeService;
+    @Autowired
+    private TokensService tokensService;
 
     @GetMapping("/admin")
     public String admin(){
@@ -54,6 +57,12 @@ public class adminController {
         model.addAttribute("resume",resumeService.findAll());
         return "admin/resume/admResume";
     }
+    @GetMapping("/admin/tokens")
+    public String admTokensList(Model model) throws JsonProcessingException {
+        model.addAttribute("tokenList", tokensService.findAll());
+        model.addAttribute("tokensListSize", tokensService.findAll().size());
+        return "admin/tokens/admTokens";
+    }
     @GetMapping("/admin/career-save")
     public String admCareerSave(){
         return "admin/resume/admCareer-save";
@@ -86,7 +95,12 @@ public class adminController {
     public String admProjectUpdate(){
         return "admin/resume/admProject-update";
     }
-    @GetMapping("/admin/insta-token")
+    @GetMapping("/admin/tokens-save")
+    public String admTokensSave(){
+        return "admin/tokens/admTokens-save";
+    }
+
+    @GetMapping("/admin/insta-token") //인스타 api 토큰 발급용 페이지
     public String admInstagramToken(){
         return "admin/instagram/admInstagramToken";
     }

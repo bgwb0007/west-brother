@@ -1,5 +1,6 @@
 package com.bgwb0007.intro.springboot.domain.shoes;
 
+import com.bgwb0007.intro.springboot.domain.BaseTimeEntity;
 import com.bgwb0007.intro.springboot.util.StringUtil;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +16,7 @@ import java.util.Map;
 @Entity
 @NoArgsConstructor
 @Data
-public class Shoes {
+public class Shoes extends BaseTimeEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
