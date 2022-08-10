@@ -194,7 +194,7 @@ body{
 }
 
 /* 모바일 버전 */
-@media (max-width: 990px){
+@media (max-width: 900px){
     .wrapper {
         display: flex;
         flex-direction: row;
@@ -339,6 +339,9 @@ body{
         content: "-";
         font-size: 20px;
         font-weight: 800;
+    }
+    .projectContent:hover{
+        transform: scale(1.05);
     }
 
     .resumeFooter{

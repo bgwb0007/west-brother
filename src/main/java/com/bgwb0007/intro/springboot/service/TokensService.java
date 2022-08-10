@@ -29,4 +29,8 @@ public class TokensService {
                 .map(TokensListResponseDto::new)
                 .collect(Collectors.toList());
     }
+    public Tokens findByName(String name){
+        return tokensRepository.findByName(name)
+                .orElseThrow(()->new IllegalArgumentException("해당 토큰 데이터가 없습니다. name="+name));
+    }
 }

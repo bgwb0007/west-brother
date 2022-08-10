@@ -1,5 +1,7 @@
 package com.bgwb0007.intro.springboot.util;
 
+import com.bgwb0007.intro.springboot.service.TokensService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -10,14 +12,17 @@ import org.springframework.web.client.RestTemplate;
 
 @Component
 public class TistoryApi {
-    private static final String accessToken = "81cfa6c4af86d12cf5f9522f7a90002d_1d2d6d661e27aaa4514913d0d207a396";
+    @Autowired
+    private TokensService tokensService;
 
     public String getAll(){
+        String accessToken = tokensService.findByName("티스토리").getAccessToken();
         String url = "https://www.tistory.com/apis/post/list?output=json&blogName=west-brother&page=1"
                 + "&access_token=" + accessToken;
         return sendHttp(url);
     }
     public String getDetail(String id){
+        String accessToken = tokensService.findByName("티스토리").getAccessToken();
         String url = "https://www.tistory.com/apis/post/read?blogName=west-brother&output=json"
                + "&access_token=" + accessToken
                + "&postId=" + id;
