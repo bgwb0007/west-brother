@@ -6,17 +6,33 @@
     <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
         <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
     </symbol>
+    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+    </symbol>
 </svg>
-<div class="alert alert-primary d-flex align-items-center" role="alert">
+<div class="top-alert-pc alert alert-primary d-flex align-items-center" role="alert">
     <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
     <div>
         캐릭터를 마우스로 이동해 주세요
     </div>
 </div>
+<div class="top-alert-mobile alert alert-danger d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+    <div>
+        PC 모니터 크기로 창을 키워주세요. (모바일 화면은 준비중입니다)
+    </div>
+</div>
 
-<div id="room">
+<div class="top-alert-mobile d-grid gap-2 d-md-block">
+    <button class="btn btn-outline-primary" type="button" onclick="getShoesList('ALL');">Shoes</button>
+    <button class="btn btn-outline-success" type="button" onclick="getInstagramList()">Tennis</button>
+    <button class="btn btn-outline-secondary" type="button" onclick="">Dev log</button>
+</div>
+
+<div id="room" class="top-alert-pc">
     <div id="shoesImage" class="droppableArea rounded-circle">
-        <img src="image/app/shoesAll-bg.png" width="180px">
+<!--        길이 수정시 css 함께 수정하기-->
+        <img src="image/app/shoesAll-bg.png" width="180px" height="91px">
     </div>
     <div id="tennisImage" class="droppableArea rounded-circle">
         <img src="image/app/tennisAll-bg3.png" width="250px">
@@ -26,11 +42,7 @@
     </div>
 </div>
 
-<div>
-    <button type="button" onclick="getShoesList('ALL');">shoes</button>
-    <button type="button" onclick="getInstagramList()">tennis</button>
-    <button type="button" onclick="">dev</button>
-</div>
+
 <div id="contents">
     <div class="infoMsgDiv">
         <img src="image/app/character3.png" id="ball">
@@ -117,32 +129,33 @@
     };
     
     function onShoes(){
-        $('#contents').text('##### shoes contents #####');
+        $('#contents').text('');
         ball.src = '/image/app/character3.png';
         ball.width = 130;
         getShoesList('ALL');
     }
     function onTennis(){
-        $('#contents').text('##### tennis contents #####');
+        $('#contents').text('');
         ball.src = '/image/app/onTennis.png';
         ball.width = 130;
         getInstagramList();
     }
     function onDesk(){
-        $('#contents').text('##### desk contents #####');
+        $('#contents').text('');
         ball.src = '/image/app/character3.png';
         ball.width = 130;
+        alert('준비중입니다.')
 
     }
 
     function getShoesList(category){
         if(shoesList != undefined){
-            $('#contents').text('##### shoes contents #####');
+            $('#contents').text('');
             loadShoesList(sortShoesList(shoesList, category), category);
             return;
         }
         var successCallBack = function (ret){
-            $('#contents').text('##### shoes contents #####');
+            $('#contents').text('');
             shoesList = ret;
             loadShoesList(sortShoesList(shoesList, category), category);
         }
@@ -155,7 +168,7 @@
         },url);
     }
     function loadShoesList(list,category){
-        $('#contents').text('##### shoes contents #####');
+        $('#contents').text('');
         appendShoes(list, category);
         addCategoryEvent();
     }
@@ -254,20 +267,18 @@
     }
 
     function getInstagramList(){
-        if(instagramList!=undefined){
-            $('#contents').text('##### tennis contents #####');
+        if(instagramList!=undefined || instagramList.length > 0){
+            $('#contents').text('');
             appendInstagram(instagramList);
             return;
         }
         var successCallBack = function (ret){
             console.log("##인스타불러오기 성공##",ret);
-            $('#contents').text('##### tennis contents #####');
+            $('#contents').text('');
             instagramList = sortVideoList(ret.data);
             appendInstagram(instagramList);
         }
-        alert('인스타 api 설정중');
-        return
-        let url = '';
+        let url = '/api/v1/instagram';
         wbGetJson(successCallBack,function (ret){
             console.log("##인스타불러오기 실패##",ret);
             alert('오류로 인해 실패했습니다.');

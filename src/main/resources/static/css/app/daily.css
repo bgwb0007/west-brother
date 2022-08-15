@@ -1,3 +1,9 @@
+.top-alert-pc{
+    display: flex!important;
+}
+.top-alert-mobile{
+    display: none!important;
+}
 #room{
     background-image: url('/image/app/room1.png');
     width: 690px;
@@ -14,18 +20,28 @@
     position: relative;
     left: 70px;
     top: 350px;
+
+    /*수정시 이미지 태그 함께수정하기*/
+    width: 180px;
+    height: 91px;
 }
 #tennisImage{
     display: inline-block;
     position: relative;
     left: 700px;
     top: 300px;
+
+    width: 250px;
+    height: 123.5px;
 }
 #deskImage{
     display: inline-block;
     position: relative;
     left: -20px;
     top: 255px;
+
+    width: 120px;
+    height: 134px;
 }
 .infoMsgDiv{
     width: 120px;
@@ -124,4 +140,18 @@
     padding-right: 0.5rem;
     padding-bottom: 0.8rem;
     border-radius: 0 0 10px 10px;
+}
+
+/* 모바일 버전 */
+@media (max-width: 1200px){
+    .top-alert-pc{
+        display: none!important;
+    }
+    .top-alert-mobile{
+        display: flex!important;
+    }
+    .top-alert-mobile.d-grid{
+        margin-bottom: 2rem;
+        margin-left: 1rem;
+    }
 }
