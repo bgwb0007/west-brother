@@ -11,21 +11,27 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 @Component
-public class TistoryApi {
+public class ExternalApi {
     @Autowired
     private TokensService tokensService;
 
-    public String getAll(){
+    public String getTistoryAll(){
         String accessToken = tokensService.findByName("티스토리").getAccessToken();
         String url = "https://www.tistory.com/apis/post/list?output=json&blogName=west-brother&page=1"
                 + "&access_token=" + accessToken;
         return sendHttp(url);
     }
-    public String getDetail(String id){
+    public String getTistoryDetail(String id){
         String accessToken = tokensService.findByName("티스토리").getAccessToken();
         String url = "https://www.tistory.com/apis/post/read?blogName=west-brother&output=json"
                + "&access_token=" + accessToken
                + "&postId=" + id;
+        return sendHttp(url);
+    }
+    public String getInstagramAll(){
+        String accessToken = tokensService.findByName("인스타").getAccessToken();
+        String url = "https://graph.instagram.com/17841406368962723/media?fields=id,media_type,media_url,permalink,thumbnail_url,username,caption&access_token=";
+        url += accessToken;
         return sendHttp(url);
     }
     private String sendHttp(String url) {
