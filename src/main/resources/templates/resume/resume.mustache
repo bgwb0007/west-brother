@@ -231,7 +231,11 @@
         let selId = '#tstPost-' + num;
         let selButton = selId + ' button';
 
-        if($(selButton).hasClass('active')) return;
+        if($(selButton).hasClass('active')) {
+            $(selButton).removeClass('active');
+            $(selButton).next().remove();
+            return;
+        }
 
         $(selButton).addClass('active');
 
