@@ -192,6 +192,12 @@ body{
     border: 1px solid lightgray;
     padding: 1rem;
 }
+.imageblock{
+    text-align: center;
+}
+.tstDetail img{
+    max-width: 95%;
+}
 
 /* 모바일 버전 */
 @media (max-width: 900px){
