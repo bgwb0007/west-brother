@@ -159,6 +159,7 @@
     /*모바일 인스타그램*/
     .instagram-All{
         width: 85%;
+        max-width: 400px;
     }
     .instagram-All video{
         width: 100%;
