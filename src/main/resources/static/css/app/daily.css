@@ -59,39 +59,33 @@
     width: 90%;
     margin: 0 auto;
 }
-.shoes-sortOrder{
-    margin-bottom: 1rem;
+.card{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 1.2rem;
 }
-.shoesMain {
-    width: 250px;
+.card-headder{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
-.shoesMain img{
-    width: 230px;
+
+.card-thumbnail-box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.shoes .badge{
+    font-size: 1rem;
 }
 .img-thumbnail {
     height: 150px;
-}
-/* 브랜드 */
-.shoes p:nth-child(2) span:nth-child(1){
-    font-size: 24px;
-    text-decoration : underline;
-}
-/* 이름 */
-.shoes p:nth-child(2) span:nth-child(3){
-    font-size: 24px;
-}
-/* 모델명 */
-.shoes p:nth-child(2) span:nth-child(5){
-    font-size: 18px;
-    color: gray;
-}
-.shoes p:nth-child(n+3)::before{
-    content:"";
-    background-image: url("/image/app/shoesIcon.png");
-    background-size:30px 30px;
-    width:30px;
-    height:25px;
-    display:inline-block;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
 }
 
 /* ###### instagram ###### */
