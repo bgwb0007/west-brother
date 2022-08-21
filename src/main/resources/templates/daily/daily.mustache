@@ -211,10 +211,10 @@
             html += '                       <small class="text-muted">'+item.purchaseDate+'</small>';
             html += '                   </div>';
             html += '                   <h5 class="card-title">'+item.brand+'</h5>';
-            html += '                   <p class="card-text">'+item.name+'<small class="text-muted">('+item.productCode+') | size '+item.size+'</small></p>';
+            html += '                   <p class="card-text">'+item.name+'<br/><small class="text-muted">('+item.productCode+') | size '+item.size+'</small></p>';
             html += '                   <ul class="list-group list-group-flush">';
             html += '                       <li class="list-group-item">구입처 : '+item.buy+'</li>';
-            html += '                       <li class="list-group-item">price : '+item.releasePrice+'원 / resell: '+item.sellPrice+'원 (' + getYield(item) + '%)</li>';
+            html += '                       <li class="list-group-item">price : '+item.releasePrice+'원 <br/> resell: '+item.sellPrice+'원 (' + getYield(item) + '%)</li>';
             html += '                       <li class="list-group-item">'+item.content+'</li>';
             html += '                   </ul>';
             html += '               </div>';
