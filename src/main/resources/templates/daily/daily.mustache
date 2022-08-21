@@ -206,12 +206,12 @@
             html += '           <div class="col-md-8">';
             html += '               <div class="card-body">';
             html += '                   <div class="card-headder">';
-            html += '                       <!-- <span class="badge rounded-pill bg-success">shoesStatus[item.status]</span> -->';
-            html += '                       <span></span>';
+            html += '                       <span class="badge rounded-pill bg-success">shoesStatus[item.status]</span>';
+            // html += '                       <span></span>';
             html += '                       <small class="text-muted">'+item.purchaseDate+'</small>';
             html += '                   </div>';
             html += '                   <h5 class="card-title">'+item.brand+'</h5>';
-            html += '                   <p class="card-text">'+item.name+'<br/><small class="text-muted">('+item.productCode+') | size '+item.size+'</small></p>';
+            html += '                   <p class="card-text">'+item.name+'<br/><small class="text-muted">'+item.productCode+' | size '+item.size+'</small></p>';
             html += '                   <ul class="list-group list-group-flush">';
             html += '                       <li class="list-group-item">구입처 : '+item.buy+'</li>';
             html += '                       <li class="list-group-item">price : '+item.releasePrice+'원 <br/> resell: '+item.sellPrice+'원 (' + getYield(item) + '%)</li>';
