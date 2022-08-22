@@ -192,6 +192,19 @@ body{
     border: 1px solid lightgray;
     padding: 1rem;
 }
+.tstDetail hr{
+    margin: 1rem auto;
+    width: 80%;
+}
+/*인용글*/
+.tstDetail blockquote{
+    border: 1px solid #dddddd;
+    background: #fcfcfc;
+    text-align: left;
+    padding: 21px 25px 20px 25px;
+    color: #666;
+    line-height: 1.75;
+}
 .imageblock{
     text-align: center;
 }
