@@ -15,6 +15,10 @@ public class ExternalApiController {
     public String getTistoryAllList(){
         return externalApi.getTistoryAll();
     }
+    @GetMapping("/api/v1/tistory/category")
+    public String getTistoryCategory(){
+        return externalApi.getTistoryCategory();
+    }
     @GetMapping("/api/v1/tistory/{id}")
     public String getTistoryDetail(@PathVariable String id){
         return externalApi.getTistoryDetail(id);

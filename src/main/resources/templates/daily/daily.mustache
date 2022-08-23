@@ -215,7 +215,9 @@
             html += '                   <p class="card-text">'+item.name+'<br/><small class="text-muted">'+item.productCode+' | size '+item.size+'</small></p>';
             html += '                   <ul class="list-group list-group-flush">';
             html += '                       <li class="list-group-item">구입처 : '+item.buy+'</li>';
-            html += '                       <li class="list-group-item">price : '+item.releasePrice.toLocaleString()+'원 <br/> resell: '+item.sellPrice.toLocaleString()+'원 (' + getYield(item) + '%)</li>';
+            let price = item.releasePrice;
+            let resell = item.sellPrice;
+            html += '                       <li class="list-group-item">price : '+price.toLocaleString()+'원 <br/> resell: '+resell.toLocaleString()+'원 (' + getYield(item) + '%)</li>';
             html += '                       <li class="list-group-item">'+item.content+'</li>';
             html += '                   </ul>';
             html += '               </div>';

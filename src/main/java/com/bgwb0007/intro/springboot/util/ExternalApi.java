@@ -28,6 +28,12 @@ public class ExternalApi {
                + "&postId=" + id;
         return sendHttp(url);
     }
+    public String getTistoryCategory(){
+        String accessToken = tokensService.findByName("티스토리").getAccessToken();
+        String url = "https://www.tistory.com/apis/category/list?output=json&blogName=west-brother"
+                + "&access_token=" + accessToken;
+        return sendHttp(url);
+    }
     public String getInstagramAll(){
         String accessToken = tokensService.findByName("인스타").getAccessToken();
         String url = "https://graph.instagram.com/17841406368962723/media?fields=id,media_type,media_url,permalink,thumbnail_url,username,caption&access_token=";

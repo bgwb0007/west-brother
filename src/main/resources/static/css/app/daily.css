@@ -71,6 +71,12 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+
+    margin-bottom: 6px;
+}
+
+.card-title{
+    margin-bottom: 4px;
 }
 
 .card-thumbnail-box{
@@ -84,19 +90,20 @@
     margin-top: 0.5rem;
 }
 
-.shoes .badge{
-    font-size: 1rem;
-}
+
 .img-thumbnail {
     height: 150px;
     margin-left: 1rem;
     margin-bottom: 1rem;
-
 }
+
+
 .card .list-group-item{
     font-size: 0.9rem;
 }
-
+.list-group-flush>.list-group-item:last-child {
+    border-width: 0 0 1px;
+}
 
 
 /* ###### instagram ###### */
