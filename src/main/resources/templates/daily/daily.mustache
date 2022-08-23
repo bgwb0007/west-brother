@@ -44,7 +44,7 @@
 
 
 <div id="contents">
-    <div class="infoMsgDiv">
+    <div class="ballDiv">
         <img src="image/app/character3.png" id="ball" width="100px">
     </div>
 </div>
@@ -176,7 +176,8 @@
     function appendShoes(list, category){
 
         let getYield = function (item){
-            return Math.round(((item.sellPrice/item.releasePrice)-1 ) * 10000) / 100;
+            let yield = Math.round(((item.sellPrice/item.releasePrice)-1 ) * 10000) / 100
+            return yield >= 0 ? '+' + yield : yield;
         }
         let shoesStatus = {
             '사용중' : '                            <span class="badge rounded-pill bg-success">사용중</span>',
@@ -214,7 +215,7 @@
             html += '                   <p class="card-text">'+item.name+'<br/><small class="text-muted">'+item.productCode+' | size '+item.size+'</small></p>';
             html += '                   <ul class="list-group list-group-flush">';
             html += '                       <li class="list-group-item">구입처 : '+item.buy+'</li>';
-            html += '                       <li class="list-group-item">price : '+item.releasePrice+'원 <br/> resell: '+item.sellPrice+'원 (' + getYield(item) + '%)</li>';
+            html += '                       <li class="list-group-item">price : '+item.releasePrice.toLocaleString()+'원 <br/> resell: '+item.sellPrice.toLocaleString()+'원 (' + getYield(item) + '%)</li>';
             html += '                       <li class="list-group-item">'+item.content+'</li>';
             html += '                   </ul>';
             html += '               </div>';

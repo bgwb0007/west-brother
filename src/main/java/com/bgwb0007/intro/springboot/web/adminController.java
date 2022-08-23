@@ -63,6 +63,9 @@ public class adminController {
         model.addAttribute("tokensListSize", tokensService.findAll().size());
         return "admin/tokens/admTokens";
     }
+
+
+
     @GetMapping("/admin/career-save")
     public String admCareerSave(){
         return "admin/resume/admCareer-save";

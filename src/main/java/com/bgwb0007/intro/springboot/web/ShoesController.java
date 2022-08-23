@@ -35,7 +35,7 @@ public class ShoesController {
         return "shoes/shoes-save";
     }
 
-    @PostMapping("/shoes/new")
+    @PostMapping("/api/v1/shoes")
     public String saveItem(@ModelAttribute ShoesSaveRequestDto requestDto, RedirectAttributes redirectAttributes) throws IOException {
 //        redirectAttributes.addAttribute("fileName", shoesService.save(requestDto)); 쿼리스트링
         shoesService.save(requestDto);
