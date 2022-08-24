@@ -125,12 +125,7 @@
                 $('#dev-card-wrapper').append(test);
             }
         });
-        getTistoryList(function (ret){
-            console.log("##티스토리 성공##",ret);
-            debugger
-            tistoryList = ret.tistory.item.posts;
-            appendSelectedCategory();
-        });
+
     }
     var tistoryList;
     var selectedTistoryList;
@@ -143,13 +138,29 @@
             debugger;
         },url);
     }
+    function getTistoryCategoryList(successCallBack){
+        let url = '/api/v1/tistory/category';
+        wbGetJson(successCallBack,function (ret){
+            console.log("##티스토리 실패##",ret);
+            debugger;
+        },url);
+    }
     function onCategory(category, successCallBack){
         // selectedTistoryList = tistoryList.filter(function(content){
         //     return content.category.indexOf() >=0 ;
         // });
+        getTistoryCategoryList(function (ret){
+            console.log("##티스토리 성공##",ret);
+            debugger
+        });
     }
     function appendPost(){
-
+        getTistoryList(function (ret){
+            console.log("##티스토리 성공##",ret);
+            debugger
+            tistoryList = ret.tistory.item.posts;
+            appendSelectedCategory();
+        });
     }
 
     var shoesList;
