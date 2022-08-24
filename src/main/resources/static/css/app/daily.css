@@ -34,7 +34,7 @@
     width: 200px;
     height: 98px;
 }
-#deskImage{
+#devImage{
     display: inline-block;
     position: relative;
     left: 10px;
@@ -60,13 +60,13 @@
     width: 90%;
     margin: 0 auto;
 }
-.card{
+.shoesAll .card{
     display: flex;
     flex-direction: row;
     align-items: center;
     margin-top: 1.2rem;
 }
-.card-headder{
+.shoesAll .card-headder{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -75,11 +75,11 @@
     margin-bottom: 6px;
 }
 
-.card-title{
+.shoesAll .card-title{
     margin-bottom: 4px;
 }
 
-.card-thumbnail-box{
+.shoesAll .card-thumbnail-box{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -91,14 +91,14 @@
 }
 
 
-.img-thumbnail {
+.shoesAll .img-thumbnail {
     height: 150px;
     margin-left: 1rem;
     margin-bottom: 1rem;
 }
 
 
-.card .list-group-item{
+.shoesAll .card .list-group-item{
     font-size: 0.9rem;
 }
 .list-group-flush>.list-group-item:last-child {
@@ -155,6 +155,30 @@
     border-radius: 0 0 10px 10px;
 }
 
+/* ###### dev ###### */
+.devAll{
+    /*모바일에서 크기조정하기*/
+    width: 90%;
+    margin: 0 auto;
+}
+.devAll .card{
+    margin-top: 1.2rem;
+}
+.devAll .card-body{
+    padding: 1.1rem;
+}
+.devAll .card-title{
+    margin-top: 0.3rem;
+    margin-bottom: 0.8rem;
+}
+.devAll .card-text{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
 /* 모바일 버전 */
 @media (max-width: 1000px){
     .top-alert-pc{
@@ -171,7 +195,7 @@
         display: none;
     }
     /*모바일 신발*/
-    .card-thumbnail-box{
+    .shoesAll .card-thumbnail-box{
         justify-content: flex-start;
     }
 

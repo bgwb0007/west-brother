@@ -37,7 +37,7 @@
     <div id="tennisImage" class="droppableArea rounded-circle">
         <img src="image/app/tennisAll-bg3.png" width="200px">
     </div>
-    <div id="deskImage" class="droppableArea rounded-circle">
+    <div id="devImage" class="droppableArea rounded-circle">
         <img src="image/app/desk1.png" width="85px">
     </div>
 </div>
@@ -47,8 +47,111 @@
     <div class="ballDiv">
         <img src="image/app/character3.png" id="ball" width="100px">
     </div>
+
+
+    <div class="devAll">
+        <div class="dev-sortOrder">
+            <span class="devCategory badge rounded-pill bg-primary">전체</span>
+            <span class="devCategory badge rounded-pill bg-secondary">프로젝트</span>
+            <span class="devCategory badge rounded-pill bg-secondary">개발기록</span>
+        </div>
+
+        <div id="dev-card-wrapper">
+
+            <div class="card shadow-sm rounded">
+                <div class="card-body">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="card-subtitle mb-2 ">KB카드</h6>
+                        <small class="card-subtitle text-muted">2022-04-28</small>
+                    </div>
+                    <h5 class="card-title">프로젝트 회고</h5>
+                    <div class="card-text text-break text-muted">text-truncate Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.text-truncate Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</div>
+                </div>
+            </div>
+            <div class="card shadow-sm rounded">
+                <div class="card-body">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="card-subtitle mb-2 ">KB카드</h6>
+                        <small class="card-subtitle text-muted">2022-04-28</small>
+                    </div>
+                    <h5 class="card-title">프로젝트 회고</h5>
+                    <div class="card-text text-break text-muted">text-truncate Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.text-truncate Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</div>
+                </div>
+            </div>
+            <div class="card shadow-sm rounded">
+                <div class="card-body">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="card-subtitle mb-2 ">KB카드</h6>
+                        <small class="card-subtitle text-muted">2022-04-28</small>
+                    </div>
+                    <h5 class="card-title">프로젝트 회고</h5>
+                    <div class="card-text text-break text-muted">text-truncate Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.text-truncate Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</div>
+                </div>
+            </div>
+            <div class="card shadow-sm rounded">
+                <div class="card-body">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="card-subtitle mb-2 ">KB카드</h6>
+                        <small class="card-subtitle text-muted">2022-04-28</small>
+                    </div>
+                    <h5 class="card-title">프로젝트 회고</h5>
+                    <div class="card-text text-break text-muted">text-truncate Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.text-truncate Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</div>
+                </div>
+            </div>
+            <div class="card shadow-sm rounded">
+                <div class="card-body">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="card-subtitle mb-2 ">KB카드</h6>
+                        <small class="card-subtitle text-muted">2022-04-28</small>
+                    </div>
+                    <h5 class="card-title">프로젝트 회고</h5>
+                    <div class="card-text text-break text-muted">text-truncate Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.text-truncate Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
 </div>
 <script>
+    function onInit(){
+        $(document).scroll(function() {
+            var maxHeight = $(document).height();
+            var currentScroll = $(window).scrollTop() + $(window).height();
+            if (maxHeight <= currentScroll + 200) {
+                let test = '';
+                $('#dev-card-wrapper').append(test);
+            }
+        });
+        getTistoryList(function (ret){
+            console.log("##티스토리 성공##",ret);
+            debugger
+            tistoryList = ret.tistory.item.posts;
+            appendSelectedCategory();
+        });
+    }
+    var tistoryList;
+    var selectedTistoryList;
+    var tistoryDetailMap = {};
+    var stIdx, endIdx;
+    function getTistoryList(successCallBack){
+        let url = '/api/v1/tistory';
+        wbGetJson(successCallBack,function (ret){
+            console.log("##티스토리 실패##",ret);
+            debugger;
+        },url);
+    }
+    function onCategory(category, successCallBack){
+        // selectedTistoryList = tistoryList.filter(function(content){
+        //     return content.category.indexOf() >=0 ;
+        // });
+    }
+    function appendPost(){
+
+    }
+
     var shoesList;
     var instagramList;
 
@@ -199,7 +302,7 @@
         html += '        </div>';
         html += '        <div class="shoes-content">';
         $.each(list,function (idx,item){
-            html += '<div class="card mb-3" style="max-width: 1000px; ">';
+            html += '<div class="card mb-3 shadow-sm" style="max-width: 1000px; ">';
             html += '    <div class="row g-0">';
             html += '        <div class="col-md-4">';
             html += '            <img src="/images/'+item.mainImage+'" class="img-fluid rounded-start" alt="...">';
@@ -215,9 +318,9 @@
             html += '                   <p class="card-text">'+item.name+'<br/><small class="text-muted">'+item.productCode+' | size '+item.size+'</small></p>';
             html += '                   <ul class="list-group list-group-flush">';
             html += '                       <li class="list-group-item">구입처 : '+item.buy+'</li>';
-            let price = item.releasePrice;
-            let resell = item.sellPrice;
-            html += '                       <li class="list-group-item">price : '+price.toLocaleString()+'원 <br/> resell: '+resell.toLocaleString()+'원 (' + getYield(item) + '%)</li>';
+            let price = item.releasePrice.replace(/\B(?=(\d{3})+(?!\d))/g, ',');;
+            let resell = item.sellPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ',');;
+            html += '                       <li class="list-group-item">price : '+price+'원 <br/> resell: '+resell+'원 (' + getYield(item) + '%)</li>';
             html += '                       <li class="list-group-item">'+item.content+'</li>';
             html += '                   </ul>';
             html += '               </div>';
