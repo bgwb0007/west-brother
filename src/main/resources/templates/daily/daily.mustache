@@ -26,7 +26,7 @@
 <div class="top-alert-mobile d-grid gap-2 d-md-block">
     <button class="btn btn-outline-primary" type="button" onclick="getShoesList('ALL');">Shoes</button>
     <button class="btn btn-outline-success" type="button" onclick="getInstagramList()">Tennis</button>
-    <button class="btn btn-outline-secondary" type="button" onclick="">Dev log</button>
+    <button class="btn btn-outline-secondary" type="button" onclick="devInit();">Dev log</button>
 </div>
 
 <div id="room" class="top-alert-pc">
@@ -37,7 +37,7 @@
     <div id="tennisImage" class="droppableArea rounded-circle">
         <img src="image/app/tennisAll-bg3.png" width="200px">
     </div>
-    <div id="devImage" class="droppableArea rounded-circle">
+    <div id="deskImage" class="droppableArea rounded-circle">
         <img src="image/app/desk1.png" width="85px">
     </div>
 </div>
@@ -47,94 +47,41 @@
     <div class="ballDiv">
         <img src="image/app/character3.png" id="ball" width="100px">
     </div>
-
-
-    <div class="devAll">
-        <div class="dev-sortOrder">
-            <span class="devCategory badge rounded-pill bg-primary">전체</span>
-            <span class="devCategory badge rounded-pill bg-secondary">프로젝트</span>
-            <span class="devCategory badge rounded-pill bg-secondary">개발기록</span>
-        </div>
-
-        <div id="dev-card-wrapper">
-
-            <div class="card shadow-sm rounded">
-                <div class="card-body">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h6 class="card-subtitle mb-2 ">KB카드</h6>
-                        <small class="card-subtitle text-muted">2022-04-28</small>
-                    </div>
-                    <h5 class="card-title">프로젝트 회고</h5>
-                    <div class="card-text text-break text-muted">text-truncate Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.text-truncate Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</div>
-                </div>
-            </div>
-            <div class="card shadow-sm rounded">
-                <div class="card-body">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h6 class="card-subtitle mb-2 ">KB카드</h6>
-                        <small class="card-subtitle text-muted">2022-04-28</small>
-                    </div>
-                    <h5 class="card-title">프로젝트 회고</h5>
-                    <div class="card-text text-break text-muted">text-truncate Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.text-truncate Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</div>
-                </div>
-            </div>
-            <div class="card shadow-sm rounded">
-                <div class="card-body">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h6 class="card-subtitle mb-2 ">KB카드</h6>
-                        <small class="card-subtitle text-muted">2022-04-28</small>
-                    </div>
-                    <h5 class="card-title">프로젝트 회고</h5>
-                    <div class="card-text text-break text-muted">text-truncate Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.text-truncate Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</div>
-                </div>
-            </div>
-            <div class="card shadow-sm rounded">
-                <div class="card-body">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h6 class="card-subtitle mb-2 ">KB카드</h6>
-                        <small class="card-subtitle text-muted">2022-04-28</small>
-                    </div>
-                    <h5 class="card-title">프로젝트 회고</h5>
-                    <div class="card-text text-break text-muted">text-truncate Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.text-truncate Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</div>
-                </div>
-            </div>
-            <div class="card shadow-sm rounded">
-                <div class="card-body">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h6 class="card-subtitle mb-2 ">KB카드</h6>
-                        <small class="card-subtitle text-muted">2022-04-28</small>
-                    </div>
-                    <h5 class="card-title">프로젝트 회고</h5>
-                    <div class="card-text text-break text-muted">text-truncate Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.text-truncate Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</div>
-                </div>
-            </div>
-
-
-        </div>
-    </div>
-
-
 </div>
 <script>
     function onInit(){
-        $(document).scroll(devScrollFnc);
+        getTistoryCategoryList();
+    }
 
+
+    function devInit(){
+        document.addEventListener('scroll',devScrollFnc);
+        // document.removeEventListener('scroll',devScrollFnc);
+        devHeaderAppend();
         getTistoryList(function (ret){
             console.log("##티스토리 성공##",ret);
             tistoryList = ret.tistory.item.posts;
+
+            //초기화 작업!
+            selectedTistoryList = [...tistoryList];
+            stIdx = 0;
+            endIdx = 4;
+            appendPost();
         });
-        getTistoryCategoryList()
+
     }
     function devScrollFnc(){
         var maxHeight = $(document).height();
         var currentScroll = $(window).scrollTop() + $(window).height();
-        if (maxHeight <= currentScroll + 200) {
+        if (maxHeight <= currentScroll + 100) {
             debugger
             if (stIdx >= endIdx)  return;
-            let test = '';
-            $('#dev-card-wrapper').append(test);
+
+            //html 추가함수 실행
+            appendPost();
         }
     }
+
 
     var tistoryList;
     var selectedTistoryList;
@@ -156,10 +103,10 @@
     function getTistoryCategoryList(){
         let url = '/api/v1/tistory/category';
         var callBack = (ret) => {
-            if(ret?.status ==='200'){
+            if(ret?.tistory?.status ==='200'){
                 console.log("##티스토리 성공##",ret);
                 let categoryList = ret.tistory.item.categories;
-                $.each(categoryList,function (item){
+                $.each(categoryList,function (idx,item){
                     if(item.label.indexOf('개인') > -1) tistoryCategoryMap.프로젝트.push(item.id);
                     else tistoryCategoryMap.개발기록.push(item.id);
                 });
@@ -176,18 +123,60 @@
         endIdx = 4;
         appendPost();
     }
+
+    //html 추가함수
     function appendPost(){
         let size = selectedTistoryList.length;
+        let isFinish = false;
         while(true){
-            if(stIdx >= size) break
+            if(stIdx >= size) {
+                isFinish = true;
+                endIdx = stIdx;
+                break
+            }
             //html 생성
-            let html = '';
+            let item = selectedTistoryList[stIdx];
+            let temp = item.title.split(']');
+            let titleHeader = temp[0].slice(1);
+            let title = temp[1];
+            let datetime = item.date.split(' ')[0];
+            //TODO. 컨텐츠 가져오기
+            let content = '' ;
 
+            let html = '';
+            html += '<div class="card shadow-sm rounded">';
+            html += '    <div class="card-body">';
+            html += '        <div class="d-flex w-100 justify-content-between">';
+            html += '            <small class="card-subtitle mb-2 ">'+titleHeader+'</small>';
+            html += '            <small class="card-subtitle text-muted">'+datetime+'</small>';
+            html += '        </div>';
+            html += '        <h5 class="card-title">'+title+'</h5>';
+            html += '        <div class="card-text text-break text-muted">ㄱㄱㄱㄱㄱ<br/>ㄱㄱㄱㄱ<br/>ㄱㄱㄱ</div>';
+            html += '    </div>';
+            html += '</div>';
+            $('#dev-card-wrapper').append(html);
 
             stIdx++;
-
-
+            if(stIdx > endIdx){
+                isFinish = true;
+                endIdx += 2; // 스크롤시 두개씩 추가
+                break
+            }
         }
+
+    }
+    function devHeaderAppend(){
+        let html = '';
+        html += '<div class="devAll">';
+        html += '    <div class="dev-sortOrder">';
+        html += '        <span class="devCategory badge rounded-pill bg-primary">전체</span>';
+        html += '        <span class="devCategory badge rounded-pill bg-secondary">프로젝트</span>';
+        html += '        <span class="devCategory badge rounded-pill bg-secondary">개발기록</span>';
+        html += '    </div>';
+        html += '    <div id="dev-card-wrapper">';
+        html += '    </div>';
+        html += '</div>';
+        $('#contents').append(html);
     }
 
     var shoesList;
@@ -285,8 +274,7 @@
         $('#contents').text('');
         ball.src = '/image/app/character3.png';
         ball.width = 100;
-        alert('준비중입니다.');
-
+        devInit();
     }
 
     function getShoesList(category){
