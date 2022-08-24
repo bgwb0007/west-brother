@@ -117,20 +117,33 @@
 </div>
 <script>
     function onInit(){
-        $(document).scroll(function() {
-            var maxHeight = $(document).height();
-            var currentScroll = $(window).scrollTop() + $(window).height();
-            if (maxHeight <= currentScroll + 200) {
-                let test = '';
-                $('#dev-card-wrapper').append(test);
-            }
-        });
+        $(document).scroll(devScrollFnc);
 
+        getTistoryList(function (ret){
+            console.log("##티스토리 성공##",ret);
+            tistoryList = ret.tistory.item.posts;
+        });
+        getTistoryCategoryList()
     }
+    function devScrollFnc(){
+        var maxHeight = $(document).height();
+        var currentScroll = $(window).scrollTop() + $(window).height();
+        if (maxHeight <= currentScroll + 200) {
+            debugger
+            if (stIdx >= endIdx)  return;
+            let test = '';
+            $('#dev-card-wrapper').append(test);
+        }
+    }
+
     var tistoryList;
     var selectedTistoryList;
     var tistoryDetailMap = {};
     var stIdx, endIdx;
+    var tistoryCategoryMap = {
+        '프로젝트':[],
+        '개발기록':[]
+    }
     function getTistoryList(successCallBack){
         let url = '/api/v1/tistory';
         wbGetJson(successCallBack,function (ret){
@@ -138,29 +151,43 @@
             debugger;
         },url);
     }
-    function getTistoryCategoryList(successCallBack){
+
+    //티스토리 게시판 카테고리 초기화 함수
+    function getTistoryCategoryList(){
         let url = '/api/v1/tistory/category';
-        wbGetJson(successCallBack,function (ret){
-            console.log("##티스토리 실패##",ret);
-            debugger;
-        },url);
+        var callBack = (ret) => {
+            if(ret?.status ==='200'){
+                console.log("##티스토리 성공##",ret);
+                let categoryList = ret.tistory.item.categories;
+                $.each(categoryList,function (item){
+                    if(item.label.indexOf('개인') > -1) tistoryCategoryMap.프로젝트.push(item.id);
+                    else tistoryCategoryMap.개발기록.push(item.id);
+                });
+            }else console.log("##티스토리 실패##",ret);
+        }
+        wbGetJson(callBack,callBack,url);
     }
-    function onCategory(category, successCallBack){
-        // selectedTistoryList = tistoryList.filter(function(content){
-        //     return content.category.indexOf() >=0 ;
-        // });
-        getTistoryCategoryList(function (ret){
-            console.log("##티스토리 성공##",ret);
-            debugger
+
+    function onCategory(category){
+        selectedTistoryList = tistoryList.filter(function(content){
+            return tistoryCategoryMap[category].indexOf(content.categoryId) >=0 ;
         });
+        stIdx = 0;
+        endIdx = 4;
+        appendPost();
     }
     function appendPost(){
-        getTistoryList(function (ret){
-            console.log("##티스토리 성공##",ret);
-            debugger
-            tistoryList = ret.tistory.item.posts;
-            appendSelectedCategory();
-        });
+        let size = selectedTistoryList.length;
+        while(true){
+            if(stIdx >= size) break
+            //html 생성
+            let html = '';
+
+
+            stIdx++;
+
+
+        }
     }
 
     var shoesList;
