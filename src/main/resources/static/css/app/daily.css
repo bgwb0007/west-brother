@@ -5,14 +5,14 @@
     display: none!important;
 }
 #room{
-    background-image: url('/image/app/room1.png');
-    width: 590px;
+    background-image: url('/image/app/room2.png');
+    width: 910px;
     height: 400px;
     background-size: contain;
     background-repeat : no-repeat;
     background-position: center center;
-    /* 위  ? ? 왼쪽*/
-    margin: 50px 0px 0px 100px;
+    /* 위  오른쪽 아래 왼쪽*/
+    margin: 50px auto 0px auto;
     position: relative;
 }
 #shoesImage{
@@ -182,7 +182,7 @@
 }
 
 /* 모바일 버전 */
-@media (max-width: 1000px){
+@media (max-width: 950px){
     .top-alert-pc{
         display: none!important;
     }
