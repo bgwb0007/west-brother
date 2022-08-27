@@ -2,136 +2,7 @@ function onInit() {
     getTistoryCategoryList();
 }
 
-function devInit() {
-    $('#contents').empty();
-    document.addEventListener('scroll', devScrollFnc);
-    // document.removeEventListener('scroll',devScrollFnc);
-    devHeaderAppend();
-    getTistoryList(function (ret) {
-        console.log("##티스토리 성공##", ret);
-        tistoryList = ret.tistory.item.posts;
 
-        //초기화 작업!
-        selectedTistoryList = [...tistoryList];
-        stIdx = 0;
-        endIdx = 4;
-        appendPost();
-    });
-
-}
-
-function devScrollFnc() {
-    var maxHeight = $(document).height();
-    var currentScroll = $(window).scrollTop() + $(window).height();
-    if (maxHeight <= currentScroll + 100) {
-        debugger
-        if (stIdx >= endIdx) return;
-
-        //html 추가함수 실행
-        appendPost();
-    }
-}
-
-
-var tistoryList;
-var selectedTistoryList;
-var tistoryDetailMap = {}; // {게시글Id : 게시글상세 map}
-var stIdx, endIdx;
-var tistoryCategoryMap = {
-    '프로젝트': [],
-    '개발기록': []
-}
-
-function getTistoryList(successCallBack) {
-    let url = '/api/v1/tistory';
-    wbGetJson(successCallBack, function (ret) {
-        console.log("##티스토리 실패##", ret);
-        debugger;
-    }, url);
-}
-
-//티스토리 게시판 카테고리 초기화 함수
-function getTistoryCategoryList() {
-    let url = '/api/v1/tistory/category';
-    var callBack = (ret) => {
-        if (ret?.tistory?.status === '200') {
-            console.log("##티스토리 성공##", ret);
-            let categoryList = ret.tistory.item.categories;
-            $.each(categoryList, function (idx, item) {
-                if (item.label.indexOf('개인') > -1) tistoryCategoryMap.프로젝트.push(item.id);
-                else tistoryCategoryMap.개발기록.push(item.id);
-            });
-        } else console.log("##티스토리 실패##", ret);
-    }
-    wbGetJson(callBack, callBack, url);
-}
-
-function onCategory(category) {
-    $('#dev-card-wrapper').empty();
-    selectedTistoryList = tistoryList.filter(function (content) {
-        return tistoryCategoryMap[category].indexOf(content.categoryId) >= 0;
-    });
-    stIdx = 0;
-    endIdx = 4;
-    appendPost();
-}
-
-//html 추가함수
-function appendPost() {
-    let size = selectedTistoryList.length;
-    let isFinish = false;
-    while (true) {
-        if (stIdx >= size) {
-            isFinish = true;
-            endIdx = stIdx;
-            break
-        }
-        //html 생성
-        let item = selectedTistoryList[stIdx];
-        let temp = item.title.split(']');
-        let titleHeader = temp[0].slice(1);
-        let title = temp[1];
-        let datetime = item.date.split(' ')[0];
-        //TODO. 컨텐츠 가져오기
-        let postId = item.id;
-        let content = '';
-
-        let html = '';
-        html += '<div class="card shadow-sm rounded">';
-        html += '    <div class="card-body">';
-        html += '        <div class="d-flex w-100 justify-content-between">';
-        html += '            <small class="card-subtitle mb-2 ">' + titleHeader + '</small>';
-        html += '            <small class="card-subtitle text-muted">' + datetime + '</small>';
-        html += '        </div>';
-        html += '        <h5 class="card-title">' + title + '</h5>';
-        html += '        <div class="card-text text-break text-muted">ㄱㄱㄱㄱㄱ<br/>ㄱㄱㄱㄱ<br/>ㄱㄱㄱ</div>';
-        html += '    </div>';
-        html += '</div>';
-        $('#dev-card-wrapper').append(html);
-
-        stIdx++;
-        if (stIdx > endIdx) {
-            isFinish = true;
-            endIdx += 2; // 스크롤시 두개씩 추가
-            break
-        }
-    }
-
-}
-
-function devHeaderAppend() {
-    let html = '';
-    html += '<div class="devAll">';
-    html += '    <div class="dev-sortOrder">';
-    html += '        <span class="devCategory badge rounded-pill bg-primary">전체</span>';
-    html += '        <span class="devCategory badge rounded-pill bg-secondary">프로젝트</span>';
-    html += '        <span class="devCategory badge rounded-pill bg-secondary">개발기록</span>';
-    html += '    </div>';
-    html += '    <div id="dev-card-wrapper">';
-    html += '    </div>';
-    html += '</div>';
-    $('#contents').append(html);
-}
 
 var shoesList;
 var instagramList;
@@ -234,7 +105,9 @@ function onDesk() {
     ball.width = 100;
     devInit();
 }
-
+//################################################################
+// 신발
+//################################################################
 function getShoesList(category) {
     if (shoesList != undefined) {
         $('#contents').text('');
@@ -367,6 +240,10 @@ function addCategoryEvent() {
     });
 }
 
+//################################################################
+// 인스타
+//################################################################
+
 function getInstagramList() {
     if (instagramList != undefined) {
         $('#contents').text('');
@@ -419,6 +296,141 @@ function appendInstagram(list) {
     html += '</div>';
     $('#contents').append(html);
 }
+
+//################################################################
+// 개발기록
+//################################################################
+function devInit() {
+    $('#contents').empty();
+    document.addEventListener('scroll', devScrollFnc);
+    // document.removeEventListener('scroll',devScrollFnc);
+    devHeaderAppend();
+    getTistoryList(function (ret) {
+        console.log("##티스토리 성공##", ret);
+        tistoryList = ret.tistory.item.posts;
+
+        //초기화 작업!
+        selectedTistoryList = [...tistoryList];
+        stIdx = 0;
+        endIdx = 4;
+        appendPost();
+    });
+
+}
+
+function devScrollFnc() {
+    var maxHeight = $(document).height();
+    var currentScroll = $(window).scrollTop() + $(window).height();
+    if (maxHeight <= currentScroll + 100) {
+        debugger
+        if (stIdx >= endIdx) return;
+
+        //html 추가함수 실행
+        appendPost();
+    }
+}
+
+
+var tistoryList;
+var selectedTistoryList;
+var tistoryDetailMap = {}; // {게시글Id : 게시글상세 map}
+var stIdx, endIdx;
+var tistoryCategoryMap = {
+    '프로젝트': [],
+    '개발기록': []
+}
+
+function getTistoryList(successCallBack) {
+    let url = '/api/v1/tistory';
+
+    wbGetJson(successCallBack, function (ret) {
+        console.log("##티스토리 실패##", ret);
+        debugger;
+    }, url);
+}
+
+//티스토리 게시판 카테고리 초기화 함수
+function getTistoryCategoryList() {
+    let url = '/api/v1/tistory/category';
+    var callBack = (ret) => {
+        if (ret?.tistory?.status === '200') {
+            console.log("##티스토리 성공##", ret);
+            let categoryList = ret.tistory.item.categories;
+            $.each(categoryList, function (idx, item) {
+                if (item.label.indexOf('개인') > -1) tistoryCategoryMap.프로젝트.push(item.id);
+                else tistoryCategoryMap.개발기록.push(item.id);
+            });
+        } else console.log("##티스토리 실패##", ret);
+    }
+    wbGetJson(callBack, callBack, url);
+}
+
+function onCategory(category) {
+    $('#dev-card-wrapper').empty();
+    selectedTistoryList = tistoryList.filter(function (content) {
+        return tistoryCategoryMap[category].indexOf(content.categoryId) >= 0;
+    });
+    stIdx = 0;
+    endIdx = 4;
+    appendPost();
+}
+
+//html 추가함수
+function appendPost() {
+    let size = selectedTistoryList.length;
+    let isFinish = false;
+    while (true) {
+        if (stIdx >= size) {
+            isFinish = true;
+            endIdx = stIdx;
+            break
+        }
+        //html 생성
+        let item = selectedTistoryList[stIdx];
+        let temp = item.title.split(']');
+        let titleHeader = temp[0].slice(1);
+        let title = temp[1];
+        let datetime = item.date.split(' ')[0];
+        //TODO. 컨텐츠 가져오기
+        let postId = item.id;
+        let content = '';
+
+        let html = '';
+        html += '<div class="card shadow-sm rounded">';
+        html += '    <div class="card-body">';
+        html += '        <div class="d-flex w-100 justify-content-between">';
+        html += '            <small class="card-subtitle mb-2 ">' + titleHeader + '</small>';
+        html += '            <small class="card-subtitle text-muted">' + datetime + '</small>';
+        html += '        </div>';
+        html += '        <h5 class="card-title">' + title + '</h5>';
+        html += '        <div class="card-text text-break text-muted">ㄱㄱㄱㄱㄱ<br/>ㄱㄱㄱㄱ<br/>ㄱㄱㄱ</div>';
+        html += '    </div>';
+        html += '</div>';
+        $('#dev-card-wrapper').append(html);
+
+        stIdx++;
+        if (stIdx > endIdx) {
+            isFinish = true;
+            endIdx += 2; // 스크롤시 두개씩 추가
+            break
+        }
+    }
+}
+function devHeaderAppend() {
+    let html = '';
+    html += '<div class="devAll">';
+    html += '    <div class="dev-sortOrder">';
+    html += '        <span class="devCategory badge rounded-pill bg-primary">전체</span>';
+    html += '        <span class="devCategory badge rounded-pill bg-secondary">프로젝트</span>';
+    html += '        <span class="devCategory badge rounded-pill bg-secondary">개발기록</span>';
+    html += '    </div>';
+    html += '    <div id="dev-card-wrapper">';
+    html += '    </div>';
+    html += '</div>';
+    $('#contents').append(html);
+}
+
+
 
 function goUrl(url) {
     window.open(url);
