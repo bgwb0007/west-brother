@@ -131,7 +131,6 @@ function getShoesList(category) {
 function loadShoesList(list, category) {
     $('#contents').text('');
     appendShoes(list, category);
-    addCategoryEvent();
 }
 
 function appendShoes(list, category) {
@@ -198,6 +197,7 @@ function appendShoes(list, category) {
     html += '</div>';
 
     $('#contents').append(html);
+    addCategoryEvent();
 }
 
 // 카테고리별 정리(전체/보유/리셀)
@@ -302,19 +302,29 @@ function appendInstagram(list) {
 //################################################################
 function devInit() {
     $('#contents').empty();
+    devHeaderAppend();
     document.addEventListener('scroll', devScrollFnc);
     // document.removeEventListener('scroll',devScrollFnc);
-    devHeaderAppend();
+
+    const appendPostFnc = (tistoryList) => {
+        selectedTistoryList = [...tistoryList];
+        stIdx = 0;
+        endIdx = 4;
+        appendPost();
+    }
+    if(tistoryList) {
+        appendPostFnc(tistoryList);
+        return;
+    }
+
     getTistoryList(function (ret) {
         console.log("##티스토리 성공##", ret);
         tistoryList = ret.tistory.item.posts;
 
         //초기화 작업!
-        selectedTistoryList = [...tistoryList];
-        stIdx = 0;
-        endIdx = 4;
-        appendPost();
+        appendPostFnc(tistoryList);
     });
+
 
 }
 
@@ -365,11 +375,21 @@ function getTistoryCategoryList() {
     wbGetJson(callBack, callBack, url);
 }
 
-function onCategory(category) {
+function onDevCategory(category) {
     $('#dev-card-wrapper').empty();
-    selectedTistoryList = tistoryList.filter(function (content) {
-        return tistoryCategoryMap[category].indexOf(content.categoryId) >= 0;
-    });
+    //TODO. 카테고리 변경
+    $('.devCategory').each(function(ret){
+        debugger
+        console.log($(this));
+    })
+
+    if(category=='전체') selectedTistoryList = [...tistoryList];
+    else{
+        selectedTistoryList = tistoryList.filter(function (content) {
+            return tistoryCategoryMap[category].indexOf(content.categoryId) >= 0;
+        });
+    }
+
     stIdx = 0;
     endIdx = 4;
     appendPost();
@@ -420,16 +440,28 @@ function devHeaderAppend() {
     let html = '';
     html += '<div class="devAll">';
     html += '    <div class="dev-sortOrder">';
-    html += '        <span class="devCategory badge rounded-pill bg-primary">전체</span>';
-    html += '        <span class="devCategory badge rounded-pill bg-secondary">프로젝트</span>';
-    html += '        <span class="devCategory badge rounded-pill bg-secondary">개발기록</span>';
+    html += '        <span class="devCategory badge rounded-pill bg-primary" name="전체" onclick="onDevCategory(\'전체\');">전체</span>';
+    html += '        <span class="devCategory badge rounded-pill bg-secondary" name="프로젝트" onclick="onDevCategory(\'프로젝트\');">프로젝트</span>';
+    html += '        <span class="devCategory badge rounded-pill bg-secondary" name="개발기록" onclick="onDevCategory(\'개발기록\');">개발기록</span>';
     html += '    </div>';
     html += '    <div id="dev-card-wrapper">';
     html += '    </div>';
     html += '</div>';
     $('#contents').append(html);
-}
 
+}
+function addDevCategoryEvent() {
+    $('.devCategory').off().on('click', function (ret) {
+        let selCategory = this.textContent;
+        if (selCategory == '전체') {
+            loadShoesList(sortShoesList(shoesList, 'ALL'), 'ALL');
+        } else if (selCategory == '프로젝트') {
+            loadShoesList(sortShoesList(shoesList, 'STOCK'), 'STOCK');
+        } else if (selCategory == '개발기록') {
+            loadShoesList(sortShoesList(shoesList, 'RESELL'), 'RESELL')
+        }
+    });
+}
 
 
 function goUrl(url) {
