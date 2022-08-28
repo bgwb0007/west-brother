@@ -150,16 +150,16 @@ function appendShoes(list, category) {
     let categoryStock = category == 'STOCK' ? 'bg-primary' : 'bg-secondary';
     let categoryResell = category == 'RESELL' ? 'bg-primary' : 'bg-secondary';
 
-    html += '<div class="shoesAll">';
+    html += '<div id="shoesAll">';
     html += '    <div class="">';
-    html += '        <div class="shoes-sortOrder">';
+    html += '        <div id="shoes-sortOrder">';
     html += '            <span class="shoesCategory badge rounded-pill ' + categoryAll + '">전체</span>';
     html += '            <span class="shoesCategory badge rounded-pill ' + categoryStock + '">보유</span>';
     html += '            <span class="shoesCategory badge rounded-pill ' + categoryResell + '">리셀</span>';
     html += '        </div>';
     html += '        <div class="shoes-content">';
     $.each(list, function (idx, item) {
-        html += '<div class="card mb-3 shadow-sm" style="max-width: 1000px; ">';
+        html += '<div class="card mb-3 shadow-sm">';
         html += '    <div class="row g-0">';
         html += '        <div class="col-md-4">';
         html += '            <img src="/images/' + item.mainImage + '" class="img-fluid rounded-start" alt="...">';
@@ -332,9 +332,10 @@ function devScrollFnc() {
     var maxHeight = $(document).height();
     var currentScroll = $(window).scrollTop() + $(window).height();
     if (maxHeight <= currentScroll + 100) {
-        debugger
-        if (stIdx >= endIdx) return;
-
+        if (stIdx >= endIdx) {
+            $('#dev-more-btn').hide();
+            return;
+        }
         //html 추가함수 실행
         appendPost();
     }
@@ -379,8 +380,13 @@ function onDevCategory(category) {
     $('#dev-card-wrapper').empty();
     //TODO. 카테고리 변경
     $('.devCategory').each(function(ret){
-        debugger
-        console.log($(this));
+        if ($(this).attr('name') == category) {
+            $(this).removeClass('bg-secondary');
+            $(this).addClass('bg-primary');
+        }else {
+            $(this).removeClass('bg-primary');
+            $(this).addClass('bg-secondary');
+        }
     })
 
     if(category=='전체') selectedTistoryList = [...tistoryList];
@@ -446,21 +452,10 @@ function devHeaderAppend() {
     html += '    </div>';
     html += '    <div id="dev-card-wrapper">';
     html += '    </div>';
+    html += '    <div id="dev-more-btn"><span onclick="appendPost();" class="badge rounded-pill bg-light text-dark">+ 더보기</span>';
+    html += '    </div>';
     html += '</div>';
     $('#contents').append(html);
-
-}
-function addDevCategoryEvent() {
-    $('.devCategory').off().on('click', function (ret) {
-        let selCategory = this.textContent;
-        if (selCategory == '전체') {
-            loadShoesList(sortShoesList(shoesList, 'ALL'), 'ALL');
-        } else if (selCategory == '프로젝트') {
-            loadShoesList(sortShoesList(shoesList, 'STOCK'), 'STOCK');
-        } else if (selCategory == '개발기록') {
-            loadShoesList(sortShoesList(shoesList, 'RESELL'), 'RESELL')
-        }
-    });
 }
 
 
