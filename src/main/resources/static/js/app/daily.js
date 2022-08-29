@@ -310,7 +310,7 @@ function devInit() {
         selectedTistoryList = [...tistoryList];
         stIdx = 0;
         endIdx = 4;
-        appendPost();
+        appendDevPost();
     }
     if(tistoryList) {
         appendPostFnc(tistoryList);
@@ -337,7 +337,7 @@ function devScrollFnc() {
             return;
         }
         //html 추가함수 실행
-        appendPost();
+        appendDevPost();
     }
 }
 
@@ -398,11 +398,11 @@ function onDevCategory(category) {
 
     stIdx = 0;
     endIdx = 4;
-    appendPost();
+    appendDevPost();
 }
 
 //html 추가함수
-function appendPost() {
+function appendDevPost() {
     let size = selectedTistoryList.length;
     let isFinish = false;
     while (true) {
@@ -422,17 +422,38 @@ function appendPost() {
         let content = '';
 
         let html = '';
-        html += '<div class="card shadow-sm rounded">';
+        html += '<div id="dev-card-'+postId+'" class="card shadow-sm rounded">';
         html += '    <div class="card-body">';
         html += '        <div class="d-flex w-100 justify-content-between">';
         html += '            <small class="card-subtitle mb-2 ">' + titleHeader + '</small>';
         html += '            <small class="card-subtitle text-muted">' + datetime + '</small>';
         html += '        </div>';
         html += '        <h5 class="card-title">' + title + '</h5>';
-        html += '        <div class="card-text text-break text-muted">ㄱㄱㄱㄱㄱ<br/>ㄱㄱㄱㄱ<br/>ㄱㄱㄱ</div>';
+        html += '        <div id="dev-card-text-'+postId+'" class="card-text text-break text-muted"></div>';
         html += '    </div>';
         html += '</div>';
         $('#dev-card-wrapper').append(html);
+
+        if(tistoryDetailMap?.[postId]){
+            getDevPostDetail(postId,(ret)=>{
+                debugger;
+                tistoryDetailMap[postId] = ret.tistory.item;
+                let prevContent = '';
+                let sIdx = ret.tistory.item.content.indexOf('<');
+                let eIdx = ret.tistory.item.content.indexOf('>');
+                let tempStr = content.slice(eIdx+1)
+                for(let i=0; i<3; i++){
+                    sIdx = tempStr.indexOf('<');
+                    if(tempStr.slice(0,sIdx).length < 1) prevContent += '<pre><사진></pre><br\>';
+                    else prevContent += tempStr.slice(0,sIdx) + '<br/>';
+
+                    eIdx = tempStr.indexOf('<');
+                    tempStr = tempStr.slice(eIdx+1);
+                }
+                tistoryDetailMap[postId].prevContent = tempStr;
+                appendDevPostDetail(postId);
+            });
+        }else appendDevPostDetail(postId);
 
         stIdx++;
         if (stIdx > endIdx) {
@@ -442,6 +463,18 @@ function appendPost() {
         }
     }
 }
+function appendDevPostDetail(postId){
+    $('#dev-card-text-'+postId).html(tistoryDetailMap[postId].prevContent);
+}
+
+function getDevPostDetail(postId,successCallBack){
+    let url = '/api/v1/tistory/'+postId;
+    wbGetJson(successCallBack,function (ret){
+        console.log("##티스토리 실패##",ret);
+        debugger;
+    },url);
+}
+
 function devHeaderAppend() {
     let html = '';
     html += '<div class="devAll">';
@@ -452,7 +485,7 @@ function devHeaderAppend() {
     html += '    </div>';
     html += '    <div id="dev-card-wrapper">';
     html += '    </div>';
-    html += '    <div id="dev-more-btn"><span onclick="appendPost();" class="badge rounded-pill bg-light text-dark">+ 더보기</span>';
+    html += '    <div id="dev-more-btn"><span onclick="appendDevPost();" class="badge rounded-pill bg-light text-dark">+ 더보기</span>';
     html += '    </div>';
     html += '</div>';
     $('#contents').append(html);

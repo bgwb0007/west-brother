@@ -259,8 +259,8 @@
             debugger;
         },url);
     }
-    function getTistoryDetail(num,successCallBack){
-        let url = '/api/v1/tistory/' + num;
+    function getTistoryDetail(postId,successCallBack){
+        let url = '/api/v1/tistory/' + postId;
         wbGetJson(successCallBack,function (ret){
             console.log("##티스토리 실패##",ret);
             debugger;
