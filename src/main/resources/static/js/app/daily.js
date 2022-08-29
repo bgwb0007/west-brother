@@ -434,26 +434,28 @@ function appendDevPost() {
         html += '</div>';
         $('#dev-card-wrapper').append(html);
 
-        if(tistoryDetailMap?.[postId]){
+        if(tistoryDetailMap?.[postId]) appendDevPostDetail(postId);
+        else {
             getDevPostDetail(postId,(ret)=>{
                 debugger;
                 tistoryDetailMap[postId] = ret.tistory.item;
                 let prevContent = '';
                 let sIdx = ret.tistory.item.content.indexOf('<');
                 let eIdx = ret.tistory.item.content.indexOf('>');
-                let tempStr = content.slice(eIdx+1)
-                for(let i=0; i<3; i++){
+                let tempStr = ret.tistory.item.content.slice(eIdx+1);
+                for(let i=0; i<7; i++){
                     sIdx = tempStr.indexOf('<');
-                    if(tempStr.slice(0,sIdx).length < 1) prevContent += '<pre><사진></pre><br\>';
-                    else prevContent += tempStr.slice(0,sIdx) + '<br/>';
+                    if(tempStr.slice(0,sIdx).length < 1) prevContent += '<사진><br/>';
+                    else if(tempStr.slice(0,sIdx) == '&nbsp;' || tempStr.slice(0,sIdx) == '\n') prevContent += ' ';
+                    else prevContent += tempStr.slice(0,sIdx) +'<br/>';
 
-                    eIdx = tempStr.indexOf('<');
+                    eIdx = tempStr.indexOf('>');
                     tempStr = tempStr.slice(eIdx+1);
                 }
-                tistoryDetailMap[postId].prevContent = tempStr;
+                tistoryDetailMap[postId].prevContent = prevContent;
                 appendDevPostDetail(postId);
             });
-        }else appendDevPostDetail(postId);
+        }
 
         stIdx++;
         if (stIdx > endIdx) {
