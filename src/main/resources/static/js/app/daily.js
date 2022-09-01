@@ -419,7 +419,6 @@ function appendDevPost() {
         let datetime = item.date.split(' ')[0];
         //TODO. 컨텐츠 가져오기
         let postId = item.id;
-        let content = '';
 
         let html = '';
         html += '<div id="dev-card-'+postId+'" class="card shadow-sm rounded">';
