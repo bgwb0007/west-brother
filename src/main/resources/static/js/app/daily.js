@@ -468,7 +468,7 @@ function appendDevPostDetail(postId){
 }
 function onClickDevPost(id){
     if($('#dev-card-detail-'+id).length > 0){
-        $('#dev-card-detail-12').remove();
+        $('#dev-card-detail-'+id).remove();
         $('#dev-card-text-'+id).show();
         return;
     }
