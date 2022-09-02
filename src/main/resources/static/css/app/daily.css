@@ -197,7 +197,10 @@
     margin-bottom: 2rem;
     margin-top: 1rem;
 }
-
+.dev-card-detail{
+    padding: 1rem;
+    background-color: #d3d3d330;
+}
 
 /* 모바일 버전 */
 @media (max-width: 950px){

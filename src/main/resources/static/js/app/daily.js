@@ -422,7 +422,7 @@ function appendDevPost() {
 
         let html = '';
         html += '<div id="dev-card-'+postId+'" class="card shadow-sm rounded">';
-        html += '    <div class="card-body">';
+        html += '    <div class="card-body" onclick="onClickDevPost(\''+postId+'\')">';
         html += '        <div class="d-flex w-100 justify-content-between">';
         html += '            <small class="card-subtitle mb-2 ">' + titleHeader + '</small>';
         html += '            <small class="card-subtitle text-muted">' + datetime + '</small>';
@@ -436,7 +436,6 @@ function appendDevPost() {
         if(tistoryDetailMap?.[postId]) appendDevPostDetail(postId);
         else {
             getDevPostDetail(postId,(ret)=>{
-                debugger;
                 tistoryDetailMap[postId] = ret.tistory.item;
                 let prevContent = '';
                 let sIdx = ret.tistory.item.content.indexOf('<');
@@ -466,6 +465,19 @@ function appendDevPost() {
 }
 function appendDevPostDetail(postId){
     $('#dev-card-text-'+postId).html(tistoryDetailMap[postId].prevContent);
+}
+function onClickDevPost(id){
+    if($('#dev-card-detail-'+id).length > 0){
+        $('#dev-card-detail-12').remove();
+        $('#dev-card-text-'+id).show();
+        return;
+    }
+    $('#dev-card-text-'+id).hide();
+    let html = '';
+    html += '<div id="dev-card-detail-'+id+'" class="dev-card-detail">';
+    html += tistoryDetailMap[id].content;
+    html += '</div>';
+    $('#dev-card-'+id).append(html);
 }
 
 function getDevPostDetail(postId,successCallBack){
