@@ -201,6 +201,29 @@
     padding: 1rem;
     background-color: #d3d3d330;
 }
+.dev-card-detail .imageblock{
+    text-align: center;
+}
+.dev-card-detail img{
+    max-width: 90%;
+}
+.dev-card-detail hr{
+    margin: 1rem auto;
+    width: 80%;
+}
+/*인용글*/
+.dev-card-detail blockquote{
+    border: 1px solid #dddddd;
+    background: #fcfcfc;
+    text-align: left;
+    padding: 21px 25px 20px 25px;
+    color: #666;
+    line-height: 1.75;
+}
+.dev-card-detail .bash{
+    border: 2px solid;
+    padding: 1rem
+}
 
 /* 모바일 버전 */
 @media (max-width: 950px){
