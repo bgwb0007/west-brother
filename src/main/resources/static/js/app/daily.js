@@ -417,7 +417,6 @@ function appendDevPost() {
         let titleHeader = temp[0].slice(1);
         let title = temp[1];
         let datetime = item.date.split(' ')[0];
-        //TODO. 컨텐츠 가져오기
         let postId = item.id;
 
         let html = '';
@@ -428,12 +427,15 @@ function appendDevPost() {
         html += '            <small class="card-subtitle text-muted">' + datetime + '</small>';
         html += '        </div>';
         html += '        <h5 class="card-title">' + title + '</h5>';
-        html += '        <div id="dev-card-text-'+postId+'" class="card-text text-break text-muted"></div>';
+        html += '        <div class="dev-card-textAll">';
+        html += '           <div id="dev-card-text-'+postId+'" class="card-text text-break text-muted"></div>';
+        html += '           <div id="dev-card-tags-'+postId+'" class="dev-card-tags text-muted"></div>'
+        html += '        </div>';
         html += '    </div>';
         html += '</div>';
         $('#dev-card-wrapper').append(html);
 
-        if(tistoryDetailMap?.[postId]) appendDevPostDetail(postId);
+        if(tistoryDetailMap?.[postId]) appendDevPostPrev(postId);
         else {
             getDevPostDetail(postId,(ret)=>{
                 tistoryDetailMap[postId] = ret.tistory.item;
@@ -451,7 +453,7 @@ function appendDevPost() {
                     tempStr = tempStr.slice(eIdx+1);
                 }
                 tistoryDetailMap[postId].prevContent = prevContent;
-                appendDevPostDetail(postId);
+                appendDevPostPrev(postId);
             });
         }
 
@@ -463,8 +465,16 @@ function appendDevPost() {
         }
     }
 }
-function appendDevPostDetail(postId){
+function appendDevPostPrev(postId){
     $('#dev-card-text-'+postId).html(tistoryDetailMap[postId].prevContent);
+
+    let html = '';
+    $.each(tistoryDetailMap[postId].tags.tag, function (idx,item){
+        html = html + '#' + item + ' ';
+    })
+    debugger
+    $('#dev-card-tags-'+postId).html(html);
+
 }
 function onClickDevPost(id){
     if($('#dev-card-detail-'+id).length > 0){
