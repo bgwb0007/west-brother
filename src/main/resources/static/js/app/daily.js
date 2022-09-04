@@ -478,6 +478,7 @@ function onClickDevPost(id){
     html += tistoryDetailMap[id].content;
     html += '</div>';
     $('#dev-card-'+id).append(html);
+    hljs.highlightAll();
 }
 
 function getDevPostDetail(postId,successCallBack){

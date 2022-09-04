@@ -211,6 +211,7 @@
     margin: 1rem auto;
     width: 80%;
 }
+
 /*인용글*/
 .dev-card-detail blockquote{
     border: 1px solid #dddddd;
@@ -253,6 +254,12 @@
     }
     .instagram-All video{
         width: 100%;
+    }
+
+
+
+    .dev-card-detail img{
+        max-width: 99%;
     }
 
 }
