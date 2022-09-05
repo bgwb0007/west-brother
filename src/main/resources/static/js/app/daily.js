@@ -279,7 +279,7 @@ function appendInstagram(list) {
     html += '<div id="instaWrapper">';
     $.each(list, function (idx, item) {
         let caption = item.caption.replaceAll('\n', '<br>');
-        html += '    <div class="instagram-All">';
+        html += '    <div class="instagram-All shadow">';
         html += '        <div class="instagram-title">';
         html += '            <img src="/image/app/logo_instagram.png">';
         html += '                <span class="instagram-username" onclick="goUrl(\'' + item.permalink + '\')">' + item.username + '</span>';
