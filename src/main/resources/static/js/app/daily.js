@@ -515,7 +515,10 @@ function devHeaderAppend() {
     $('#contents').append(html);
 }
 
-
 function goUrl(url) {
     window.open(url);
 }
+
+$(".back-icon").on("click",function (ret){
+    location.href = "/";
+})

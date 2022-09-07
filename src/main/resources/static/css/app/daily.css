@@ -4,6 +4,9 @@
 .top-alert-mobile{
     display: none!important;
 }
+.back-icon{
+
+}
 #room{
     background-image: url('/image/app/room2.png');
     width: 910px;
