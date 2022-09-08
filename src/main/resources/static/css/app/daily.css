@@ -5,7 +5,8 @@
     display: none!important;
 }
 .back-icon{
-
+    margin-right: 0.6rem;
+    cursor : pointer;
 }
 #room{
     background-image: url('/image/app/room2.png');

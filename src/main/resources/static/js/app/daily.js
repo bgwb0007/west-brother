@@ -1,5 +1,9 @@
 function onInit() {
     getTistoryCategoryList();
+
+    $(".back-icon").on("click",()=>{
+        location.href = "/";
+    });
 }
 
 
@@ -519,6 +523,3 @@ function goUrl(url) {
     window.open(url);
 }
 
-$(".back-icon").on("click",function (ret){
-    location.href = "/";
-})
