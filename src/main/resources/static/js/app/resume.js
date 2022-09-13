@@ -4,6 +4,11 @@ function onInit() {
     getContactList();
     appendTistoryModal(tstTitleMap);
     //tstTitleMap[id][1] -> contentDetail 값으로 티스토리 게시글의 제목에 포함되는 컨텐츠만 가져온다.
+
+    let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
 }
 
 function moveBack() {
