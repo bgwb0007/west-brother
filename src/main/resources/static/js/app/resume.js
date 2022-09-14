@@ -1,27 +1,27 @@
 var tistoryList = [];
-var tstTitleMap = {};
+
 
 var devStackList = [
     {
         'title': 'Java',
         'url': '/image/app/stack-java.png',
     },{
-        'title': 'spring',
+        'title': 'Spring',
         'url': '/image/app/stack-spring.png',
     },{
-        'title': 'AWS lightsail',
+        'title': 'AWS Lightsail',
         'url': '/image/app/stack-lightsail.png',
     },{
-        'title': 'AWS ec2',
+        'title': 'AWS Ec2',
         'url': '/image/app/stack-ec2.png',
     },{
-        'title': 'travisci',
-        'url': '/image/app/stack-travisCI.png',
+        'title': 'Travis CI',
+        'url': '/image/app/stack-travisci.png',
     },{
-        'title': 'DevOn framework',
+        'title': 'DevOn Framework',
         'url': '/image/app/stack-devon.png',
     },{
-        'title': 'python',
+        'title': 'Python',
         'url': '/image/app/stack-python.png',
     },
 ]
