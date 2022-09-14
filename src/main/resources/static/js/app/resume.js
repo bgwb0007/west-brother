@@ -1,9 +1,37 @@
-var tistoryList = []
+var tistoryList = [];
+var tstTitleMap = {};
+
+var devStackList = [
+    {
+        'title': 'Java',
+        'url': '/image/app/stack-java.png',
+    },{
+        'title': 'spring',
+        'url': '/image/app/stack-spring.png',
+    },{
+        'title': 'AWS lightsail',
+        'url': '/image/app/stack-lightsail.png',
+    },{
+        'title': 'AWS ec2',
+        'url': '/image/app/stack-ec2.png',
+    },{
+        'title': 'travisci',
+        'url': '/image/app/stack-travisCI.png',
+    },{
+        'title': 'DevOn framework',
+        'url': '/image/app/stack-devon.png',
+    },{
+        'title': 'python',
+        'url': '/image/app/stack-python.png',
+    },
+]
 
 function onInit() {
     getContactList();
     appendTistoryModal(tstTitleMap);
     //tstTitleMap[id][1] -> contentDetail 값으로 티스토리 게시글의 제목에 포함되는 컨텐츠만 가져온다.
+
+    appendDevStack();
 
     let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
     let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
@@ -14,6 +42,20 @@ function onInit() {
 function moveBack() {
     location.href = '/';
 }
+
+function appendDevStack(){
+    let html = '';
+    $.each(devStackList, function (idx,item){
+        html += '<div class="skill-set-div rounded-circle shadow">';
+        html += '    <div style="background-image: url(\''+item.url+'\');"';
+        html += '         class="skill-set-div-image rounded-circle "';
+        html += '         data-bs-toggle="tooltip" data-bs-placement="top" title="'+item.title+'">';
+        html += '    </div>';
+        html += '</div>';
+    })
+    $("#skill-set-all").append(html);
+}
+
 
 function getContactList() {
     var url = '/api/v1/contact/이력서';
