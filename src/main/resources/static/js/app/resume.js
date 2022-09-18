@@ -23,6 +23,9 @@ var devStackList = [
     },{
         'title': 'Python',
         'url': '/image/app/stack-python.png',
+    },{
+        'title': 'React',
+        'url': '/image/app/stack-react.png',
     },
 ]
 
