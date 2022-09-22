@@ -48,6 +48,7 @@ function moveBack() {
 
 function appendDevStack(){
     let html = '';
+
     $.each(devStackList, function (idx,item){
         html += '<div class="skill-set-div rounded-circle shadow">';
         html += '    <div style="background-image: url(\''+item.url+'\');"';
