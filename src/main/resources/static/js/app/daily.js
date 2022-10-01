@@ -316,7 +316,7 @@ function devInit() {
         endIdx = 4;
         appendDevPost();
     }
-    if(tistoryList) {
+    if(tistoryList.length > 0) {
         appendPostFnc(tistoryList);
         return;
     }
