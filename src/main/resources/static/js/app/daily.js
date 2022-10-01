@@ -344,7 +344,7 @@ function devScrollFnc() {
 }
 
 
-var tistoryList;
+var tistoryList = [];
 var selectedTistoryList;
 var tistoryDetailMap = {}; // {게시글Id : 게시글상세 map}
 var stIdx, endIdx;
