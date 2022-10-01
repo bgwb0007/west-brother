@@ -356,7 +356,7 @@ var tistoryCategoryMap = {
 }
 
 function getTistoryList(successCallBack) {
-    let url = '/api/v1/tistory';
+    let url = '/api/v1/tistoryList/';
 
     wbGetJson(successCallBack, function (ret) {
         console.log("##티스토리 실패##", ret);

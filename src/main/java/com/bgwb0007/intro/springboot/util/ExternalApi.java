@@ -15,9 +15,10 @@ public class ExternalApi {
     @Autowired
     private TokensService tokensService;
 
-    public String getTistoryAll(){
+    public String getTistoryAll(String page){
         String accessToken = tokensService.findByName("티스토리").getAccessToken();
-        String url = "https://www.tistory.com/apis/post/list?output=json&blogName=west-brother&access_token=" + accessToken;
+        String url = "https://www.tistory.com/apis/post/list?output=json&blogName=west-brother&page=" + page
+                + "&access_token=" + accessToken;
         return sendHttp(url);
     }
     public String getTistoryDetail(String id){

@@ -129,10 +129,9 @@ function appendPostList(postId) {
         appendSelectedList();
     } else {
         getTistoryList(function (ret) {
-            console.log("##티스토리 성공##", ret);
-            tistoryList = ret.tistory.item.posts;
+            console.log("##티스토리 성공## tistList:", ret);
             appendSelectedList();
-        });
+        }, '1');
     }
     var myModal = new bootstrap.Modal($('#' + modalId));
     myModal.show();
@@ -160,9 +159,18 @@ function appendPostDetail(num) {
     })
 }
 
-function getTistoryList(successCallBack) {
-    let url = '/api/v1/tistory';
-    wbGetJson(successCallBack, function (ret) {
+function getTistoryList(successCallBack, page) {
+    let url = '/api/v1/tistoryList/'+page;
+
+    const callback = (ret)=>{
+        tistoryList.push(ret.tistory.item.posts);
+        let item = ret?.tistory?.item;
+
+        if(item.count * item.page < totalCount) getTistoryList(successCallBack, parseInt(page) + 1);
+        else successCallBack(tistoryList);
+    }
+
+    wbGetJson(callback, function (ret) {
         console.log("##티스토리 실패##", ret);
         debugger;
     }, url);

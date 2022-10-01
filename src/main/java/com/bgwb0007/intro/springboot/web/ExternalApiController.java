@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class ExternalApiController {
     private final ExternalApi externalApi;
 
-    @GetMapping("/api/v1/tistory")
-    public String getTistoryAllList(){
-        return externalApi.getTistoryAll();
+    @GetMapping("/api/v1/tistoryList/{page}")
+    public String getTistoryAllList(@PathVariable String page){
+        return externalApi.getTistoryAll(page);
     }
     @GetMapping("/api/v1/tistory/category")
     public String getTistoryCategory(){
