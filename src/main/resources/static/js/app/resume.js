@@ -166,7 +166,7 @@ function getTistoryList(successCallBack, page) {
         tistoryList.push(ret.tistory.item.posts);
         let item = ret?.tistory?.item;
 
-        if(item.count * item.page < totalCount) getTistoryList(successCallBack, parseInt(page) + 1);
+        if(item.count * item.page < item.totalCount) getTistoryList(successCallBack, parseInt(page) + 1);
         else successCallBack(tistoryList);
     }
 
