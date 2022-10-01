@@ -322,12 +322,10 @@ function devInit() {
     }
 
     getTistoryList(function (ret) {
-        console.log("##티스토리 성공##", ret);
-        tistoryList = ret.tistory.item.posts;
-
+        console.log("##티스토리 성공## tistoryList: ", ret);
         //초기화 작업!
         appendPostFnc(tistoryList);
-    });
+    },'1');
 
 
 }
@@ -355,10 +353,19 @@ var tistoryCategoryMap = {
     '개발기록': []
 }
 
-function getTistoryList(successCallBack) {
-    let url = '/api/v1/tistoryList/';
+function getTistoryList(successCallBack,page) {
+    let url = '/api/v1/tistoryList/'+page;
 
-    wbGetJson(successCallBack, function (ret) {
+    const callback = (ret)=>{
+        let retArr = ret?.tistory?.item?.posts ? ret?.tistory?.item?.posts : [];
+        if(retArr.length > 0) tistoryList.push(...retArr);
+        let item = ret?.tistory?.item;
+
+        if(item.count * item.page < item.totalCount) getTistoryList(successCallBack, parseInt(page) + 1);
+        else successCallBack(tistoryList);
+    }
+
+    wbGetJson(callback, function (ret) {
         console.log("##티스토리 실패##", ret);
         debugger;
     }, url);
