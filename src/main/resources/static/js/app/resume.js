@@ -163,7 +163,8 @@ function getTistoryList(successCallBack, page) {
     let url = '/api/v1/tistoryList/'+page;
 
     const callback = (ret)=>{
-        tistoryList.push(ret.tistory.item.posts);
+        let retArr = ret?.tistory?.item?.posts ? ret?.tistory?.item?.posts : [];
+        if(retArr.length > 0) tistoryList.push(...retArr);
         let item = ret?.tistory?.item;
 
         if(item.count * item.page < item.totalCount) getTistoryList(successCallBack, parseInt(page) + 1);
