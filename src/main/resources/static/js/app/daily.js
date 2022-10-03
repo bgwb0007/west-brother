@@ -389,7 +389,6 @@ function getTistoryCategoryList() {
 
 function onDevCategory(category) {
     $('#dev-card-wrapper').empty();
-    //TODO. 카테고리 변경
     $('.devCategory').each(function(ret){
         if ($(this).attr('name') == category) {
             $(this).removeClass('bg-secondary');
