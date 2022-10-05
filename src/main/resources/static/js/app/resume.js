@@ -78,9 +78,9 @@ function getContactList() {
 
 function appendTistoryModal(tstTitleMap) {
     $.each(tstTitleMap, function (id, value) {
-        let title = value[0]
+        let title = value[0];
         let modalId = 'tstModal-' + id;
-        let modalLabel = modalId + '-Label'
+        let modalLabel = modalId + '-Label';
         let html = '';
         html += '<div class="modal fade" id="' + modalId + '" tabindex="-1" aria-labelledby="' + modalLabel + '" aria-hidden="true">';
         html += '    <div class="modal-dialog modal-xl modal-dialog-scrollable">';
