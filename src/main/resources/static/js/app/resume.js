@@ -102,8 +102,8 @@ function appendTistoryModal(tstTitleMap) {
 }
 
 function appendPostList(postId) {
-    var modalId = 'tstModal-' + postId
-    var appendSelectedList = function () {
+    let modalId = 'tstModal-' + postId
+    const appendSelectedList = function () {
         if ($('#' + modalId + ' .modal-body div')[0] != undefined) return;
 
         let selectedList = tistoryList.filter(function (content) {
