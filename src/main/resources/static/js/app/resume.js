@@ -61,7 +61,7 @@ function appendDevStack(){
 
 
 function getContactList() {
-    var url = '/api/v1/contact/이력서';
+    let url = '/api/v1/contact/이력서';
     wbGetJson(function (res) {
         var html = '';
         $.each(res, function (idx, item) {
@@ -133,7 +133,7 @@ function appendPostList(postId) {
             appendSelectedList();
         }, '1');
     }
-    var myModal = new bootstrap.Modal($('#' + modalId));
+    let myModal = new bootstrap.Modal($('#' + modalId));
     myModal.show();
 }
 
