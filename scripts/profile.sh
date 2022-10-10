@@ -6,13 +6,13 @@
 function find_idle_profile()
 {
     echo ">>>>find_idle_profile 실행"
-    RESPONSE_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://localhost/profile)
+    RESPONSE_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://west-brother.com/profile)
 
     if [ ${RESPONSE_CODE} -ge 400 ] # 400 보다 크면 (즉, 40x/50x 에러 모두 포함)
     then
         CURRENT_PROFILE=real2
     else
-        CURRENT_PROFILE=$(curl -s https://localhost/profile)
+        CURRENT_PROFILE=$(curl -s https://west-brother.com/profile)
     fi
 
     if [ ${CURRENT_PROFILE} == real1 ]
