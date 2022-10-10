@@ -14,7 +14,7 @@ function find_idle_profile()
     else
         CURRENT_PROFILE=$(curl -s https://west-brother.com/profile)
     fi
-
+    echo "@@ ${CURRENT_PROFILE}"
     if [ ${CURRENT_PROFILE} == real1 ]
     then
       IDLE_PROFILE=real2
@@ -32,6 +32,7 @@ function find_idle_port()
     echo ">>>>find_idle_port 실행"
     IDLE_PROFILE=$(find_idle_profile)
 
+    echo "@@@@ ${IDLE_PROFILE}"
     if [ ${IDLE_PROFILE} == real1 ]
     then
       echo "8081"
