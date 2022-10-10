@@ -66,7 +66,7 @@ function getContactList() {
         var html = '';
         $.each(res, function (idx, item) {
             html += '<div class="contactInfoDiv">';
-            html += '    <span class="logo"><img src="' + item.logoHtml + '" alt="인스타로고" width="35"></span>';
+            html += '    <span class="logo"><img src="' + item.logoHtml + '" alt="' + item.name + '" width="35"></span>';
             html += '    <span class="siteId">' + item.siteId + '</span>';
             html += '</div>';
         })
