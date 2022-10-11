@@ -160,7 +160,7 @@ function appendPostDetail(num) {
 }
 
 function getTistoryList(successCallBack, page) {
-    let url = '/api/v1/tistoryList/'+page;
+    let url = '/api/v1/tistoryList/' + page;
 
     const callback = (ret)=>{
         let retArr = ret?.tistory?.item?.posts ? ret?.tistory?.item?.posts : [];
