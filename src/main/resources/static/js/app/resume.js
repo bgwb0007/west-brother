@@ -63,7 +63,7 @@ function appendDevStack(){
 function getContactList() {
     let url = '/api/v1/contact/이력서';
     wbGetJson(function (res) {
-        var html = '';
+        let html = '';
         $.each(res, function (idx, item) {
             html += '<div class="contactInfoDiv">';
             html += '    <span class="logo"><img src="' + item.logoHtml + '" alt="' + item.name + '" width="35"></span>';
