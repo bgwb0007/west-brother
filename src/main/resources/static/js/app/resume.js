@@ -124,7 +124,6 @@ function appendPostList(postId) {
         ;$('#' + modalId + ' .modal-body').append(html);
     }
 
-    // TODO. 해당 리스트 가져오기 -> 모달 만들어서 append(id = modalId)
     if (tistoryList.length > 0) {
         appendSelectedList();
     } else {
