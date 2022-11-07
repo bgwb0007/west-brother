@@ -14,7 +14,7 @@ var main = {
         });
     },
     save : function () {
-        var data = {
+        let data = {
             title: $('#title').val(),
             author: $('#author').val(),
             content: $('#content').val()
@@ -34,12 +34,12 @@ var main = {
         });
     },
     update : function () {
-        var data = {
+        let data = {
             title: $('#title').val(),
             content: $('#content').val()
         };
 
-        var id = $('#id').val();
+        let id = $('#id').val();
 
         $.ajax({
             type: 'PUT',
@@ -55,7 +55,7 @@ var main = {
         });
     },
     delete : function () {
-        var id = $('#id').val();
+        let id = $('#id').val();
 
         $.ajax({
             type: 'DELETE',
