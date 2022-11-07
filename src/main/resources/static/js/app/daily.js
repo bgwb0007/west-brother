@@ -1,6 +1,5 @@
 function onInit() {
     getTistoryCategoryList();
-
     $(".back-icon").on("click",()=>{
         location.href = "/";
     });
