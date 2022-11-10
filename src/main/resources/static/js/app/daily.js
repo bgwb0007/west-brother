@@ -5,13 +5,11 @@ function onInit() {
     });
 }
 
-
-
 var shoesList;
 var instagramList;
-
 let currentDroppable = null;
 
+//드래그 이벤트
 ball.onmousedown = function (event) {
 
     let shiftX = event.clientX - ball.getBoundingClientRect().left;
