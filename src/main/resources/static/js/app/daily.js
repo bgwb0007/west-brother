@@ -40,8 +40,7 @@ ball.onmousedown = function (event) {
         // 잠재적으로 드롭 할 수 있는 요소를 'droppable' 클래스로 지정합니다.(다른 로직 가능)
         let droppableBelow = elemBelow.closest('.droppableArea');
         if (currentDroppable != droppableBelow) {
-            // 들어오거나 날리거나...
-            // 참고: 두 값 모두 null일 수 있습니다.
+            // 들어오거나 날리거나...  참고: 두 값 모두 null일 수 있습니다.
             //   currentDroppable=null 이벤트 전에 놓을 수 있는 요소 위에 있지 않다면(예: 빈 공간)
             //   droppableBelow=null 이벤트 동안 놓을 수 있는 요소 위에 있지 않다면
             if (currentDroppable) { // null when we were not over a droppable before this event
