@@ -12,11 +12,13 @@ echo "> IDLE_PORT: $IDLE_PORT"
 echo "> curl -s http://localhost:$IDLE_PORT/profile "
 sleep 10
 
+
 for RETRY_COUNT in {1..10}
 do
+  echo "> Health Check 시작 (${RETRY_COUNT}/10)"
   RESPONSE=$(curl -s http://localhost:${IDLE_PORT}/profile)
   UP_COUNT=$(echo ${RESPONSE} | grep 'real' | wc -l)
-
+  echo "RESPONSE: ${RESPONSE}, UP_COUNT: ${UP_COUNT})"
   if [ ${UP_COUNT} -ge 1 ]
   then # $up_count >= 1 ("real" 문자열이 있는지 검증)
       echo "> Health check 성공"
